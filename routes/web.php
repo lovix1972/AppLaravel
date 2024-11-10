@@ -19,6 +19,5 @@ Route::get('/about',function (){
 
 Route::post('/form', [ValidationController::class, 'validateForm'])->name('validateForm');
 
-Route::get('/register',[UserController::class,'showRegistrationForm'])->name('showRegistrationForm');
-
+Route::get('/register',[UserController::class,'showRegistrationForm'])->name('showRegisterForm');
 Route::post('/register',[UserController::class,'register'])->name('registerUser');

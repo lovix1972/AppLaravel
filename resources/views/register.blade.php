@@ -2,9 +2,7 @@
 <html lang="en">
 @include('partials.head', ['title'=>'Registrazione Utenti', 'metaTitle'=>'Registrazione'])
 
-
 <body>
-
 
 <div class="container mt-5">
 
@@ -25,9 +23,9 @@
         </div>
     @endif
     <h1 >Registrazione Utenti</h1>
-    <form action="{{ Route('registerUser')}}" method="POST">
+    <form action="{{ route('registerUser')}}" method="POST">
         @csrf
-        <div class="mb-3 bg-amber-200">
+        <div class="mb-3 ">
             <label for="name" class ="form-label">Nome</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}" required>
         </div>
