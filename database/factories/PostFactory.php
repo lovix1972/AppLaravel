@@ -18,7 +18,6 @@ class PostFactory extends Factory
     {
         return [
 
-
             'created_at'=>now(),
             'updated_at'=>now()
         ];
