@@ -8,10 +8,10 @@
     <p> Non ci sono utenti registrati!</p>
 @else
 
-    <div class ="mt-5 border-collapse " >
+    <div class ="mt-5" >
     <h1>Lista Utenti</h1>
 
-    <table class="table tab-content">
+    <table class="table table-responsive">
 
 
     <th>ID Utente</th>
@@ -20,7 +20,7 @@
     <th>password</th>
     <th>data creazione</th>
     <th>data update</th>
-       <th><button class="btn btn-secondary" >Inserisci Utente</button></th>
+        <th><a href="/register"><button class="btn btn-secondary" >Inserisci Utente</button></a></th>
 
 
     @foreach($users as $user)

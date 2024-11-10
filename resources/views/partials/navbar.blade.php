@@ -35,6 +35,10 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Report</a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/utenti">Gestione Utenti</a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" style="position: absolute; right: 4rem ">Logout</a>
             </li>

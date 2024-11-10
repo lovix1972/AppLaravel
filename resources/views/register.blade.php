@@ -42,6 +42,7 @@
             <input type="password" class="form-control" id="password-confirmation" name="password-confirmation" value="{{ old('password-confirmation') }}" required>
         </div>
         <button type="submit" class ="btn btn-primary">Registrati</button>
+        <a href="" class="btn btn-secondary"> Chiudi</a>
     </form>
 
 </div>
