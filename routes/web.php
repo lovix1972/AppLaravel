@@ -27,3 +27,5 @@ Route::get('/utenti', function () {
     $users = User::all();
     return view('userlist',['users'=>$users]);
 });
+
+Route::get('/utenti/{id}',[UserController::class,'deleteUser'])->name('deleteUser');

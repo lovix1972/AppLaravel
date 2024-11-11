@@ -33,5 +33,9 @@ class UserController extends Controller
        return redirect()->route('showRegisterForm')->with('success','Registrazione avvenuta con successo');
    }
 
-
+public function deleteUser($id){
+       $user = User::findOrFail($id);
+       $user->delete();
+       return redirect()->route('utenti')->with('success','Utente eliminato con successo');
+}
 }

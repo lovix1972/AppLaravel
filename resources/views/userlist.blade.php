@@ -32,7 +32,7 @@
                 <td>{{$user->created_at}} </td>
                 <td>{{$user->updated_at}}</td>
                 <td><button class="btn btn-sm btn-outline-info" >Modifica</button></td>
-                <td><button class="btn btn-sm btn-danger" >Cancella</button></td>
+                <td><a href="utenti/{{$user['id']}}"><button class ="btn btn-danger" title="delete" data-toggle="tooltip"></button></a>
             </tr>
         @endforeach
 
