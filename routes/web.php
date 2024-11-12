@@ -17,7 +17,9 @@ Route::get('/about',function (){
     return view('about');
 });
 
-
+Route::get('/home', function () {
+    return view('home');
+});
 Route::post('/form', [ValidationController::class, 'validateForm'])->name('validateForm');
 
 Route::get('/register',[UserController::class,'showRegistrationForm'])->name('showRegisterForm');
@@ -29,3 +31,5 @@ Route::get('/utenti', function () {
 });
 
 Route::get('/utenti/{id}',[UserController::class,'deleteUser'])->name('deleteUser');
+
+route::get('/login',[UserController::class,'showLoginForm'])->name('showLoginForm');

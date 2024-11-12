@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-@include('partials.head', ['title'=>'Registrazione Utenti', 'metaTitle'=>'Registrazione'])
+@include('partials.head', ['pageTitle'=>'Registrazione Utenti', 'metaTitle'=>'Registrazione'])
 
 <body>
 
@@ -42,7 +42,7 @@
             <input type="password" class="form-control" id="password-confirmation" name="password-confirmation" value="{{ old('password-confirmation') }}" required>
         </div>
         <button type="submit" class ="btn btn-primary">Registrati</button>
-        <a href="" class="btn btn-secondary"> Chiudi</a>
+        <a href="/login" class="btn btn-close"> Chiudi</a>
     </form>
 
 </div>
