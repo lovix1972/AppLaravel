@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand">
+<nav class="navbar navbar-light" style="background-color: #007bff;" data-mdb-theme="light">
    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png/190px-CoA_mil_ITA_airmobile_bde_Friuli.png" alt="" width="50" height="55">
-    <h2>BRIGATA AEROMOBILE FRIULI</h2><br><br>
+    <h2>BRIGATA AEROMOBILE FRIULI</h2>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -40,7 +40,7 @@
                 <a class="nav-link" href="/utenti">Gestione Utenti</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" style="position: absolute; right: 4rem ">Logout</a>
+                <a class="nav-link" href="logout" style="position: absolute; right: 4rem ">Logout</a>
             </li>
         </ul>
     </div>

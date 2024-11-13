@@ -4,7 +4,10 @@
 
 <body>
 @include('partials.navbar')
-
-
+@if(session('sucess'))
+<div class="alert alert-success">
+    {{(session('success')}}
+</div>
+@endif
 </body>
 </html>

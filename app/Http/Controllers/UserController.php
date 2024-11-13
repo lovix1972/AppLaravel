@@ -43,4 +43,27 @@ public function showLoginForm()
 
        return view('login');
 }
+public function login(Request $request)
+{
+$credential = $request->validate([
+    'email' => 'required|email',
+    'password' => 'required',
+]);
+if (Auth::attempt($credential)) {
+    $request->session()->regenerate();
+    return redirect()->intended('/home')->with('success', 'Login riuscito');
+}
+return back()->withErrors([
+    'email' => 'Email o password errati',
+
+])->onlyInput('email');
+}
+
+public function logout(Request $request)
+{
+    auth()->logout();
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+    return redirect()->route('showLoginForm');
+}
 }

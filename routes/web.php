@@ -33,3 +33,5 @@ Route::get('/utenti', function () {
 Route::get('/utenti/{id}',[UserController::class,'deleteUser'])->name('deleteUser');
 
 route::get('/login',[UserController::class,'showLoginForm'])->name('showLoginForm');
+route::post('/login',[UserController::class,'login'])->name('login');
+route::get('/logout',[UserController::class,'logout'])->name('logout');

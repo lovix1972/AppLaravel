@@ -3,6 +3,26 @@
 @include('partials.head', ['pageTitle'=>'Login', 'metaTitle'=>'Login'])
 <body>
 
+<div class ="mt-5" >
+@if($errors ->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>
+                    {{$error}}
+                </li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
+
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session ('success')}}
+        </div>
+    @endif
+<form action="{{ route('login') }}" method="post">
+@csrf
 
 <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
@@ -17,7 +37,7 @@
                             <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg" />
+                                <input type="email" id="typeEmailX" class="form-control form-control-lg" value="{{old('email')}}"/>
                                 <label class="form-label" for="typeEmailX">Email</label>
                             </div>
 
@@ -49,5 +69,6 @@
         </div>
     </div>
 </section>
+</form>
 </body>
 </html>
