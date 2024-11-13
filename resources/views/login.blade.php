@@ -21,7 +21,7 @@
             {{ session ('success')}}
         </div>
     @endif
-<form action="{{ route('login') }}" method="post">
+<form action="{{ route('loginUser') }}" method="post">
 @csrf
 
 <section class="vh-100 gradient-custom">
@@ -37,13 +37,13 @@
                             <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg" value="{{old('email')}}"/>
-                                <label class="form-label" for="typeEmailX">Email</label>
+                                <input type="email" id="email" class="form-control form-control-lg" name="email" value="{{ old('email')}}" required>
+                                <label class="form-label" for="email">Email</label>
                             </div>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" class="form-control form-control-lg" />
-                                <label class="form-label" for="typePasswordX">Password</label>
+                                <input type="password" id="password" class="form-control form-control-lg"  name ="password"  required >
+                                <label class="form-label" for="password" >Password</label>
                             </div>
 
                             <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>
