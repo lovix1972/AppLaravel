@@ -29,7 +29,7 @@ class UserController extends Controller
            'email'=>$validatedData['email'],
            'password'=> Hash::make($validatedData['password']),
        ]);
-       //Auth::login($user);
+       Auth::login($user);
        return redirect()->route('showRegisterForm')->with('success','Registrazione avvenuta con successo');
    }
 
@@ -45,6 +45,7 @@ public function showLoginForm()
 }
 public function login(Request $request)
 {
+
 $credential = $request->validate([
     'email' => 'required|email',
     'password' => 'required',
@@ -61,9 +62,9 @@ return back()->withErrors([
 
 public function logout(Request $request)
 {
-    auth()->logout();
+    Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('login')->with('success', 'Logout riuscito');
+    return redirect('/login')->with('success', 'Logout riuscito');
 }
 }
