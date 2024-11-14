@@ -26,10 +26,8 @@ Route::post('/form', [ValidationController::class, 'validateForm'])->name('valid
 Route::get('/register',[UserController::class,'showRegistrationForm'])->name('showRegisterForm');
 Route::post('/register',[UserController::class,'register'])->name('registerUser');
 
-Route::get('/utenti', function () {
-    $users = User::all();
-    return view('userlist',['users'=>$users]);
-})->Middleware('auth');
+Route::get('/utenti', [UserController::class,'userlist'])->name('userlist')
+->Middleware('auth');
 
 Route::get('/utenti/{id}',[UserController::class,'deleteUser'])->name('deleteUser');
 //Login

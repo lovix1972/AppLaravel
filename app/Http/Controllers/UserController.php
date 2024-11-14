@@ -43,6 +43,12 @@ public function showLoginForm()
 
        return view('login');
 }
+
+public function userlist(){
+
+        $users = User::all();
+        return view('userlist',['users'=>$users]);
+}
 public function login(Request $request)
 {
 
