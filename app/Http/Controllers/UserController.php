@@ -36,7 +36,7 @@ class UserController extends Controller
 public function deleteUser($id){
        $user = User::findOrFail($id);
        $user->delete();
-       return redirect()->route('utenti')->with('success','Utente eliminato con successo');
+       return redirect('utenti')->with('success','Utente eliminato con successo');
 }
 public function showLoginForm()
 {
@@ -52,7 +52,7 @@ $credential = $request->validate([
 ]);
 if (Auth::attempt($credential)) {
     $request->session()->regenerate();
-    return redirect()->intended('/home')->with('success', 'Login riuscito');
+    return redirect()->intended('home')->with('success', 'Login riuscito');
 }
 return back()->withErrors([
     'email' => 'Email o password errati',
@@ -61,10 +61,11 @@ return back()->withErrors([
 }
 
 public function logout(Request $request)
-{
+    {
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('/login')->with('success', 'Logout riuscito');
-}
+    return redirect('login')->with('success', 'Logout riuscito');
+    }
+
 }
