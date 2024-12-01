@@ -20,7 +20,7 @@
                         <div class="mb-md-5 mt-md-4 pb-5">
 
                             <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                            <p class="text-white-50 mb-5">Inserire credenziali di accesso login e password!</p>
+                            <p class="text-white-50 mb-5">Inserire credenziali di accesso </p>
 
                             <div data-mdb-input-init class="form-outline form-white mb-4">
                                 <input type="email" id="email" class="form-control form-control-lg" name="email" value="{{ old('email')}}" >
@@ -58,7 +58,7 @@
 
                         <div>
 
-                            <p class="mb-0">Don't have an account? <a href="/register" class="text-white-50 fw-bold">Sign Up</a>
+                            <p class="mb-0">Non hai accesso? <a href="/register" class="text-white-50 fw-bold">Registrati</a>
                             </p>
                         </div>
 
