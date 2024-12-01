@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CreaPostController;
+use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidationController;
