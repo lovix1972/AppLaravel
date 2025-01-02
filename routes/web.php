@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PostController;
 
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ValidationController;
 use App\Http\Middleware\AddCustomHeader;
@@ -25,6 +26,8 @@ Route::post('/form', [ValidationController::class, 'validateForm'])->name('valid
 
 Route::get('/register',[UserController::class,'showRegistrationForm'])->name('showRegisterForm');
 Route::post('/register',[UserController::class,'register'])->name('registerUser');
+
+Route::get('/inspds',[RegisterController::class,'registerpds'])->name('showRegisterPds');
 
 Route::get('/utenti', [UserController::class,'userlist'])->name('userlist')
 ->Middleware('auth');
