@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\PdsRegisters;
 use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\UserController;
@@ -37,4 +36,3 @@ route::post('/login',[UserController::class,'login'])->name('loginUser');
 
 //Logout
 route::get('/logout',[UserController::class,'logout'])->name('logoutUser');
-Route::get('/inpds',[PdsRegisters::class,'pdsRegister'])->name('pdsRegister');
