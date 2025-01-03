@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Routing\Controller;
 
 class PostController extends Controller

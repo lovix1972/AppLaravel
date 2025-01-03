@@ -16,6 +16,10 @@ return new class extends Migration
 
             $table->string('numpds');
             $table->string('oggetto');
+            $table->date('datapds')->nullable();
+            $table->integer('idcapitolo');
+            $table->integer('capitolo');
+            $table->integer('art');
             $table->timestamps();
         });
     }
