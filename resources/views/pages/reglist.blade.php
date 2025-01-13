@@ -25,8 +25,9 @@
                         <th>Previsto Impegno</th>
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
-                        <th><a href="/inspds"><button class="btn btn-secondary" >Inserisci PDS</button></a></th>
+
                     </tr>
+                    <a href="/inspds"><button class="btn btn-secondary" >Inserisci PDS</button></a>
                     @forelse($register as $reg)
                         <tr>
                             <td>{{$reg->id}} </td>
@@ -44,8 +45,8 @@
                             <td>{{$reg->contabilizzato}} </td>
 
 
-                            <td><a href="/reglist/{{$reg['id']}}"><button class="btn btn-primary" >Modifica</button></a><td>
-                                    <a href="/inspds/{{$reg['id']}}"><button class ="btn btn-danger" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            <td><a href="/reglist/{{$reg['id']}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
+                            <td><a href="/inspds/{{$reg['id']}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
 
                         </tr>

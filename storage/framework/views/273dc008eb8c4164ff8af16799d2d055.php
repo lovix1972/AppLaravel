@@ -34,8 +34,9 @@
                         <th>Previsto Impegno</th>
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
-                        <th><a href="/inspds"><button class="btn btn-secondary" >Inserisci PDS</button></a></th>
+
                     </tr>
+                    <a href="/inspds"><button class="btn btn-secondary" >Inserisci PDS</button></a>
                     <?php $__empty_1 = true; $__currentLoopData = $register; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
                             <td><?php echo e($reg->id); ?> </td>
@@ -53,8 +54,8 @@
                             <td><?php echo e($reg->contabilizzato); ?> </td>
 
 
-                            <td><a href="/reglist/<?php echo e($reg['id']); ?>"><button class="btn btn-primary" >Modifica</button></a><td>
-                                    <a href="/inspds/<?php echo e($reg['id']); ?>"><button class ="btn btn-danger" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            <td><a href="/reglist/<?php echo e($reg['id']); ?>"><button class="btn btn-primary btn-sm" >Modifica</button></a>
+                            <td><a href="/inspds/<?php echo e($reg['id']); ?>"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
 
                         </tr>
