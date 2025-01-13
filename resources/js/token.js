@@ -12,7 +12,7 @@ $('document').ready(function() {
                     '_token': $('#_token').val()
                 },
                 complete: function (resp) {
-                    console.log(resp);
+                    console.log(data);
                 }
             });
     });
