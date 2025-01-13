@@ -10,6 +10,10 @@
 <?php $component->withAttributes([]); ?>
 
     <div>
+        <form>
+
+
+        <input type="hidden" name="_token" id="_token"  value="<?php echo e(csrf_token()); ?>">
 
         <main>
             <div class ="mt-5" >
@@ -48,8 +52,10 @@
                             <td><?php echo e($reg->impegnato); ?> </td>
                             <td><?php echo e($reg->contabilizzato); ?> </td>
 
-                            <td><button class="btn btn-primary" >Modifica</button>
-                                <a href="/inspds/<?php echo e($reg['id']); ?>/delete"><button class ="btn btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a></td>
+
+                            <td><a href="/reglist/<?php echo e($reg['id']); ?>"><button class="btn btn-primary" >Modifica</button></a><td>
+                                    <a href="/inspds/<?php echo e($reg['id']); ?>"><button class ="btn btn-danger" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            </td>
 
                         </tr>
 
@@ -58,8 +64,9 @@
             </div>
         </main>
 
-
+        </form>
     </div>
+
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginaladc6145a31351c810932a94303674642)): ?>

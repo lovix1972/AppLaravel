@@ -46,10 +46,10 @@ route::get('/logout',[UserController::class,'logout'])->name('logoutUser');
 
 Route::get('/reglist',[RegisterController::class,'reglist'])->name('reglist')->Middleware('auth');
 
-
 Route::get('/inspds',[RegisterController::class,'ShowFormInspds'])->name('ShowFormPds')->Middleware('auth');
 Route::post('/inspds',[RegisterController::class,'create'])->name('InsertPds')->Middleware('auth');
-Route::get('/inspds/{id}/delete',[RegisterController::class,'destroy'])->name('DeletePds')->Middleware('auth');
+Route::delete('/inspds/{id}',[RegisterController::class,'delete']);
+Route::get('/reglist/{id}',[RegisterController::class,'show']);
 Route::get('/inspds',[RegisterController::class,'getreparto'])->name('getreparto')->Middleware('auth');
 
 Route::get('/insreparto', [RepartoController::class, 'ShowFormReparto'])->name('ShowFormReparto')->Middleware('auth');

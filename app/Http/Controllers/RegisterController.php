@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Register;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
@@ -96,9 +97,17 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Register $register)
+    public function show( $id)
     {
-        //
+        $sql='select * from registers where id=:id';
+       return  db::select($sql, ['id'=>$id]);
+
+    }
+    public function delete(int $id)
+    {
+        $sql='DELETE from registers where id=:id';
+       return db::delete($sql, ['id'=>$id]);
+
     }
 
     /**

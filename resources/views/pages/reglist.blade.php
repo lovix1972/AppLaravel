@@ -1,6 +1,10 @@
 <x-layouts.list-layouts>
 
     <div>
+        <form>
+
+
+        <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
 
         <main>
             <div class ="mt-5" >
@@ -39,8 +43,10 @@
                             <td>{{$reg->impegnato}} </td>
                             <td>{{$reg->contabilizzato}} </td>
 
-                            <td><button class="btn btn-primary" >Modifica</button>
-                                <a href="/inspds/{{$reg['id']}}/delete"><button class ="btn btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a></td>
+
+                            <td><a href="/reglist/{{$reg['id']}}"><button class="btn btn-primary" >Modifica</button></a><td>
+                                    <a href="/inspds/{{$reg['id']}}"><button class ="btn btn-danger" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            </td>
 
                         </tr>
 
@@ -49,8 +55,9 @@
             </div>
         </main>
 
-
+        </form>
     </div>
+
 </x-layouts.list-layouts>
 
 
