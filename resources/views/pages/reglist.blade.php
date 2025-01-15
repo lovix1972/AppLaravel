@@ -1,12 +1,8 @@
 <x-layouts.list-layouts>
 
     <div>
-        <form>
 
 
-        <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
-
-        <main>
             <div class ="mt-5" >
 
                 <table class="table table-light table-bordered">
@@ -25,9 +21,7 @@
                         <th>Previsto Impegno</th>
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
-
-                    </tr>
-                    <a href="/inspds"><button class="btn btn-secondary" >Inserisci PDS</button></a>
+<th>                   <a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th> </tr>
                     @forelse($register as $reg)
                         <tr>
                             <td>{{$reg->id}} </td>
@@ -45,20 +39,59 @@
                             <td>{{$reg->contabilizzato}} </td>
 
 
-                            <td><a href="/reglist/{{$reg['id']}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
-                            <td><a href="/inspds/{{$reg['id']}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            <td><a href="/reglist/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
+                                <form>
+                                    <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
+                            <td><a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
+                                </form>
 
                         </tr>
 
                 @empty
                 @endforelse
             </div>
-        </main>
 
-        </form>
+
+
     </div>
+    <script>
+        $(document).ready(function () {
+            $('td').on('click',  'a','button-danger', function (evt) {
 
+                evt.preventDefault();
+                let urlAlbum = $(this).attr('href');
+                console.log(this);
+
+                let td = evt.target.parentNode;
+console.log(td)
+                $.ajax(
+                    urlAlbum,
+                    {
+
+                    method: 'delete',
+
+                    data: {
+                        '_token' : $('#_token').val()
+                    },
+
+                    complete: function (resp, status) {
+                        if (status !== 'error' && Number(resp.responseText) === 1) {
+                            $('td').remove();
+                              //location.reload();
+                            //td.parentNode.removeChild(td);
+                            alert('Record ' + resp.responseText + ' deleted ')
+                        } else {
+                            console.error(resp.responseText);
+
+                        }
+
+                    }
+                });
+            });
+        });
+
+    </script>
 </x-layouts.list-layouts>
 
 
