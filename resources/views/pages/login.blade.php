@@ -24,14 +24,18 @@
 </head>
 
 
-<body style="background-color: darkslategray; ">
+<body style="background-color: #a3a3a3 ">
 
-<div class="card d-flex " style="width: 25rem; margin: 0 auto; align-self: center; position: relative; top: 10rem">
-
-
+<div class=" card  d-flex mx-auto px-4 py-2 " style="width: 40rem; position: relative; top:2rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+    <div class=" mx-auto">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png/190px-CoA_mil_ITA_airmobile_bde_Friuli.png" alt="" width="50" height="55">
+</div>
+        <div class="d-flex font-sans mx-0" style ="width: 40rem">
+            <p>BRIGATA AEROMOBILE FRIULI</p>
+        </div>
     <form action="{{ route('loginUser') }}" method="post">
         @csrf
-        <h1 class="h3 mb-3 fw-normal py-2 px-2 pt-2 pb-2 m-1">Login</h1>
+
 
         <div class="form-floating" >
             <input type="email" class="form-control" id="floatingInput" name="email" value="{{ old('email') }}" placeholder="email">
@@ -82,8 +86,8 @@
         </div>
         <p class="mt-5 mb-3 text-center">&copy; 2025</p>
     </form>
-    </div>
-
+</div>
+</div>
 
 </body>
 </html>

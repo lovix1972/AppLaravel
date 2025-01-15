@@ -10,6 +10,7 @@
 </header>
 <body>
 <main class="contents">
+
     {{ $slot }}
 </main>
 

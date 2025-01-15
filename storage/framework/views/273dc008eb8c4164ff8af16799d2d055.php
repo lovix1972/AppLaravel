@@ -8,13 +8,13 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
-
     <div>
+            <div class ="mt-5 d-flex py-4" >
 
-
-            <div class ="mt-5" >
-
-                <table class="table table-light table-bordered">
+                <table class="table table-light table-bordered ">
+                  <tr> <th> <?php if($register->isempty()): ?>
+                        <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
+                  </th></tr><?php else: ?>
                     <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
@@ -30,7 +30,16 @@
                         <th>Previsto Impegno</th>
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
-<th>                   <a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th> </tr>
+
+
+                        <th><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
+
+                    </tr>
+
+
+
+
+
                     <?php $__empty_1 = true; $__currentLoopData = $register; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                         <tr>
                             <td><?php echo e($reg->id); ?> </td>
@@ -51,7 +60,8 @@
                             <td><a href="/reglist/<?php echo e($reg->id); ?>"><button class="btn btn-primary btn-sm" >Modifica</button></a>
                                 <form>
                                     <input type="hidden" name="_token" id="_token"  value="<?php echo e(csrf_token()); ?>">
-                            <td><a href="/inspds/<?php echo e($reg->id); ?>"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            <td>
+                                <a href="/inspds/<?php echo e($reg->id); ?>"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
                                 </form>
 
@@ -59,11 +69,15 @@
 
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <?php endif; ?>
+                <?php endif; ?>
             </div>
 
 
 
     </div>
+
+
+
     <script>
         $(document).ready(function () {
             $('td').on('click',  'a','button-danger', function (evt) {
@@ -87,20 +101,21 @@ console.log(td)
                     complete: function (resp, status) {
                         if (status !== 'error' && Number(resp.responseText) === 1) {
                             $('td').remove();
-//location.reload();
+
                             //td.parentNode.removeChild(td);
                             alert('Record ' + resp.responseText + ' deleted ')
                         } else {
                             console.error(resp.responseText);
 
                         }
-
+                        location.reload();
                     }
                 });
             });
         });
 
     </script>
+
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginaladc6145a31351c810932a94303674642)): ?>
