@@ -5,7 +5,7 @@
 
 <body>
 
-<div class="container mt-5 bg-origin-padding" >
+<div class="container mt-5 py-4" >
 
 <?php if(session('success')): ?>
     <div class="alert alert-success">
