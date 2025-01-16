@@ -16,7 +16,7 @@
                         <tr><th>   <p class="text-nowrap text-md-center"> Non ci sono PDS registrati! </p></th>
                   </tr><?php else: ?>
                     <tr>
-                        <thead class="thead-light">
+                        <thead class="thead-light text-nowrap font-serif" style="font-size: 12px">
                         <th>ID PDS</th>
                         <th>numPDS</th>
                         <th>Data PDS</th>
@@ -32,7 +32,7 @@
                         <th>Contabilizzato</th>
 
 
-                        <th><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
+                        <th colspan="2" style ="text-align: center"><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
 
                     </tr>
 
@@ -48,10 +48,10 @@
                             <td><?php echo e($reg->prog); ?> </td>
                             <td><?php echo e($reg->idv); ?> </td>
                             <td><?php echo e($reg->decreto); ?> </td>
-                            <td><?php echo e($reg->importo); ?> </td>
-                            <td><?php echo e($reg->previstoimpegno); ?> </td>
-                            <td><?php echo e($reg->impegnato); ?> </td>
-                            <td><?php echo e($reg->contabilizzato); ?> </td>
+                            <td style="text-align: right"><?php echo e($reg->importo); ?> </td>
+                            <td style="text-align: right"><?php echo e($reg->previstoimpegno); ?> </td>
+                            <td style="text-align: right"><?php echo e($reg->impegnato); ?> </td>
+                            <td style="text-align: right"><?php echo e($reg->contabilizzato); ?> </td>
 
 
                             <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalEdit" data-whatever="Edit">

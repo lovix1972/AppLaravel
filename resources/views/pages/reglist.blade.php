@@ -7,7 +7,7 @@
                         <tr><th>   <p class="text-nowrap text-md-center"> Non ci sono PDS registrati! </p></th>
                   </tr>@else
                     <tr>
-                        <thead class="thead-light">
+                        <thead class="thead-light text-nowrap font-serif" style="font-size: 12px">
                         <th>ID PDS</th>
                         <th>numPDS</th>
                         <th>Data PDS</th>
@@ -23,7 +23,7 @@
                         <th>Contabilizzato</th>
 
 
-                        <th><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
+                        <th colspan="2" style ="text-align: center"><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
 
                     </tr>
 
@@ -39,10 +39,10 @@
                             <td>{{$reg->prog}} </td>
                             <td>{{$reg->idv}} </td>
                             <td>{{$reg->decreto}} </td>
-                            <td>{{$reg->importo}} </td>
-                            <td>{{$reg->previstoimpegno}} </td>
-                            <td>{{$reg->impegnato}} </td>
-                            <td>{{$reg->contabilizzato}} </td>
+                            <td style="text-align: right">{{$reg->importo}} </td>
+                            <td style="text-align: right">{{$reg->previstoimpegno}} </td>
+                            <td style="text-align: right">{{$reg->impegnato}} </td>
+                            <td style="text-align: right">{{$reg->contabilizzato}} </td>
 
 
                             <td><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalEdit" data-whatever="Edit">
