@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="it" data-bs-theme="auto">
 <head>
     @include('partials.head', ['pageTitle'=>'Login', 'metaTitle'=>'Login'])
 
@@ -48,7 +48,7 @@
         </div>
         <div class="form-floating py-3">
 
-            <select class="form-select form-control" id="reparto" name ="reparto" >
+            <select class="form-select" id="reparto" name ="reparto" >
                 <option ></option>
                 @foreach($reparti as $r)
                     <option>{{$r->idreparto}} - {{$r->reparto}}</option>
