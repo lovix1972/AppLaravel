@@ -26,29 +26,30 @@
 
 <body style="background-color: #a3a3a3 ">
 
-<div class=" card  d-flex mx-auto px-4 py-2 " style="width: 40rem; position: relative; top:2rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+<div class=" card  d-flex mx-auto px-3 py-1 " style="font-size: small; width: 40rem; position: relative; top:1rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
     <div class=" mx-auto">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png/190px-CoA_mil_ITA_airmobile_bde_Friuli.png" alt="" width="50" height="55">
 </div>
-        <div class="d-flex font-sans mx-0" style ="width: 40rem">
-            <p>BRIGATA AEROMOBILE FRIULI</p>
+        <div class="font-sans py-1" style ="text-align: center">
+            <p><h4>BRIGATA AEROMOBILE FRIULI</h4></p>
+            <p>Gestione Contabile Amminstrativa</p>
         </div>
     <form action="{{ route('loginUser') }}" method="post">
         @csrf
 
 
-        <div class="form-floating" >
+        <div class="form-floating py-3" >
             <input type="email" class="form-control" id="floatingInput" name="email" value="{{ old('email') }}" placeholder="email">
             <label for="floatingInput">Email</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating py-3">
             <input type="password" class="form-control" id="Password" name ="password" value="{{ old('password') }}" placeholder="Password">
             <label for="floatingPassword">Password</label>
         </div>
-        <div class="form-floating">
+        <div class="form-floating py-3">
 
-            <select class="form-select form-control" id="reparto" name ="reparto" placeholder="Reparto">
-                <option></option>
+            <select class="form-select form-control" id="reparto" name ="reparto" >
+                <option ></option>
                 @foreach($reparti as $r)
                     <option>{{$r->idreparto}} - {{$r->reparto}}</option>
                 @endforeach </select>
@@ -78,13 +79,13 @@
                 Remember me
             </label>
         </div>
-        <button class="btn btn-primary w-100 py-2" type="submit">Entra</button>
+        <button class="btn btn-primary w-100 py-1" type="submit">Entra</button>
         <div>
 
             <p class="mb-0 text-center">Non hai accesso? <a href="/register" class="text-blue-50 fw-bold">Registrati</a>
             </p>
         </div>
-        <p class="mt-5 mb-3 text-center">&copy; 2025</p>
+        <p class=" text-center">&copy; 2025</p>
     </form>
 </div>
 </div>

@@ -12,9 +12,9 @@
             <div class ="mt-5 d-flex py-4" >
 
                 <table class="table table-light table-bordered ">
-                  <tr> <th> <?php if($register->isempty()): ?>
-                        <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
-                  </th></tr><?php else: ?>
+                   <?php if($register->isempty()): ?>
+                        <tr><th>   <p class="text-nowrap text-md-center"> Non ci sono PDS registrati! </p></th>
+                  </tr><?php else: ?>
                     <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
@@ -41,7 +41,7 @@
 
 
                     <?php $__empty_1 = true; $__currentLoopData = $register; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <tr>
+                        <tr class="text-nowrap font-serif" style="font-size: 11px">
                             <td><?php echo e($reg->id); ?> </td>
                             <td><?php echo e($reg->numpds); ?> </td>
                             <td><?php echo e($reg->datapds); ?> </td>

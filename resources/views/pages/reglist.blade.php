@@ -3,9 +3,9 @@
             <div class ="mt-5 d-flex py-4" >
 
                 <table class="table table-light table-bordered ">
-                  <tr> <th> @if($register->isempty())
-                        <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
-                  </th></tr>@else
+                   @if($register->isempty())
+                        <tr><th>   <p class="text-nowrap text-md-center"> Non ci sono PDS registrati! </p></th>
+                  </tr>@else
                     <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
@@ -32,7 +32,7 @@
 
 
                     @forelse($register as $reg)
-                        <tr>
+                        <tr class="text-nowrap font-serif" style="font-size: 11px">
                             <td>{{$reg->id}} </td>
                             <td>{{$reg->numpds}} </td>
                             <td>{{$reg->datapds}} </td>
