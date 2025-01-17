@@ -5,7 +5,7 @@
 
 <body>
 
-<div class="container mt-5 bg-origin-padding" >
+
 
 <?php if(session('success')): ?>
     <div class="alert alert-success">
@@ -24,7 +24,7 @@
             </ul>
         </div>
     <?php endif; ?>
-
+<div class ="container mt-5 d-flex py-4 justify-center" >
 
 
     <form class="was-validate" action="<?php echo e(route('InsertPds')); ?>" method="POST">
@@ -58,6 +58,7 @@ unset($__errorArgs, $__bag); ?>" id="datapds" name="datapds" value="<?php echo e
             <label for="oggetto" class ="form-label">Oggetto</label>
             <input type="text" class="form-control" id="oggetto" name="oggetto" value="<?php echo e(old('oggetto')); ?>" required>
         </div>
+        <div class="container mt-2 py-2 d-flex justify-start" >
         <div class="mb-2">
             <label for="idcapitolo" class ="form-label">ID Capitolo</label>
             <input type="number" class="form-control" id="idcapitolo" name="idcapitolo" value="<?php echo e(old('idcapitolo')); ?>" required>
@@ -66,13 +67,14 @@ unset($__errorArgs, $__bag); ?>" id="datapds" name="datapds" value="<?php echo e
             <label for="capitolo" class ="form-label">Capitolo</label>
             <input type="number" class="form-control" id="capitolo" name="capitolo" value="<?php echo e(old('capitolo')); ?>" required>
         </div>
-        <div class="mb-sm-2 size-1/2">
+        <div class="mb-2">
             <label for="art" class ="form-label">Art</label>
             <input type="number" class="form-control" id="art" name="art" value="<?php echo e(old('art')); ?>" required>
         </div>
         <div class="mb-2">
             <label for="prog" class ="form-label">Prog</label>
             <input type="number" class="form-control" id="prog" name="prog" value="<?php echo e(old('prog')); ?>" required>
+        </div>
         </div>
         <div class="mb-2">
             <label for="idv" class ="form-label">IDV</label>
@@ -82,22 +84,22 @@ unset($__errorArgs, $__bag); ?>" id="datapds" name="datapds" value="<?php echo e
             <label for="decreto" class ="form-label">Decreto</label>
             <input type="text" class="form-control" id="decreto" name="decreto" value="<?php echo e(old('decreto')); ?>" required>
         </div>
-<div class="container col-auto">
+<div class="container col-auto d-flex justify-start">
         <div class="mb-2">
             <label for="importo" class ="form-label">Importo</label>
-            <input type="number" class="form-control-sm text-sm-right" id="importo" name="importo" value="<?php echo e(old('importo')); ?>" min="0" step="0.01" required placeholder="0,00">
+            <input type="number" class="form-control text-sm-right" id="importo" name="importo" value="<?php echo e(old('importo')); ?>" min="0" step="0.01" required placeholder="0,00">
         </div>
         <div class="mb-2">
             <label for="previstoimpegno" class ="form-label">Previsto Impegno</label>
-            <input type="number" class="form-control-sm text-sm-right" id="previstoimpegno" name="previstoimpegno" value="<?php echo e(old('previstoimpegno')); ?>" min="0" step="0.01" required placeholder="0,00">
+            <input type="number" class="form-control text-sm-right" id="previstoimpegno" name="previstoimpegno" value="<?php echo e(old('previstoimpegno')); ?>" min="0" step="0.01" required placeholder="0,00">
         </div>
         <div class="mb-2">
             <label for="impegnato" class ="form-label">Impegnato</label>
-            <input type="number" class="form-control-sm text-sm-right" id="impegnato" name="impegnato" value="<?php echo e(old('impegnato')); ?>" min="0" step="0.01"  placeholder="0,00">
+            <input type="number" class="form-control text-sm-right" id="impegnato" name="impegnato" value="<?php echo e(old('impegnato')); ?>" min="0" step="0.01"  placeholder="0,00">
         </div>
         <div class="mb-2">
             <label for="contabilizzato" class ="form-label">Contabilizzato</label>
-            <input type="number" class="form-control-sm text-sm-right" id="contabilizzato" name="contabilizzato" value="<?php echo e(old('contabilizzato')); ?>" min="0" step="0.01"  placeholder="0,00">
+            <input type="number" class="form-control text-sm-right" id="contabilizzato" name="contabilizzato" value="<?php echo e(old('contabilizzato')); ?>" min="0" step="0.01"  placeholder="0,00">
         </div>
     </div>
         <div class="mb-2">
@@ -107,8 +109,8 @@ unset($__errorArgs, $__bag); ?>" id="datapds" name="datapds" value="<?php echo e
         <button type="submit" class ="btn btn-primary">Registra</button>
         <a href="/home" class="btn"> Chiudi</a>
     </form>
-
 </div>
+
 </body>
 </html>
 <?php /**PATH /home/lovix/PhpstormProjects/AppLaravel/resources/views/pages/inspds.blade.php ENDPATH**/ ?>

@@ -16,7 +16,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
-       //
+   //
     }
     public function reglist()
     {
@@ -97,12 +97,14 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show( Register $id)
     {
-        $sql='select * from registers where id=:id';
-       return  db::select($sql, ['id'=>$id]);
-
+       $register=Register::find($id);
+     return view('pages.modifica', compact('register'));
     }
+
+
+
     public function delete(int $id)
     {
         $sql='DELETE from registers where id=:id';

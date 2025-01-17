@@ -54,3 +54,5 @@ Route::get('/inspds',[RegisterController::class,'getreparto'])->name('getreparto
 
 Route::get('/insreparto', [RepartoController::class, 'ShowFormReparto'])->name('ShowFormReparto')->Middleware('auth');
 Route::post('/insreparto',[RepartoController::class,'insertReparto'])->name('InsertReparto')->middleware('auth');
+
+Route::get('/modifica/{id}',[RegisterController::class,'show'])->name('modifica.show');
