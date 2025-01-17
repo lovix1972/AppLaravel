@@ -34,10 +34,15 @@
                             <td>{{$reg->prog}} </td>
                             <td>{{$reg->idv}} </td>
                             <td>{{$reg->decreto}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->importo}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->previstoimpegno}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->impegnato}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->contabilizzato}} </td>
+                            <td>{{$reg->importo}} </td>
+                            <td>{{$reg->previstoimpegno}} </td>
+                            <td>{{$reg->impegnato}} </td>
+                            <td>{{$reg->contabilizzato}}</td>
+                            <td><button class="btn btn-primary">Edit</button></td> </tr>
+                            <td class="text-center">
+                                <a class="btn btn-secondary btn-sm" href="{{ route('reglist') }}" >Indietro</a></td>
+
+
 
                             @empty
                             @endforelse

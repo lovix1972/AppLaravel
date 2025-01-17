@@ -1,6 +1,6 @@
 <x-layouts.list-layouts>
     <div>
-            <div class ="mt-5 d-flex py-4" >
+            <div class ="mt-0 d-flex py-0" >
 
                 <table class="table table-light table-bordered ">
                   <tr> <th> @if($register->isempty())
@@ -42,18 +42,12 @@
                             <td>{{$reg->importo}} </td>
                             <td>{{$reg->previstoimpegno}} </td>
                             <td>{{$reg->impegnato}} </td>
-                            <td>{{$reg->contabilizzato}} </td>
-
-
-                            <td><a href="/reglist/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
-                                <form>
-                                    <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
-                            <td>
-                                <a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
-                            </td>
-                                </form>
-
-                        </tr>
+                            <td>{{$reg->contabilizzato}}</td>
+                            <td class="modifica"><a href="{{ route('modifica.show',$reg->id) }}"><button class ="btn btn-primary btn-sm">edit</button></a>
+                            <form>
+                                <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
+                            <td class="delete"><a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a></td>
+                            </form></tr>
 
                 @empty
                 @endforelse
@@ -68,7 +62,7 @@
 
     <script>
         $(document).ready(function () {
-            $('td').on('click',  'a','button-danger', function (evt) {
+            $('td.delete').on('click', 'a','btn-danger', function (evt) {
 
                 evt.preventDefault();
                 let urlAlbum = $(this).attr('href');

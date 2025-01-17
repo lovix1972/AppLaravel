@@ -10,8 +10,8 @@
 </header>
 <body>
 <main class="contents">
-
     <?php echo e($slot); ?>
+
 
 </main>
 
