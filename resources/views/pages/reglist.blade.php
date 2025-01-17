@@ -28,9 +28,6 @@
                     </tr>
 
 
-
-
-
                     @forelse($register as $reg)
                         <tr>
                             <td>{{$reg->id}} </td>
