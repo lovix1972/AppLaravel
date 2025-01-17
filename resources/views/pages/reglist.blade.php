@@ -43,17 +43,24 @@
                             <td>{{$reg->previstoimpegno}} </td>
                             <td>{{$reg->impegnato}} </td>
                             <td>{{$reg->contabilizzato}}</td>
-                            <td class="modifica"><a href="{{ route('modifica.show',$reg->id) }}"><button class ="btn btn-primary btn-sm">edit</button></a>
+
+                            <td class="modifica"><a href="{{ route('modifica.show',$reg->id) }}"><button class ="btn btn-primary btn-sm">Modifica</button></a></td>
                             <form>
                                 <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
                             <td class="delete"><a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a></td>
                             </form></tr>
+
 
                 @empty
                 @endforelse
                 @endif
             </div>
 
+            <td colspan="9"></td>
+            <td>{{$reg->sum('importo')}}</td>
+            <td>{{$reg->sum('previstoimpegno')}}</td>
+            <td>{{$reg->sum('impegnato')}}</td>
+            <td>{{$reg->sum('contabilizzato')}}</td>
 
 
     </div>
