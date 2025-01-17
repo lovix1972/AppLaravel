@@ -1,17 +1,12 @@
 <x-layouts.list-layouts>
-
-
     <div>
-            <div class ="mt-0 d-flex py-0" >
+            <div class ="mt-5 d-flex py-4" >
 
-                <table class="table table-light table-bordered">
-                  <tr>
-                      <th>
-                          @if($register->isempty())
-                            <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4></th>
-                        </tr>
-                        @else
-                        <tr>
+                <table class="table table-light table-bordered ">
+                  <tr> <th> @if($register->isempty())
+                        <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
+                  </th></tr>@else
+                    <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
                         <th>numPDS</th>
@@ -26,10 +21,18 @@
                         <th>Previsto Impegno</th>
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
-                        <th><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th></tr>
 
-                            @forelse($register as $reg)
-                            <tr>
+
+                        <th><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
+
+                    </tr>
+
+
+
+
+
+                    @forelse($register as $reg)
+                        <tr>
                             <td>{{$reg->id}} </td>
                             <td>{{$reg->numpds}} </td>
                             <td>{{$reg->datapds}} </td>
@@ -39,53 +42,43 @@
                             <td>{{$reg->prog}} </td>
                             <td>{{$reg->idv}} </td>
                             <td>{{$reg->decreto}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->importo}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->previstoimpegno}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->impegnato}} </td>
-                            <td class="importi" style="text-align: right">{{$reg->contabilizzato}} </td>
+                            <td>{{$reg->importo}} </td>
+                            <td>{{$reg->previstoimpegno}} </td>
+                            <td>{{$reg->impegnato}} </td>
+                            <td>{{$reg->contabilizzato}} </td>
 
-                               <a href="{{ route('modifica.show',$reg->id) }}">Edit</a>
-                                    <form>
-                                    <td><input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}"><td> <a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
-                                    </td>
-                                    </form></tr>
 
-                            @empty
-                            @endforelse
-                                    <td colspan="9"></td>
-                                    <td class="importi" style="text-align: right">{{$register->sum('importo')}} </td>
-                                    <td class="importi" style="text-align: right">{{$register->sum('previstoimpegno')}} </td>
-                                    <td class="importi" style="text-align: right">{{$register->sum('impegnato')}} </td>
-                                    <td class="importi" style="text-align: right">{{$register->sum('contabilizzato')}} </td>
-                            @endif
+                            <td><a href="/reglist/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
+                                <form>
+                                    <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
+                            <td>
+                                <a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                            </td>
+                                </form>
 
+                        </tr>
+
+                @empty
+                @endforelse
+                @endif
             </div>
 
+
+
     </div>
-
-
-@section('footer')
-
-            <footer class="footer mt-auto py-3 bg-body-tertiary">
-                <div class="container">
-                    <span class="text-body-secondary">Place sticky footer content here.</span>
-                </div>
-            </footer>
-
-    @endsection
 
 
 
     <script>
         $(document).ready(function () {
-            $('td').on('click', 'a','btn-danger', function (evt) {
+            $('td').on('click',  'a','button-danger', function (evt) {
 
                 evt.preventDefault();
                 let urlAlbum = $(this).attr('href');
                 console.log(this);
 
                 let td = evt.target.parentNode;
-
+console.log(td)
                 $.ajax(
                     urlAlbum,
                     {
@@ -106,14 +99,13 @@
                             console.error(resp.responseText);
 
                         }
-                        //location.reload();
+                        location.reload();
                     }
                 });
             });
         });
 
     </script>
-
 
 </x-layouts.list-layouts>
 
