@@ -12,7 +12,6 @@
 <main class="contents">
     <?php echo e($slot); ?>
 
-
 </main>
 
 </body>

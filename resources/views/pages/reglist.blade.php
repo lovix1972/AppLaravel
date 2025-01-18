@@ -1,6 +1,6 @@
 <x-layouts.list-layouts>
     <div>
-            <div class ="mt-5 d-flex py-4" >
+            <div class ="mt-0 d-flex py-0" >
 
                 <table class="table table-light table-bordered ">
                   <tr> <th> @if($register->isempty())
@@ -45,7 +45,7 @@
                             <td>{{$reg->contabilizzato}} </td>
 
 
-                            <td><a href="/reglist/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
+                            <td><a href="/modifica/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
                                 <form>
                                     <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
                             <td>
@@ -58,13 +58,15 @@
                 @empty
                 @endforelse
                 @endif
+
             </div>
 
-            <td colspan="9"></td>
-            <td>{{$reg->sum('importo')}}</td>
-            <td>{{$reg->sum('previstoimpegno')}}</td>
-            <td>{{$reg->sum('impegnato')}}</td>
-            <td>{{$reg->sum('contabilizzato')}}</td>
+        <td colspan="9"></td>
+        <td>{{$register->sum('importo')}}</td>
+        <td>{{$register->sum('previstoimpegno')}}</td>
+        <td>{{$register->sum('impegnato')}}</td>
+        <td>{{$register->sum('contabilizzato')}}</td>
+
 
     </div>
 
@@ -72,7 +74,7 @@
 
     <script>
         $(document).ready(function () {
-            $('td').on('click',  'a','button-danger', function (evt) {
+            $('td.button').on('click',  'a','button-danger', function (evt) {
 
                 evt.preventDefault();
                 let urlAlbum = $(this).attr('href');

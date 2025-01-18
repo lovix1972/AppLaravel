@@ -47,7 +47,6 @@
                                 <a class="btn btn-secondary btn-sm" href="{{ route('reglist') }}" >Indietro</a></td>
 
 
-
                             @empty
                             @endforelse
 
