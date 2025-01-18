@@ -60,7 +60,11 @@
                 @endif
             </div>
 
-
+            <td colspan="9"></td>
+            <td>{{$reg->sum('importo')}}</td>
+            <td>{{$reg->sum('previstoimpegno')}}</td>
+            <td>{{$reg->sum('impegnato')}}</td>
+            <td>{{$reg->sum('contabilizzato')}}</td>
 
     </div>
 
