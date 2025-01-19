@@ -16,7 +16,7 @@ class AddCustomHeader
     public function handle(Request $request, Closure $next): Response
     {
    $response = $next($request);
-   $response->headers->set('Access-Control-Allow-Origin', 'Provaaaaaaaaaaaaaaaaaaaaa');
+   $response->headers->set('Access-Control-Allow-Origin', '');
    return $response;
     }
 }

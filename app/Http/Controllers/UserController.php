@@ -32,7 +32,7 @@ class UserController extends Controller
        ]);
 
        Auth::login($user);
-       return redirect()->route('showRegisterForm')->with('success','Registrazione avvenuta con successo');
+       return redirect()->route('showUserForm')->with('success','Registrazione avvenuta con successo');
    }
     public function login(Request $request)
     {

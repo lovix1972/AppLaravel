@@ -19,7 +19,7 @@ class RepartoController extends Controller
 
     public function ShowFormReparto()
    {
-       return view('/insreparto');
+       return view('insertreparto');
    }
     public function showReparti()
     {
@@ -36,7 +36,7 @@ class RepartoController extends Controller
     }
 
 
-public function insertReparto(Request $request)
+public function store(Request $request)
 {
     $validatedData = $request->validate([
         'idreparto' => 'required|integer',
@@ -44,13 +44,13 @@ public function insertReparto(Request $request)
         'regione'=> 'required|string',
         'citta'=> 'required|string']);
 
-    Department::create ([
-'idreparto'=>$validatedData['idreparto'],
-'reparto'=>$validatedData['reparto'],
-'regione'=>$validatedData['regione'],
-'citta'=>$validatedData['citta']
-    ]);
-    return redirect()->route('ShowFormReparto')->with('success','Registrazione avvenuta con successo');
+        Department::create ([
+        'idreparto'=>$validatedData['idreparto'],
+        'reparto'=>$validatedData['reparto'],
+        'regione'=>$validatedData['regione'],
+        'citta'=>$validatedData['citta']
+            ]);
+    return redirect()->route('insertReparto')->with('success','Registrazione avvenuta con successo');
 
 }
 

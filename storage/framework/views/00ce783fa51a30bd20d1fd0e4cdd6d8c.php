@@ -10,19 +10,17 @@
 <?php $component->withAttributes([]); ?>
     <div>
         <?php if(session('success')): ?>
-            <div class="alert alert-success mb-0 "><?php echo e(session ('success')); ?></div>
+            <div class="alert alert-success mb-0 "><?php echo e(session ('success')); ?></div></td>
         <?php endif; ?>
             <div class ="mt-0 d-flex py-0" >
 
-                <table class="table table-light table-bordered ">
+                <table class="table table-hover table-bordered ">
 
-                  <tr>
-
-                      <th> <?php if($register->isempty()): ?>
+                       <?php if($register->isempty()): ?>
                         <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
-                  </th>
-                  </tr><?php else: ?>
-                    <tr>
+                         <?php else: ?>
+                        <thead>
+                        <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
                         <th>numPDS</th>
@@ -38,14 +36,16 @@
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
 
-
                         <th colspan="2" ><a href="/inspds"><button class="btn btn-secondary btn-sm " >Acquisisci</button></a></th>
+                        </thead>
+                        <tbody>
 
-                    </tr>
 
+                        </tr>
 
-                    <?php $__empty_1 = true; $__currentLoopData = $register; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
-                        <tr>
+                            <?php $__empty_1 = true; $__currentLoopData = $register; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $reg): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+
+                            <tr>
                             <td><?php echo e($reg->id); ?> </td>
                             <td><?php echo e($reg->numpds); ?> </td>
                             <td><?php echo e($reg->datapds); ?> </td>
@@ -60,24 +60,19 @@
                             <td class="importi text-right"><?php echo e($reg->impegnato); ?> </td>
                             <td class="importi text-right"><?php echo e($reg->contabilizzato); ?> </td>
 
-
                             <td><input type="button" onclick=window.location.href="/modifica/<?php echo e($reg->id); ?>" class="btn-primary btn-sm" value="Modifica" >
-
-
-                                <form>
-                                    <input type="hidden" name="_token" id="_token"  value="<?php echo e(csrf_token()); ?>">
-                            <td>
-                                <a href="/inspds/<?php echo e($reg->id); ?>"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                             <form><input type="hidden" name="_token" id="_token"  value="<?php echo e(csrf_token()); ?>"><td><a href="/inspds/<?php echo e($reg->id); ?>"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
                                 </form>
 
                         </tr>
-
+                        </tbody>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                 <?php endif; ?>
                 <?php endif; ?>
 
             </div>
+
 
         <td colspan="9">
 

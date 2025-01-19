@@ -5,15 +5,13 @@
         @endif
             <div class ="mt-0 d-flex py-0" >
 
-                <table class="table table-light table-bordered ">
+                <table class="table table-hover table-bordered ">
 
-                  <tr>
-
-                      <th> @if($register->isempty())
+                       @if($register->isempty())
                         <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
-                  </th>
-                  </tr>@else
-                    <tr>
+                         @else
+                        <thead>
+                        <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
                         <th>numPDS</th>
@@ -29,14 +27,16 @@
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
 
-
                         <th colspan="2" ><a href="/inspds"><button class="btn btn-secondary btn-sm " >Acquisisci</button></a></th>
+                        </thead>
+                        <tbody>
 
-                    </tr>
 
+                        </tr>
 
-                    @forelse($register as $reg)
-                        <tr>
+                            @forelse($register as $reg)
+
+                            <tr>
                             <td>{{$reg->id}} </td>
                             <td>{{$reg->numpds}} </td>
                             <td>{{$reg->datapds}} </td>
@@ -51,24 +51,19 @@
                             <td class="importi text-right">{{$reg->impegnato}} </td>
                             <td class="importi text-right">{{$reg->contabilizzato}} </td>
 
-
                             <td><input type="button" onclick=window.location.href="/modifica/{{$reg->id}}" class="btn-primary btn-sm" value="Modifica" >
-
-
-                                <form>
-                                    <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
-                            <td>
-                                <a href="/inspds/{{$reg->id}}"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                             <form><input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}"><td><a href="/inspds/{{$reg->id}}"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
                                 </form>
 
                         </tr>
-
+                        </tbody>
                 @empty
                 @endforelse
                 @endif
 
             </div>
+
 
         <td colspan="9">
 

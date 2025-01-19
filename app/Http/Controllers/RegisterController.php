@@ -6,6 +6,7 @@ use App\Models\Department;
 use App\Models\Register;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,8 +31,14 @@ class RegisterController extends Controller
      */
     public function ShowFormInspds()
     {
-        $reparti=Department::all();
-        return view('pages.inspds', ['reparti' => $reparti]);
+if(Auth::check()){
+
+    $reparti=Department::all();
+
+    return view('pages.inspds', ['reparti' => $reparti]);
+        }else{
+        return redirect()->route('/login');
+        }
     }
 
     public function getreparto()
@@ -45,6 +52,7 @@ class RegisterController extends Controller
 
     public function create(Request $request)
     {
+
         $validatedData = $request->validate([
             'reparto' => 'required|string|max:255',
             'numpds' => 'string',
@@ -82,9 +90,18 @@ class RegisterController extends Controller
             'note'=>$validatedData['note'],
 
         ]);
-        $reparti=Department::all();
-        return view('pages.inspds', ['reparti' => $reparti])->with('success',"Inserimento eseguito con successo!");
-    }
+
+if(Auth::check()){
+    $reparti = Department::all();
+
+    return view('pages.inspds', ['reparti' => $reparti])->with('success', "Inserimento eseguito con successo!");
+}else{
+    return redirect()->route('/login');
+}
+
+        }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -107,9 +124,12 @@ class RegisterController extends Controller
 
     public function delete(int $id)
     {
-        $sql='DELETE from registers where id=:id';
-       return db::delete($sql, ['id'=>$id]);
+        if (Auth::check()) {
 
+            $sql = 'DELETE from registers where id=:id';
+            db::delete($sql, ['id' => $id]);
+            return redirect('login');
+        }
     }
 
     /**

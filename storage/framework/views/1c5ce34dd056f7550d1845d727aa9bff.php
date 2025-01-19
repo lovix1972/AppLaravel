@@ -53,7 +53,20 @@
                             <a class="dropdown-item" href="#">Riepilogo Grande Unità</a>
                             <a class="dropdown-item" href="#">Riepilog Reparto</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/reglist">Ragistro Progetti di Spesa</a>
+                            <a class="dropdown-item" href="#">Ragistro Progetti di Spesa</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Gestione Tabelle
+                        </a>
+                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/insertreparto">Inserimento Reparto</a>
+                            <a class="dropdown-item" href="/listareparti">Elenco Reparto</a>
+                            <a class="dropdown-item" href="utenti">Inserimento Utenti</a>
+                            <a class="dropdown-item" href="utenti">Elenco Utenti</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="#">Controllo Errori DB</a>
                         </div>
                     </li>
                     <li class="nav-item d-flex" style="position: absolute; right: 4px">
