@@ -3,7 +3,7 @@
 
 
         <nav class="navbar navbar-expand-lg navbar-light bg-primary d-flex justify-between">
-            <img src="{{asset('/img/friuli.png')}}" alt="" class ="mr-3" width="50" height="55">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png/640px-CoA_mil_ITA_airmobile_bde_Friuli.png" alt="" class ="mr-3" width="50" height="55">
             <a class="navbar-brand font-sans" style ="color: antiquewhite; font-size: 2rem">BRIGATA AEROMOBILE FRIULI</a>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
