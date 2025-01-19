@@ -20,10 +20,13 @@
                         <th>Impegnato</th>
                         <th>Contabilizzato</th>
 
-                       @if(is_object($register))
-
+                @if(is_object($register))
 
                     @forelse ($register as $reg)
+
+
+
+
                         <tr>
                             <td>{{$reg->id}} </td>
                             <td>{{$reg->reparto}}</td>
@@ -35,10 +38,10 @@
                             <td>{{$reg->prog}} </td>
                             <td>{{$reg->idv}} </td>
                             <td>{{$reg->decreto}} </td>
-                            <td>{{$reg->importo}} </td>
-                            <td>{{$reg->previstoimpegno}} </td>
-                            <td>{{$reg->impegnato}} </td>
-                            <td>{{$reg->contabilizzato}}</td>
+                            <td class="importi text-right">{{$reg->importo}} </td>
+                            <td class="importi text-right">{{$reg->previstoimpegno}} </td>
+                            <td class="importi text-right">{{$reg->impegnato}} </td>
+                            <td class="importi text-right">{{$reg->contabilizzato}}</td>
 
                             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                  Edit
@@ -49,10 +52,14 @@
 
                             @empty
                             @endforelse
+                @endif
 
-                        @endif
-
+                <form method="post" action="{{ route('reglist.update',$reg->id)}}">
+                    @csrf
+                    @method('PUT')
                 <!-- Modal -->
+
+                   <!-- <input type="hidden" name="_method" value="PATCH"> -->
                 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-lg " >
                         <div class="modal-content px-5 m-2">
@@ -61,6 +68,8 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+
+                                <input type="hidden" class="form-control" id="id" name="id" value="{{ $reg->id }}">
                                 <div class="mb-2">
                                     <label for="numpds" class ="form-label">Num PDS</label>
                                     <input type="text" class="form-control" id="numpds" name="numpds" value="{{ $reg->numpds }}" >
@@ -108,29 +117,39 @@
                             <div class="container col-auto d-flex justify-start">
                                 <div class="mb-2">
                                     <label for="importo" class ="form-label">Importo</label>
-                                    <input type="number" class="form-control text-sm-right" id="importo" name="importo" value="{{$reg->importo   }}" min="0" step="0.01" required placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="importo" name="importo" value="{{$reg->importo   }}" min="0" step="0.01" required placeholder="0,00">
                                 </div>
                                 <div class="mb-2">
                                     <label for="previstoimpegno" class ="form-label">Previsto Impegno</label>
-                                    <input type="number" class="form-control text-sm-right" id="previstoimpegno" name="previstoimpegno" value="{{ $reg->previstoimpegno  }}" min="0" step="0.01" required placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="previstoimpegno" name="previstoimpegno" value="{{ $reg->previstoimpegno  }}" min="0" step="0.01" required placeholder="0,00">
                                 </div>
                                 <div class="mb-2">
                                     <label for="impegnato" class ="form-label">Impegnato</label>
-                                    <input type="number" class="form-control text-sm-right" id="impegnato" name="impegnato" value="{{ $reg->impegnato  }}" min="0" step="0.01"  placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="impegnato" name="impegnato" value="{{ $reg->impegnato  }}" min="0" step="0.01"  placeholder="0,00">
                                 </div>
                                 <div class="mb-2">
                                     <label for="contabilizzato" class ="form-label">Contabilizzato</label>
-                                    <input type="number" class="form-control text-sm-right" id="contabilizzato" name="contabilizzato" value="{{ $reg->contabilizzato  }}" min="0" step="0.01"  placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="contabilizzato" name="contabilizzato" value="{{ $reg->contabilizzato  }}" min="0" step="0.01"  placeholder="0,00">
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Salva modifiche</button>
+                                <button type="submit" class="btn btn-primary">Salva modifiche</button>
+
                             </div>
+
                         </div>
+
                     </div>
-                </div>
+
+                          </div>
+                </form>
+
             </table>
+
+
+
+
 </x-layouts.list-layouts>
 
 

@@ -39,10 +39,10 @@
                             <td>{{$reg->prog}} </td>
                             <td>{{$reg->idv}} </td>
                             <td>{{$reg->decreto}} </td>
-                            <td>{{$reg->importo}} </td>
-                            <td>{{$reg->previstoimpegno}} </td>
-                            <td>{{$reg->impegnato}} </td>
-                            <td>{{$reg->contabilizzato}} </td>
+                            <td class="importi text-right">{{$reg->importo}} </td>
+                            <td class="importi text-right">{{$reg->previstoimpegno}} </td>
+                            <td class="importi text-right">{{$reg->impegnato}} </td>
+                            <td class="importi text-right">{{$reg->contabilizzato}} </td>
 
 
                             <td><a href="/modifica/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
@@ -62,10 +62,10 @@
             </div>
 
         <td colspan="9"></td>
-        <td>{{$register->sum('importo')}}</td>
-        <td>{{$register->sum('previstoimpegno')}}</td>
-        <td>{{$register->sum('impegnato')}}</td>
-        <td>{{$register->sum('contabilizzato')}}</td>
+        <td class="importi text-right">{{$register->sum('importo')}}</td>
+        <td class="importi text-right">{{$register->sum('previstoimpegno')}}</td>
+        <td class="importi text-right">{{$register->sum('impegnato')}}</td>
+        <td class="importi text-right">{{$register->sum('contabilizzato')}}</td>
 
 
     </div>
@@ -74,7 +74,7 @@
 
     <script>
         $(document).ready(function () {
-            $('td.button').on('click',  'a','button-danger', function (evt) {
+            $('td').on('click',  'a','btn-danger', function (evt) {
 
                 evt.preventDefault();
                 let urlAlbum = $(this).attr('href');

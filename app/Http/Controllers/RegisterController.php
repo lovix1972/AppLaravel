@@ -117,15 +117,28 @@ class RegisterController extends Controller
      */
     public function edit(Register $register)
     {
-        //
+        //return view('pages.modifica')->withRegister($register);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Register $register)
+    public function update(Request $request, $id)
     {
-        //
+$request->validate([
+    'reparto' => 'required|string|max:255',
+    'numpds' => 'string',
+    'datapds' => 'date',
+    'oggetto' => 'string|max:255',
+]);
+
+$update=Register::find($id);
+$update->update ($request->all());
+return redirect()->route('reglist')->with('success',"Modificazione eseguita con successo!");
+
+
+
+
     }
 
     /**
