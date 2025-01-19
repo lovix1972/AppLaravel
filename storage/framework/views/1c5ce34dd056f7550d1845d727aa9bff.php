@@ -57,9 +57,9 @@
                         </div>
                     </li>
                     <li class="nav-item d-flex" style="position: absolute; right: 4px">
-                        <a class="nav-link" href="{{ route('logoutUser') }}">Logout</a>
+                        <a class="nav-link" href="<?php echo e(route('logoutUser')); ?>">Logout</a>
                     </li>
                 </ul>
 
             </div>
-        </nav>
+        </nav><?php /**PATH D:\AppLaravel\resources\views/partials/navbar.blade.php ENDPATH**/ ?>

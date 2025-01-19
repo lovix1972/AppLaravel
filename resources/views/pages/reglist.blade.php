@@ -45,11 +45,11 @@
                             <td class="importi text-right">{{$reg->contabilizzato}} </td>
 
 
-                            <td><a href="/modifica/{{$reg->id}}"><button class="btn btn-primary btn-sm" >Modifica</button></a>
+                            <td><input type="button" onclick=window.location.href="/modifica/{{$reg->id}}" class="btn-primary btn-sm" value="Modifica" >
                                 <form>
                                     <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
                             <td>
-                                <a href="/inspds/{{$reg->id}}"><button class ="btn btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
+                                <a href="/inspds/{{$reg->id}}"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>
                                 </form>
 
@@ -74,7 +74,7 @@
 
     <script>
         $(document).ready(function () {
-            $('td').on('click',  'a','btn-danger', function (evt) {
+            $('td').on('click',  'a','button.btn-danger', function (evt) {
 
                 evt.preventDefault();
                 let urlAlbum = $(this).attr('href');
