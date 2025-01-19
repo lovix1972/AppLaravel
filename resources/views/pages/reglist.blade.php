@@ -1,11 +1,18 @@
 <x-layouts.list-layouts>
     <div>
+        @if(session('success'))
+            <div class="alert alert-success mb-0 ">{{ session ('success')}}</div></td>
+        @endif
             <div class ="mt-0 d-flex py-0" >
 
                 <table class="table table-light table-bordered ">
-                  <tr> <th> @if($register->isempty())
+
+                  <tr>
+
+                      <th> @if($register->isempty())
                         <h4 class="d-flex font-bold mx-auto"> Non ci sono PDS registrati! <a href ="/inspds"><br><button class="btn btn-primary>"> Registra PDS  </button></a></h4>
-                  </th></tr>@else
+                  </th>
+                  </tr>@else
                     <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
@@ -23,7 +30,7 @@
                         <th>Contabilizzato</th>
 
 
-                        <th><a href="/inspds"><button class="btn btn-secondary btn-sm" >Acquisisci</button></a></th>
+                        <th colspan="2" ><a href="/inspds"><button class="btn btn-secondary btn-sm " >Acquisisci</button></a></th>
 
                     </tr>
 
@@ -46,6 +53,8 @@
 
 
                             <td><input type="button" onclick=window.location.href="/modifica/{{$reg->id}}" class="btn-primary btn-sm" value="Modifica" >
+
+
                                 <form>
                                     <input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}">
                             <td>
@@ -61,7 +70,8 @@
 
             </div>
 
-        <td colspan="9"></td>
+        <td colspan="9">
+
         <td class="importi text-right">{{$register->sum('importo')}}</td>
         <td class="importi text-right">{{$register->sum('previstoimpegno')}}</td>
         <td class="importi text-right">{{$register->sum('impegnato')}}</td>
@@ -74,6 +84,7 @@
 
     <script>
         $(document).ready(function () {
+
             $('td').on('click',  'a','button.btn-danger', function (evt) {
 
                 evt.preventDefault();
@@ -81,7 +92,7 @@
                 console.log(this);
 
                 let td = evt.target.parentNode;
-console.log(td)
+                //console.log(td)
                 $.ajax(
                     urlAlbum,
                     {

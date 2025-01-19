@@ -7,11 +7,15 @@
 
     @include('partials.head', ['pageTitle'=>'Registro PDS', 'metaTitle'=>'Registro PDS'])
     @include('partials.navbar')
+
 </header>
+
 <body>
 <main class="contents">
-    {{ $slot }}
+       {{ $slot }}
 </main>
 
 </body>
+
+
 </html>

@@ -1,6 +1,7 @@
 
 <x-layouts.list-layouts>
 
+
             <table class="table table-light table-bordered">
 
                     <tr>

@@ -10,6 +10,7 @@
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
 
+
             <table class="table table-light table-bordered">
 
                     <tr>
