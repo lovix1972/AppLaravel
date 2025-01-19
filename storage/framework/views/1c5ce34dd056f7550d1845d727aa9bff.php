@@ -61,7 +61,7 @@
                             Gestione Tabelle
                         </a>
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/insertreparto">Inserimento Reparto</a>
+                            <a class="dropdown-item" href="/inrep">Inserimento Reparto</a>
                             <a class="dropdown-item" href="/listareparti">Elenco Reparto</a>
                             <a class="dropdown-item" href="utenti">Inserimento Utenti</a>
                             <a class="dropdown-item" href="utenti">Elenco Utenti</a>

@@ -4,7 +4,7 @@
 <body>
 
 <div class ="mt-5" >
-<form  method="post">
+<form  ">
 @csrf
 
 <section class="vh-100 gradient-custom">
@@ -51,8 +51,8 @@
                                 </div>
                              @endif
 
-                             <button class="btn btn-outline-light btn-lg px-5" type="submit">Salva</button>
-
+                             <button class="btn btn-primary" type="submit">Salva</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Chiudi</button>
                         </div>
 
                     </div>
