@@ -2,56 +2,51 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Models\Department;
 use Illuminate\Http\Request;
 
 class RepartoController extends Controller
 {
-
-
     /**
      * Display the specified resource.
      */
-
-
-
-    public function ShowFormReparto()
-   {
-       return view('insertreparto');
-   }
-    public function showReparti()
+    public function showFormReparto()
     {
-        $reparti=Department::all();
+        return view('insertreparto');
+    }
+
+    public function showReparti(Request $request)
+    {
+        $reparti = Department::all();
+
         return view('pages.login', ['reparti' => $reparti]);
 
     }
 
     public function showRepartiFormRegister()
     {
-        $reparti=Department::all();
+        $reparti = Department::all();
+
         return view('pages.register', ['reparti' => $reparti]);
 
     }
 
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'idreparto' => 'required|integer',
+            'reparto' => 'required|string',
+            'regione' => 'required|string',
+            'citta' => 'required|string']);
 
-public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'idreparto' => 'required|integer',
-        'reparto'=> 'required|string',
-        'regione'=> 'required|string',
-        'citta'=> 'required|string']);
+        Department::create([
+            'idreparto' => $validatedData['idreparto'],
+            'reparto' => $validatedData['reparto'],
+            'regione' => $validatedData['regione'],
+            'citta' => $validatedData['citta'],
+        ]);
 
-        Department::create ([
-        'idreparto'=>$validatedData['idreparto'],
-        'reparto'=>$validatedData['reparto'],
-        'regione'=>$validatedData['regione'],
-        'citta'=>$validatedData['citta']
-            ]);
-    return redirect()->route('insertReparto')->with('success','Registrazione avvenuta con successo');
+        return redirect()->route('insertReparto')->with('success', 'Registrazione avvenuta con successo');
 
-}
-
+    }
 }

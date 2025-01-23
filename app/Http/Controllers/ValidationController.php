@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class ValidationController extends Controller
 {
-    public function validateForm(Request $request){
+    public function validateForm(Request $request)
+    {
 
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -16,5 +17,5 @@ class ValidationController extends Controller
         ]);
 
         return redirect()->route('home')->with('success', 'Validation Successful');
-}
+    }
 }

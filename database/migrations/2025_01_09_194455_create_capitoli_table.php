@@ -13,16 +13,16 @@ return new class extends Migration
     {
         Schema::create('capitoli', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('departament_id')->constrained('departaments');
             $table->integer('capitolo');
             $table->integer('art');
             $table->integer('prog');
             $table->integer('idv');
-            $table->decimal('preavviso',2);
+            $table->decimal('preavviso', 2);
             $table->string('decreto');
             $table->string('ops');
             $table->integer('idreparto');
             $table->string('anno');
-
 
             $table->timestamps();
         });

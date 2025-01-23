@@ -51,9 +51,9 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="#">Riepilogo Grande Unità</a>
-                            <a class="dropdown-item" href="#">Riepilog Reparto</a>
+                            <a class="dropdown-item" href="#">Riepilogo Reparto</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Ragistro Progetti di Spesa</a>
+                            <a class="dropdown-item" href="{{ route('reglist') }}">Ragistro Progetti di Spesa</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
