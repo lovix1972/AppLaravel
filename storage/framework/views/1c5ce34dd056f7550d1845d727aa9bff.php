@@ -63,8 +63,8 @@
                         <div class="dropdown-menu " aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/inrep">Inserimento Reparto</a>
                             <a class="dropdown-item" href="/listareparti">Elenco Reparto</a>
-                            <a class="dropdown-item" href="utenti">Inserimento Utenti</a>
-                            <a class="dropdown-item" href="utenti">Elenco Utenti</a>
+                            <a class="dropdown-item" href="/utenti">Inserimento Utenti</a>
+                            <a class="dropdown-item" href="/userlist">Elenco Utenti</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Controllo Errori DB</a>
                         </div>
