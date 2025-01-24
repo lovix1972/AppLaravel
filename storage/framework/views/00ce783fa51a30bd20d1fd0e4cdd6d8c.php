@@ -59,7 +59,7 @@
                             <td class="importi text-right"><?php echo e($reg->previstoimpegno); ?> </td>
                             <td class="importi text-right"><?php echo e($reg->impegnato); ?> </td>
                             <td class="importi text-right"><?php echo e($reg->contabilizzato); ?> </td>
-
+<td><input type="file" class="file" id="doc_file" name="doc_file"></td>
                             <td><input type="button" onclick=window.location.href="/modifica/<?php echo e($reg->id); ?>" class="btn-primary btn-sm" value="Modifica" >
                              <form><input type="hidden" name="_token" id="_token"  value="<?php echo e(csrf_token()); ?>"><td><a href="/inspds/<?php echo e($reg->id); ?>"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>

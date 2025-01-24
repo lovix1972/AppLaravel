@@ -50,7 +50,7 @@
                             <td class="importi text-right">{{$reg->previstoimpegno}} </td>
                             <td class="importi text-right">{{$reg->impegnato}} </td>
                             <td class="importi text-right">{{$reg->contabilizzato}} </td>
-
+<td><input type="file" class="file" id="doc_file" name="doc_file"></td>
                             <td><input type="button" onclick=window.location.href="/modifica/{{$reg->id}}" class="btn-primary btn-sm" value="Modifica" >
                              <form><input type="hidden" name="_token" id="_token"  value="{{csrf_token()}}"><td><a href="/inspds/{{$reg->id}}"><button class ="btn-danger btn-sm" id="btn-danger" title="delete" data-toggle="tooltip">Cancella</button></a>
                             </td>

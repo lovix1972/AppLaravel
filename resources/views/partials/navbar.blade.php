@@ -53,7 +53,7 @@
                             <a class="dropdown-item" href="#">Riepilogo Grande Unità</a>
                             <a class="dropdown-item" href="#">Riepilog Reparto</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Ragistro Progetti di Spesa</a>
+                            <a class="dropdown-item" href="/reglist">Ragistro Progetti di Spesa</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
