@@ -24,6 +24,9 @@
             </ul>
         </div>
     <?php endif; ?>
+<div class="container">
+<p class="text-lg-left font-bold ">Acquisizione</p>
+</div>
 <div class ="container mt-5 d-flex py-4 justify-center" >
 
 

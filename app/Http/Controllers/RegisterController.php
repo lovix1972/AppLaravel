@@ -22,25 +22,23 @@ class RegisterController extends Controller
     public function reglist()
     {
      Register::all();
-
      $register = Register::all();
         return view('pages.reglist',['register' => $register]);
-
     }
-
 
     /**
      * Show the form for creating a new resource.
      */
     public function ShowFormInspds()
     {
-
+if(Auth::check()){
 
     $reparti=Department::all();
 
     return view('pages.inspds', ['reparti' => $reparti]);
-
-
+        }else{
+        return redirect()->route('/login');
+        }
     }
 
     public function getreparto()
@@ -93,14 +91,15 @@ class RegisterController extends Controller
 
         ]);
 
-
+if(Auth::check()){
     $reparti = Department::all();
 
     return view('pages.inspds', ['reparti' => $reparti])->with('success', "Inserimento eseguito con successo!");
-
+}else{
+    return redirect()->route('/login');
 }
 
-
+        }
 
 
 

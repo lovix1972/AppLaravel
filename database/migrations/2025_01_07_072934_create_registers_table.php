@@ -29,11 +29,6 @@ return new class extends Migration
             $table->decimal('contabilizzato');
             $table->longText('note');
 
-
-
-
-
-
             $table->timestamps();
         });
     }
