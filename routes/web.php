@@ -21,26 +21,37 @@ Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('
 Route::get('/register', [RepartoController::class, 'showRepartiFormRegister']);
 Route::post('/register', [UserController::class, 'register'])->name('registerUser');
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/home', function () {
+    Route::group(['middleware' => 'auth'], function ()
+    {
+
+        Route::get('/home', function () {
         return view('pages.home');
+        });
+
+        Route::get('/utenti', [UserController::class, 'userlist'])->name('userlist');
+        Route::get('/utenti/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+
+        Route::get('/reglist', [RegisterController::class, 'reglist'])->name('reglist');
+        Route::get('/reglist/{id}', [RegisterController::class, 'show']);
+
+        Route::get('/inspds', [RegisterController::class, 'ShowFormInspds'])->name('ShowFormPds');
+        Route::post('/inspds', [RegisterController::class, 'create'])->name('InsertPds');
+        Route::delete('/inspds/{id}', [RegisterController::class, 'delete'])->name('DeletePds');
+        Route::get('/inspds', [RegisterController::class, 'getreparto'])->name('getreparto');
+        Route::get('/modifica/{id}', [RegisterController::class, 'show'])->name('modifica.show');
+        Route::put('/reglist{id}', [RegisterController::class, 'update'])->name('reglist.update');
+
+        Route::get('/list', [RegisterController::class, 'index']);
+
+        Route::post('/registrareparto', [RepartoController::class, 'store'])->name('StoreReparto');
+
+        Route::get('/dashboard', function () {
+        return view('pages.dashboard');
+        });
+        Route::get('/insdati', function () {
+        return view('pages.inspds_reparto');
+        });
+
+      
+
     });
-
-    Route::get('/utenti', [UserController::class, 'userlist'])->name('userlist');
-    Route::get('/utenti/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
-
-    Route::get('/reglist', [RegisterController::class, 'reglist'])->name('reglist');
-    Route::get('/reglist/{id}', [RegisterController::class, 'show']);
-
-    Route::get('/inspds', [RegisterController::class, 'ShowFormInspds'])->name('ShowFormPds');
-    Route::post('/inspds', [RegisterController::class, 'create'])->name('InsertPds');
-    Route::delete('/inspds/{id}', [RegisterController::class, 'delete'])->name('DeletePds');
-    Route::get('/inspds', [RegisterController::class, 'getreparto'])->name('getreparto');
-    Route::get('/modifica/{id}', [RegisterController::class, 'show'])->name('modifica.show');
-    Route::put('/reglist{id}', [RegisterController::class, 'update'])->name('reglist.update');
-
-    Route::get('/list', [RegisterController::class, 'index']);
-
-    Route::post('/registrareparto', [RepartoController::class, 'store'])->name('StoreReparto');
-
-});

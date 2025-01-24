@@ -9,15 +9,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/home">Cruscotto |<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/dashboard">Cruscotto |<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Acquisizione |
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/inspds">Acquisizione Reparti dipendenti</a>
-                            <a class="dropdown-item" href="#">Acquisizioni Direzione</a>
+                            <a class="dropdown-item" href="/insdati">Acquisizione Reparti dipendenti</a>
+                            <a class="dropdown-item" href="/inspds">Acquisizioni Direzione</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">Gestione Preavvisi</a>
                         </div>
@@ -53,7 +53,7 @@
                             <a class="dropdown-item" href="#">Riepilogo Grande Unità</a>
                             <a class="dropdown-item" href="#">Riepilog Reparto</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Ragistro Progetti di Spesa</a>
+                            <a class="dropdown-item" href="/reglist">Ragistro Progetti di Spesa</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
