@@ -38,8 +38,9 @@
                 <option></option>
                 @foreach($reparti as $r)
                     <option>{{$r->idreparto}} - {{$r->reparto}}</option>
-                @endforeach </select>
+                @endforeach
             </select>
+
         </div>
         <div class="mb-2">
             <label for="numpds" class ="form-label">Num PDS</label>

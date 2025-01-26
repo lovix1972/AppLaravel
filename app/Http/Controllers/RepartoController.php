@@ -30,6 +30,13 @@ class RepartoController extends Controller
         return view('pages.register', ['reparti' => $reparti]);
 
     }
+    public function showRepartiFormInsdati()
+    {
+        $reparti = Department::all();
+
+        return view('pages.inspds_reparto', ['reparti' => $reparti]);
+
+    }
 
     public function store(Request $request)
     {

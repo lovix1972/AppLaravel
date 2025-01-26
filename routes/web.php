@@ -48,9 +48,8 @@ Route::post('/register', [UserController::class, 'register'])->name('registerUse
         Route::get('/dashboard', function () {
         return view('pages.dashboard');
         });
-        Route::get('/insdati', function () {
-        return view('pages.inspds_reparto');
-        });
+        Route::get('/insdati', [RepartoController::class, 'showRepartiFormInsdati'])->name('insCapitolo');
+
 
       
 
