@@ -4,140 +4,101 @@ namespace App\Http\Controllers;
 
 use App\Models\Department;
 use App\Models\Register;
-use App\Models\User;
+
+use Illuminate\Auth\Middleware\Authenticate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+
 
 class RegisterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index()
     {
-   //
-    }
-    public function reglist()
-    {
-     Register::all();
-     $register = Register::all();
-        return view('pages.reglist',['register' => $register]);
+if(Auth::check()) {
+
+
+        $register=Register::all();
+        return view('pages.reglist',['register'=>$register]);
+    }else{
+    return redirect()->route('/login');
+}
+
     }
 
-    /**
-     * Show the form for creating a new resource.
+
+   /**
+     * Store a newly created resource in storage.
      */
-    public function ShowFormInspds()
+    public function store(Request $request)
     {
-if(Auth::check()){
-
-    $reparti=Department::all();
-
-    return view('pages.inspds', ['reparti' => $reparti]);
-        }else{
-        return redirect()->route('/login');
-        }
-    }
-
-    public function getreparto()
-    {
-        $reparti=Department::all();
-        return view('pages.inspds', ['reparti' => $reparti]);
-
-    }
-
-
-
-    public function create(Request $request)
-    {
-
         $validatedData = $request->validate([
+            'idreparto' => 'required|int',
             'reparto' => 'required|string|max:255',
             'numpds' => 'string',
             'datapds' => 'date',
             'oggetto' => 'string|max:255',
             'idcapitolo' => 'required|int',
             'capitolo' => 'required|int|min:4',
-            'art'=> 'required|int|min:1',
-            'prog'=>'required|int|min:2',
-            'idv'=>'required|int|min:7',
-            'decreto'=>'required|string|max:50',
-            'importo'=>'required|decimal:2',
-            'previstoimpegno'=>'required|decimal:2',
-            'impegnato'=>'decimal:2',
-            'contabilizzato'=>'decimal:2',
-            'note'=>'string|max:255',
+            'art' => 'required|int|min:1',
+            'prog' => 'required|int|min:2',
+            'idv' => 'required|int|min:7',
+            'decreto' => 'required|string|max:50',
+            'importo' => 'required|decimal:2',
+            'previstoimpegno' => 'required|decimal:2',
+            'impegnato' => 'decimal:2',
+            'contabilizzato' => 'decimal:2',
+            'note' => 'string|max:255',
 
         ]);
         //dd($request);
-         Register::create ([
-            'reparto'=>$validatedData['reparto'],
-            'numpds'=>$validatedData['numpds'],
-            'datapds'=>$validatedData['datapds'],
-            'oggetto'=>$validatedData['oggetto'],
-            'idcapitolo'=>$validatedData['idcapitolo'],
-            'capitolo'=>$validatedData['capitolo'],
-            'art'=>$validatedData['art'],
-            'prog'=>$validatedData['prog'],
-            'idv'=>$validatedData['idv'],
-            'decreto'=>$validatedData['decreto'],
-            'importo'=>$validatedData['importo'],
-            'previstoimpegno'=>$validatedData['previstoimpegno'],
-            'impegnato'=>$validatedData['impegnato'],
-            'contabilizzato'=>$validatedData['contabilizzato'],
-            'note'=>$validatedData['note'],
+        Register::create([
+            'idreparto' => $validatedData['idreparto'],
+            'reparto' => $validatedData['reparto'],
+            'numpds' => $validatedData['numpds'],
+            'datapds' => $validatedData['datapds'],
+            'oggetto' => $validatedData['oggetto'],
+            'idcapitolo' => $validatedData['idcapitolo'],
+            'capitolo' => $validatedData['capitolo'],
+            'art' => $validatedData['art'],
+            'prog' => $validatedData['prog'],
+            'idv' => $validatedData['idv'],
+            'decreto' => $validatedData['decreto'],
+            'importo' => $validatedData['importo'],
+            'previstoimpegno' => $validatedData['previstoimpegno'],
+            'impegnato' => $validatedData['impegnato'],
+            'contabilizzato' => $validatedData['contabilizzato'],
+            'note' => $validatedData['note'],
 
         ]);
-
-if(Auth::check()){
-    $reparti = Department::all();
-
-    return view('pages.inspds', ['reparti' => $reparti])->with('success', "Inserimento eseguito con successo!");
-}else{
-    return redirect()->route('/login');
-}
-
-        }
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        return redirect()->route('reglist')->with('success',"Registrazione eseguita con successo!");
     }
+
+
 
     /**
      * Display the specified resource.
      */
     public function show( Register $id)
     {
+
+
        $register=Register::find($id);
-     return view('pages.modifica', compact('register'));
+
+
+        return view('pages.modifica', compact('register'));
+
     }
 
-
-
-    public function delete(int $id)
-    {
-        if (Auth::check()) {
-
-            $sql = 'DELETE from registers where id=:id';
-            db::delete($sql, ['id' => $id]);
-            return redirect('login');
-        }
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Register $register)
     {
-        //return view('pages.modifica')->withRegister($register);
+        return view('pages.modifica',['register'=>$register]);
     }
 
     /**
@@ -145,19 +106,11 @@ if(Auth::check()){
      */
     public function update(Request $request, $id)
     {
-$request->validate([
-    'reparto' => 'required|string|max:255',
-    'numpds' => 'string',
-    'datapds' => 'date',
-    'oggetto' => 'string|max:255',
-]);
-
-$update=Register::find($id);
-$update->update ($request->all());
-return redirect()->route('reglist')->with('success',"Modificazione eseguita con successo!");
 
 
-
+    $update=Register::find($id);
+    $update->update ($request->all());
+    return redirect()->route('reglist')->with('success',"Modifica eseguita con successo!");
 
     }
 
@@ -171,5 +124,11 @@ return redirect()->route('reglist')->with('success',"Modificazione eseguita con 
         $register->delete();
         return redirect('reglist')->with('success','PDS eliminato con successo');
     }
+
+    private function middleware(string $string)
+    {
+        return redirect()->route('login');
+    }
+
 
 }

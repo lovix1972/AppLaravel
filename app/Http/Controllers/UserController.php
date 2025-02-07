@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
     public function showRegistrationForm()
     {
         return view('pages.register');
@@ -23,7 +24,7 @@ class UserController extends Controller
             'password' => 'required|string|min:8',
             'reparto' => 'required|string|min:1',
         ]);
-        // dd($validatedData);
+
         $user = User::create([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
@@ -33,7 +34,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('showUserForm')->with('success', 'Registrazione avvenuta con successo');
+        return redirect()->route('registerUser')->with('success', 'Registrazione avvenuta con successo');
     }
 
     public function login(Request $request)
@@ -44,6 +45,7 @@ class UserController extends Controller
             'password' => 'required',
             'reparto' => 'required',
         ]);
+
         if (Auth::attempt($credential)) {
             $request->session()->regenerate();
 
@@ -89,4 +91,8 @@ class UserController extends Controller
 
         return redirect('login')->with('success', 'Logout riuscito');
     }
+
+
+
+
 }

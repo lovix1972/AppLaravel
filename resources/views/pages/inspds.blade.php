@@ -1,11 +1,4 @@
-<!doctype html>
-<html lang="en">
-@include('partials.navbar')
-@include('partials.head',['pageTitle'=>'Registrazione PDS', 'metaTitle'=>'Registrazione'])
-
-<body>
-
-
+<x-layouts.list-layouts>
 
 @if(session('success'))
     <div class="alert alert-success">
@@ -23,26 +16,29 @@
             </ul>
         </div>
     @endif
-<div class="container">
-<p class="text-lg-left font-bold ">Acquisizione</p>
-</div>
-<div class ="container mt-5 d-flex py-4 justify-center" >
 
-
+<div class ="card mt-3 d-flex py-4 px-4 justify-center" >
     <form class="was-validate" action="{{ route('InsertPds')}}" method="POST">
         @csrf
 
+
         <div class="mb-2" >
-            <label for="reparto">Reparto</label>
-            <select class="form-select form-control" id="reparto" name ="reparto"  required>
+
+            <label for="idreparto">Id Reparto</label>
+            <select class="form-select form-control" id="idreparto" name ="idreparto"  >
                 <option></option>
-                @foreach($reparti as $r)
-                    <option>{{$r->idreparto}} - {{$r->reparto}}</option>
-                @endforeach
+                @foreach($reparti as $reparto)
+                    <option value ="{{$reparto->id}}">{{$reparto->id}} - {{$reparto->reparto}}</option>
             </select>
 
-        </div>
+
+            </div>
         <div class="mb-2">
+            <label for="reparto" class ="form-label">Reparto</label>
+            <input type="text" class="form-control" id="reparto" name="reparto" value="{{ old('reparto') }}"" >
+        </div>
+        @endforeach
+       <div class="mb-2">
             <label for="numpds" class ="form-label">Num PDS</label>
             <input type="text" class="form-control" id="numpds" name="numpds" value="{{ old('numpds') }}" >
         </div>
@@ -54,10 +50,15 @@
             <label for="oggetto" class ="form-label">Oggetto</label>
             <input type="text" class="form-control" id="oggetto" name="oggetto" value="{{ old('oggetto') }}" required>
         </div>
-        <div class="container mt-2 py-2 d-flex justify-start" >
+        <div class="flex-initial inline-flex" >
         <div class="mb-2">
             <label for="idcapitolo" class ="form-label">ID Capitolo</label>
-            <input type="number" class="form-control" id="idcapitolo" name="idcapitolo" value="{{ old('idcapitolo') }}" required>
+            <select class="form-select form-control" id="idcapitolo" name ="idcapitolo"  >
+                <option></option>
+                @foreach($capitoli as $capitolo)
+                    <option value="{{$capitolo->idcapitolo}}">{{$capitolo->idcapitolo}} - {{$capitolo->capitolo}}</option>
+                @endforeach
+            </select>
         </div>
         <div class="mb-2">
             <label for="capitolo" class ="form-label">Capitolo</label>
@@ -71,7 +72,7 @@
             <label for="prog" class ="form-label">Prog</label>
             <input type="number" class="form-control" id="prog" name="prog" value="{{ old('prog') }}" required>
         </div>
-        </div>
+
         <div class="mb-2">
             <label for="idv" class ="form-label">IDV</label>
             <input type="number" class="form-control" id="idv" name="idv" value="{{ old('idv') }}" required>
@@ -80,7 +81,8 @@
             <label for="decreto" class ="form-label">Decreto</label>
             <input type="text" class="form-control" id="decreto" name="decreto" value="{{ old('decreto') }}" required>
         </div>
-<div class="container col-auto d-flex justify-start">
+        </div>
+        <div class="container col-auto d-flex justify-start">
         <div class="mb-2">
             <label for="importo" class ="form-label">Importo</label>
             <input type="number" class="form-control text-sm-right" id="importo" name="importo" value="{{ old('importo') }}" min="0" step="0.01" required placeholder="0,00">
@@ -97,15 +99,20 @@
             <label for="contabilizzato" class ="form-label">Contabilizzato</label>
             <input type="number" class="form-control text-sm-right" id="contabilizzato" name="contabilizzato" value="{{ old('contabilizzato') }}" min="0" step="0.01"  placeholder="0,00">
         </div>
+
+
     </div>
+
         <div class="mb-2">
             <label for="note" class ="form-label">Note</label>
             <input type="text" class="form-control" id="note" name="note" value="{{ old('note') }}"  placeholder="Note">
+        </div>
+        <div class="mb-2">
+            <input type="file" class="form-control text-sm" id="doc_file" name="doc_file">
         </div>
         <button type="submit" class ="btn btn-primary">Registra</button>
         <a href="/home" class="btn"> Chiudi</a>
     </form>
 </div>
 
-</body>
-</html>
+</x-layouts.list-layouts>

@@ -14,8 +14,9 @@ class ValidationController extends Controller
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
             'idreparto' => 'required|int|1',
-        ]);
 
+        ]);
+       // dd($validatedData);
         return redirect()->route('home')->with('success', 'Validation Successful');
     }
 }

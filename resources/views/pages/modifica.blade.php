@@ -1,12 +1,12 @@
 
 <x-layouts.list-layouts>
 
-
             <table class="table table-light table-bordered">
 
                     <tr>
                         <thead class="thead-light">
                         <th>ID PDS</th>
+                        <th>ID Reparto</th>
                         <th>Reparto</th>
                         <th>numPDS</th>
                         <th>Data PDS</th>
@@ -23,17 +23,16 @@
 
                 @if(is_object($register))
 
-                    @forelse ($register as $reg)
-
-
-
+                    @forelse($register as $reg)
 
                         <tr>
-                            <td>{{$reg->id}} </td>
+                            <td>{{$reg->id}}</td>
+
                             <td>{{$reg->reparto}}</td>
                             <td>{{$reg->numpds}} </td>
                             <td>{{$reg->datapds}} </td>
                             <td>{{$reg->oggetto}} </td>
+                            <td>{{$reg->idcapitolo}} </td>
                             <td>{{$reg->capitolo}} </td>
                             <td>{{$reg->art}} </td>
                             <td>{{$reg->prog}} </td>
@@ -71,9 +70,14 @@
                             <div class="modal-body">
 
                                 <input type="hidden" class="form-control" id="id" name="id" value="{{ $reg->id }}">
+
                                 <div class="mb-2">
                                     <label for="numpds" class ="form-label">Num PDS</label>
                                     <input type="text" class="form-control" id="numpds" name="numpds" value="{{ $reg->numpds }}" >
+                                </div>
+                                <div class="mb-2">
+                                    <label for="idreparto" class ="form-label">ID Reparto</label>
+                                    <input type="number" class="form-control" id="idreparto" name="idreparto" value="{{ $reg->idreparto }}" >
                                 </div>
                                 <div class="mb-2">
                                     <label for="numpds" class ="form-label">Num PDS</label>

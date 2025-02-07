@@ -1,6 +1,2 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-.dropdown:hover .dropdown-menu {
-    display: block;
-}
+@import "tailwindcss";
+@source "../views";

@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="it" data-bs-theme="auto">
 <head>
-    @include('partials.head', ['pageTitle'=>'Login', 'metaTitle'=>'Login'])
 
+    @include('partials.head', ['pageTitle'=>'Login', 'metaTitle'=>'Login'])
+    @include('partials.navbar')
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -26,14 +27,8 @@
 
 <body style="background-color: #a3a3a3 ">
 
-<div class=" card  d-flex mx-auto px-3 py-1 " style="font-size: small; width: 40rem; position: relative; top:1rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
-    <div class=" mx-auto">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png/190px-CoA_mil_ITA_airmobile_bde_Friuli.png" alt="" width="50" height="55">
-</div>
-        <div class="font-sans py-1" style ="text-align: center">
-            <p><h4>BRIGATA AEROMOBILE FRIULI</h4></p>
-            <p>Gestione Contabile Amminstrativa</p>
-        </div>
+<div class=" card  d-flex mx-auto px-3 py-1  " style="font-size: small; width: 40rem; position: relative; top:1rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+
     <form action="{{ route('loginUser') }}" method="post">
         @csrf
 

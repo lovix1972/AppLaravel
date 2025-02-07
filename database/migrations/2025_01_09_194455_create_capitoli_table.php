@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('capitoli', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('departament_id')->constrained('departaments');
+            $table->foreignId('id_dep');
+            $table->integer('idcapitolo');
             $table->integer('capitolo');
             $table->integer('art');
             $table->integer('prog');

@@ -2,12 +2,12 @@
 <html lang="en">
 
 @include('partials.head', ['pageTitle'=>'Registrazione Utenti', 'metaTitle'=>'Registrazione'])
+@include('partials.navbar')
+<body style="background-color: #a3a3a3 ">
 
-<body>
-
-<div class="container mt-3" style="position:relative; top: 5rem">
-    <div class="mb-5">
-        <h2>Registrazione</h2>
+<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+    <div class="mb-0 font-sans font-bold  pb-3 ">
+        <p>Registrazione</p>
     </div>
 
 @if(session('success'))
@@ -51,12 +51,12 @@
                 <option></option>
                 @foreach($reparti as $r)
                     <option>{{$r->idreparto}} - {{$r->reparto}}</option>
-                @endforeach </select>
+                @endforeach
             </select>
 
         </div>
         <button type="submit" class ="btn btn-primary">Registrati</button>
-        <a href="/login" class="btn"> Chiudi</a>
+        <a href="/home" class="btn"> Chiudi</a>
     </form>
 
 </div>

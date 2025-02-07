@@ -2,12 +2,12 @@
 <html lang="en">
 
 <?php echo $__env->make('partials.head', ['pageTitle'=>'Registrazione Utenti', 'metaTitle'=>'Registrazione'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<body style="background-color: #a3a3a3 ">
 
-<body>
-
-<div class="container mt-3" style="position:relative; top: 5rem">
-    <div class="mb-5">
-        <h2>Registrazione</h2>
+<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+    <div class="mb-0 font-sans font-bold  pb-3 ">
+        <p>Registrazione</p>
     </div>
 
 <?php if(session('success')): ?>
@@ -52,12 +52,12 @@
                 <option></option>
                 <?php $__currentLoopData = $reparti; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option><?php echo e($r->idreparto); ?> - <?php echo e($r->reparto); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> </select>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
 
         </div>
         <button type="submit" class ="btn btn-primary">Registrati</button>
-        <a href="/login" class="btn"> Chiudi</a>
+        <a href="/home" class="btn"> Chiudi</a>
     </form>
 
 </div>

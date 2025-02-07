@@ -10,10 +10,7 @@ class RepartoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function showFormReparto()
-    {
-        return view('insertreparto');
-    }
+
 
     public function showReparti(Request $request)
     {
@@ -23,6 +20,7 @@ class RepartoController extends Controller
 
     }
 
+
     public function showRepartiFormRegister()
     {
         $reparti = Department::all();
@@ -30,13 +28,7 @@ class RepartoController extends Controller
         return view('pages.register', ['reparti' => $reparti]);
 
     }
-    public function showRepartiFormInsdati()
-    {
-        $reparti = Department::all();
 
-        return view('pages.inspds_reparto', ['reparti' => $reparti]);
-
-    }
 
     public function store(Request $request)
     {
