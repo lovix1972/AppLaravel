@@ -72,10 +72,10 @@
 
         <td colspan="11">
 
-        <td class="importi text-right">{{$register->sum('importo')}}</td>
-        <td class="importi text-right">{{$register->sum('previstoimpegno')}}</td>
-        <td class="importi text-right">{{$register->sum('impegnato')}}</td>
-        <td class="importi text-right">{{$register->sum('contabilizzato')}}</td>
+        <td class="importi text-right">{{ number_format($register->sum('importo'),2,',','.')}}</td>
+        <td class="importi text-right">{{ number_format($register->sum('previstoimpegno'),2,',','.')}}</td>
+        <td class="importi text-right">{{number_format($register->sum('impegnato'),2,',','.')}}</td>
+        <td class="importi text-right">{{number_format($register->sum('contabilizzato'),2,',','.')}}</td>
 
 
     </div>

@@ -5,9 +5,9 @@
 <?php echo $__env->make('partials.navbar', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 <body style="background-color: #a3a3a3 ">
 
-<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19); border-radius: 15px">
     <div class="mb-0 font-sans font-bold  pb-3 ">
-        <p>Registrazione</p>
+        <h3>Registrazione</h3>
     </div>
 
 <?php if(session('success')): ?>
@@ -19,7 +19,7 @@
 
     <?php if($errors->any()): ?>
 
-        <div class="alert alert-danger">
+        <div class="alert alert-danger ">
             <ul>
                 <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <li><?php echo e($error); ?></li>

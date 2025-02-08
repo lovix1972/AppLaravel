@@ -70,10 +70,11 @@ unset($__errorArgs, $__bag); ?>" id="datapds" name="datapds" value="<?php echo e
         <div class="flex-initial inline-flex" >
         <div class="mb-2">
             <label for="idcapitolo" class ="form-label">ID Capitolo</label>
-            <select class="form-select form-control" id="idcapitolo" name ="idcapitolo"  >
+            <select class="form-select form-control" id="idcapitolo" name ="idcapitolo" onchange="updateFields()">
+
                 <option></option>
                 <?php $__currentLoopData = $capitoli; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $capitolo): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    <option value="<?php echo e($capitolo->idcapitolo); ?>"><?php echo e($capitolo->idcapitolo); ?> - <?php echo e($capitolo->capitolo); ?></option>
+                    <option value="<?php echo e($capitolo->id); ?>"><?php echo e($capitolo->id); ?> </option>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
         </div>
@@ -131,6 +132,34 @@ unset($__errorArgs, $__bag); ?>" id="datapds" name="datapds" value="<?php echo e
         <a href="/home" class="btn"> Chiudi</a>
     </form>
 </div>
+
+    <script>
+        // Funzione per popolare automaticamente i campi
+        function updateFields() {
+
+            // Prendi l'ID del prodotto selezionato
+            let productId = document.querySelector('#idcapitolo').value;
+
+            // Esegui una ricerca dell'oggetto prodotto in un array di oggetti prodotti
+
+            let products = <?php echo json_encode($capitolo, 15, 512) ?>; // Laravel Blade inietta l'array di prodotti come JSON
+
+let selectedProduct=products
+
+
+            console.log(selectedProduct)
+
+            // Popola i campi del form con i dati del prodotto selezionato
+            if (selectedProduct) {
+                document.querySelector("#capitolo").value = selectedProduct.capitolo;
+                document.querySelector("#art").value = selectedProduct.art;
+                document.querySelector("#prog").value = selectedProduct.prog;
+                document.querySelector("#idv").value = selectedProduct.idv;
+                document.querySelector("#decreto").value = selectedProduct.decreto;
+
+            }
+        }
+    </script>
 
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

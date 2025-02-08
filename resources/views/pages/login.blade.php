@@ -27,7 +27,7 @@
 
 <body style="background-color: #a3a3a3 ">
 
-<div class=" card  d-flex mx-auto px-3 py-1  " style="font-size: small; width: 40rem; position: relative; top:1rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+<div class=" card  d-flex mx-auto px-3 py-3 " style="font-size: small; width: 40rem; position: relative; top:2rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
 
     <form action="{{ route('loginUser') }}" method="post">
         @csrf
@@ -77,7 +77,7 @@
         <button class="btn btn-primary w-100 py-1" type="submit">Entra</button>
         <div>
 
-            <p class="mb-0 text-center">Non hai accesso? <a href="/register" class="text-blue-50 fw-bold">Registrati</a>
+            <p class="mb-0 text-center">Non hai accesso? <a href="/register" class="text-blue-950 no-underline">Registrati</a>
             </p>
         </div>
         <p class=" text-center">&copy; 2025</p>

@@ -38,10 +38,10 @@
                             <td>{{$reg->prog}} </td>
                             <td>{{$reg->idv}} </td>
                             <td>{{$reg->decreto}} </td>
-                            <td class="importi text-right">{{$reg->importo}} </td>
-                            <td class="importi text-right">{{$reg->previstoimpegno}} </td>
-                            <td class="importi text-right">{{$reg->impegnato}} </td>
-                            <td class="importi text-right">{{$reg->contabilizzato}}</td>
+                            <td class="importi text-right">{{number_format($reg->importo),2}} </td>
+                            <td class="importi text-right">{{number_format($reg->previstoimpegno),2}} </td>
+                            <td class="importi text-right">{{number_format($reg->impegnato),2}} </td>
+                            <td class="importi text-right">{{number_format($reg->contabilizzato),2}}</td>
 
                             <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                                  Edit
@@ -122,19 +122,19 @@
                             <div class="container col-auto d-flex justify-start">
                                 <div class="mb-2">
                                     <label for="importo" class ="form-label">Importo</label>
-                                    <input type="number" class="form-control text-right" id="importo" name="importo" value="{{$reg->importo   }}" min="0" step="0.01" required placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="importo" name="importo" value="{{number_format($reg->importo),2}}" required placeholder="0,00">
                                 </div>
                                 <div class="mb-2">
                                     <label for="previstoimpegno" class ="form-label">Previsto Impegno</label>
-                                    <input type="number" class="form-control text-right" id="previstoimpegno" name="previstoimpegno" value="{{ $reg->previstoimpegno  }}" min="0" step="0.01" required placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="previstoimpegno" name="previstoimpegno" value="{{number_format($reg->previstoimpegno),2 }}"  required placeholder="0,00">
                                 </div>
                                 <div class="mb-2">
                                     <label for="impegnato" class ="form-label">Impegnato</label>
-                                    <input type="number" class="form-control text-right" id="impegnato" name="impegnato" value="{{ $reg->impegnato  }}" min="0" step="0.01"  placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="impegnato" name="impegnato" value="{{ number_format($reg->impegnato),2 }}"  placeholder="0,00">
                                 </div>
                                 <div class="mb-2">
                                     <label for="contabilizzato" class ="form-label">Contabilizzato</label>
-                                    <input type="number" class="form-control text-right" id="contabilizzato" name="contabilizzato" value="{{ $reg->contabilizzato  }}" min="0" step="0.01"  placeholder="0,00">
+                                    <input type="number" class="form-control text-right" id="contabilizzato" name="contabilizzato" value="{{ number_format($reg->contabilizzato),2  }}"  placeholder="0,00">
                                 </div>
                             </div>
                             <div class="modal-footer">

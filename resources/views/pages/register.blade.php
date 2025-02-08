@@ -5,9 +5,9 @@
 @include('partials.navbar')
 <body style="background-color: #a3a3a3 ">
 
-<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19); border-radius: 15px">
     <div class="mb-0 font-sans font-bold  pb-3 ">
-        <p>Registrazione</p>
+        <h3>Registrazione</h3>
     </div>
 
 @if(session('success'))
@@ -18,7 +18,7 @@
 
     @if($errors->any())
 
-        <div class="alert alert-danger">
+        <div class="alert alert-danger ">
             <ul>
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
