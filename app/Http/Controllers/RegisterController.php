@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Department;
-use App\Models\Register;
 
-use Illuminate\Auth\Middleware\Authenticate;
+use App\Models\Register;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 
 class RegisterController extends Controller
@@ -40,14 +38,14 @@ if(Auth::check()) {
             'numpds' => 'string',
             'datapds' => 'date',
             'oggetto' => 'string|max:255',
-            'idcapitolo' => 'required|int',
+            'idcapitolo' => 'int',
             'capitolo' => 'required|int|min:4',
             'art' => 'required|int|min:1',
             'prog' => 'required|int|min:2',
             'idv' => 'required|int|min:7',
-            'decreto' => 'required|string|max:50',
+            'decreto' => 'string|max:50',
             'importo' => 'required|decimal:2',
-            'previstoimpegno' => 'required|decimal:2',
+            'previstoimpegno' => 'decimal:2',
             'impegnato' => 'decimal:2',
             'contabilizzato' => 'decimal:2',
             'note' => 'string|max:255',
@@ -125,7 +123,7 @@ if(Auth::check()) {
         return redirect('reglist')->with('success','PDS eliminato con successo');
     }
 
-    private function middleware(string $string)
+    public function middleware($middleware, array $options = []): \Illuminate\Routing\ControllerMiddlewareOptions|\Illuminate\Http\RedirectResponse
     {
         return redirect()->route('login');
     }

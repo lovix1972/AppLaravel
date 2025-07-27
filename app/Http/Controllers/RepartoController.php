@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,11 @@ class RepartoController extends Controller
      */
 
 
-    public function showReparti(Request $request)
+    public function showReparti()
     {
-        $reparti = Department::all();
+        $department = Department::all();
 
-        return view('pages.login', ['reparti' => $reparti]);
+        return view('pages.login', compact('department' ));
 
     }
 
@@ -25,9 +26,11 @@ class RepartoController extends Controller
     {
         $reparti = Department::all();
 
-        return view('pages.register', ['reparti' => $reparti]);
+        return view('pages.register', compact('reparti' ));
 
     }
+
+
 
 
     public function store(Request $request)
