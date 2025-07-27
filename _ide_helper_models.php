@@ -80,7 +80,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Department whereReparto($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Department whereUpdatedAt($value)
  */
-	class Department extends \Eloquent {}
 }
 
 namespace App\Models{

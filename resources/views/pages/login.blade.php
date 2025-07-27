@@ -45,10 +45,11 @@
 
             <select class="form-select" id="reparto" name ="reparto" >
                 <option ></option>
-                @foreach($reparti as $r)
+                @foreach($department as $r)
                     <option>{{$r->idreparto}} - {{$r->reparto}}</option>
-                @endforeach </select>
+                @endforeach
             </select>
+
             <label for="reparto">Reparto</label>
         </div>
         @if($errors ->any())

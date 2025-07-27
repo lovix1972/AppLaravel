@@ -17,131 +17,222 @@
         </div>
     @endif
 
-<div class ="card mt-3 d-flex py-4 px-4 justify-center" >
-    <form class="was-validate" action="{{ route('InsertPds')}}" method="POST">
-        @csrf
+    <div class="bg-gray-100 min-h-screen py-6">
+        <div class="container max-w-3xl mx-auto space-y-6">
+            <form action="" method="POST">
+                @csrf
+
+                {{-- Card 1: Informazioni PDS e Protocollo --}}
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-2">Dati Genereali PDS e Protocollo</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div>
+                            <label for="id_pds" class="block text-gray-700 text-sm font-bold mb-2">ID PDS</label>
+                            <input type="text" id="id_pds" name="id_pds" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="numpds" class="block text-gray-700 text-sm font-bold mb-2">N. PDS</label>
+                            <input type="text" id="numpds" name="numpds" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="datapds" class="block text-gray-700 text-sm font-bold mb-2">Data PDS</label>
+                            <input type="date" id="datapds" name="datapds" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="n_protocollo" class="block text-gray-700 text-sm font-bold mb-2">N. Protocollo</label>
+                            <input type="text" id="n_protocollo" name="n_protocollo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Card 2: Informazioni Reparto e Oggetto --}}
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Informazioni Reparto e Oggetto</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
 
-        <div class="mb-2" >
 
-            <label for="idreparto">Id Reparto</label>
-            <select class="form-select form-control" id="idreparto" name ="idreparto"  >
-                <option></option>
-                @foreach($reparti as $reparto)
-                    <option value ="{{$reparto->id}}">{{$reparto->id}} - {{$reparto->reparto}}</option>
-            </select>
+                        <label for="id_reparto">Id Reparto</label>
+                        <select class="form-select form-control" id="id_reparto" name ="id_reparto"  required>
+                            @foreach($department as $d)
+                                <option>{{$d->idreparto}} - {{$d->reparto}} </option>
+                            @endforeach
 
-
-            </div>
-        <div class="mb-2">
-            <label for="reparto" class ="form-label">Reparto</label>
-            <input type="text" class="form-control" id="reparto" name="reparto" value="{{ old('reparto') }}"" >
-        </div>
-        @endforeach
-       <div class="mb-2">
-            <label for="numpds" class ="form-label">Num PDS</label>
-            <input type="text" class="form-control" id="numpds" name="numpds" value="{{ old('numpds') }}" >
-        </div>
-       <div class="mb-2">
-            <label for="datapds" class ="form-label">Data PDS</label>
-            <input type="date" class="form-control datepicker @error('datapds') is-valid @enderror" id="datapds" name="datapds" value="{{ old('datapds') }}" >
-        </div>
-        <div class="mb-2">
-            <label for="oggetto" class ="form-label">Oggetto</label>
-            <input type="text" class="form-control" id="oggetto" name="oggetto" value="{{ old('oggetto') }}" required>
-        </div>
-        <div class="flex-initial inline-flex" >
-        <div class="mb-2">
-            <label for="idcapitolo" class ="form-label">ID Capitolo</label>
-            <select class="form-select form-control" id="idcapitolo" name ="idcapitolo" onchange="updateFields()">
-
-                <option></option>
-                @foreach($capitoli as $capitolo)
-                    <option value="{{$capitolo->id}}">{{$capitolo->id}} </option>
-                @endforeach
-            </select>
-        </div>
-        <div class="mb-2">
-            <label for="capitolo" class ="form-label">Capitolo</label>
-            <input type="number" class="form-control" id="capitolo" name="capitolo" value="{{ old('capitolo') }}" required>
-        </div>
-        <div class="mb-2">
-            <label for="art" class ="form-label">Art</label>
-            <input type="number" class="form-control" id="art" name="art" value="{{ old('art') }}" required>
-        </div>
-        <div class="mb-2">
-            <label for="prog" class ="form-label">Prog</label>
-            <input type="number" class="form-control" id="prog" name="prog" value="{{ old('prog') }}" required>
-        </div>
-
-        <div class="mb-2">
-            <label for="idv" class ="form-label">IDV</label>
-            <input type="number" class="form-control" id="idv" name="idv" value="{{ old('idv') }}" required>
-        </div>
-        <div class="mb-2">
-            <label for="decreto" class ="form-label">Decreto</label>
-            <input type="text" class="form-control" id="decreto" name="decreto" value="{{ old('decreto') }}" required>
-        </div>
-        </div>
-        <div class="container col-auto d-flex justify-start">
-        <div class="mb-2">
-            <label for="importo" class ="form-label">Importo</label>
-            <input type="number" class="form-control text-sm-right" id="importo" name="importo" value="{{ old('importo') }}" min="0" step="0.01" required placeholder="0,00">
-        </div>
-        <div class="mb-2">
-            <label for="previstoimpegno" class ="form-label">Previsto Impegno</label>
-            <input type="number" class="form-control text-sm-right" id="previstoimpegno" name="previstoimpegno" value="{{ old('previstoimpegno') }}" min="0" step="0.01" required placeholder="0,00">
-        </div>
-        <div class="mb-2">
-            <label for="impegnato" class ="form-label">Impegnato</label>
-            <input type="number" class="form-control text-sm-right" id="impegnato" name="impegnato" value="{{ old('impegnato') }}" min="0" step="0.01"  placeholder="0,00">
-        </div>
-        <div class="mb-2">
-            <label for="contabilizzato" class ="form-label">Contabilizzato</label>
-            <input type="number" class="form-control text-sm-right" id="contabilizzato" name="contabilizzato" value="{{ old('contabilizzato') }}" min="0" step="0.01"  placeholder="0,00">
-        </div>
+                        </select>
 
 
+                        <div>
+                            <label for="reparto" class="block text-gray-700 text-sm font-bold mb-2">Reparto</label>
+                            <input type="text" id="reparto" name="reparto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        @if($errors ->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>
+                                            {{$error}}
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="col-span-2">
+                            <label for="oggetto" class="block text-gray-700 text-sm font-bold mb-2">Oggetto</label>
+                            <textarea id="oggetto" name="oggetto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Card 3: Dettagli Aggiuntivi e Importi --}}
+                <div class="bg-white shadow-md rounded-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Dettagli Aggiuntivi e Importi</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+
+
+                            <label for="idcapitolo" class="block text-gray-700 text-sm font-medium mb-2">ID Capitolo:</label>
+                            <select id="idcapitolo" name="idcapitolo"
+                                    class="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-gray-800
+                                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-200">
+
+                                @foreach($capitoli as $capitoloItem)
+                                    <option value="" disabled selected>Seleziona un Capitolo</option>
+                                <option></option>
+                                    <option value="{{ $capitoloItem->idcapitolo }}" {{ old('idcapitolo') == $capitoloItem->idcapitolo ?  : '' }}>
+                                        {{ $capitoloItem->idcapitolo ?? 'N/A' }} - {{ $capitoloItem->capitolo ?? 'N/A' }}/{{ $capitoloItem->art ?? 'N/A' }}/{{ $capitoloItem->prog ?? 'N/A' }} - {{ $capitoloItem->idv ?? 'N/A' }} - {{ $capitoloItem->decreto ?? 'N/A' }} {{ $capitoloItem->idreparto ?? 'N/A' }}
+                                    </option>
+                                @endforeach
+                            </select>
+
+                        </div>
+                        <div>
+                            <label for="capitolo" class="block text-gray-700 text-sm font-bold mb-2">Capitolo</label>
+                            <input type="text" id="capitolo" name="capitolo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="art" class="block text-gray-700 text-sm font-bold mb-2">Art.</label>
+                            <input type="text" id="art" name="art" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="prog" class="block text-gray-700 text-sm font-bold mb-2">Prog.</label>
+                            <input type="text" id="prog" name="prog" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="idv" class="block text-gray-700 text-sm font-bold mb-2">IDV</label>
+                            <input type="text" id="idv" name="idv" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="decreto" class="block text-gray-700 text-sm font-bold mb-2">Decreto</label>
+                            <input type="text" id="decreto" name="decreto" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="ops" class="block text-gray-700 text-sm font-bold mb-2">OPS2</label>
+                            <input type="text" id="ops" name="ops" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div class="col-span-full">
+                            <label for="descrizione" class="block text-gray-700 text-sm font-bold mb-2">Descrizione</label>
+                            <textarea id="descrizione" name="descrizione" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                        </div>
+                        <div>
+                            <label for="pdc" class="block text-gray-700 text-sm font-bold mb-2">PDC</label>
+                            <input type="text" id="pdc" name="pdc" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="importo" class="block text-gray-700 text-sm font-bold mb-2">Importo</label>
+                            <input type="number" step="0.01" min="0" id="importo" name="importo" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="previstoimpegno" class="block text-gray-700 text-sm font-bold mb-2">Previsto Impegno</label>
+                            <input type="number" step="0.01" min="0" id="previstoimpegno" name="previstoimpegno" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="impegnato"  class="block text-gray-700 text-sm font-bold mb-2">Impegnato</label>
+                            <input type="number" step="0.01" min="0" id="impegnato" name="impegnato" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="contabilizzato"  class="block text-gray-700 text-sm font-bold mb-2">Contabilizzato</label>
+                            <input type="number" step="0.01" min="0" id="contabilizzato" name="contabilizzato" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                        <div>
+                            <label for="note" class="block text-gray-700 text-sm font-bold mb-2">Note</label>
+                            <input type="text" id="note" name="note" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-end">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Salva
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 
-        <div class="mb-2">
-            <label for="note" class ="form-label">Note</label>
-            <input type="text" class="form-control" id="note" name="note" value="{{ old('note') }}"  placeholder="Note">
-        </div>
-        <div class="mb-2">
-            <input type="file" class="form-control text-sm" id="doc_file" name="doc_file">
-        </div>
-        <button type="submit" class ="btn btn-primary">Registra</button>
-        <a href="/home" class="btn"> Chiudi</a>
-    </form>
-</div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script> {{-- Includi jQuery per semplicità AJAX --}}
 
     <script>
-        // Funzione per popolare automaticamente i campi
-        function updateFields() {
+        // Passa i dati dei capitoli dal backend al frontend come JSON
+        let capitoliData = @json($capitoli->keyBy('idcapitolo'));
 
-            // Prendi l'ID del prodotto selezionato
-            let productId = document.querySelector('#idcapitolo').value;
+        document.addEventListener('DOMContentLoaded', function() {
+            let idCapitoloSelect = document.getElementById('idcapitolo');
+            let capitoloInput = document.getElementById('capitolo');
+            let artInput = document.getElementById('art');
+            let progInput = document.getElementById('prog');
+            let idvInput = document.getElementById('idv');
+            let decretoInput = document.getElementById('decreto');
+            let opsInput = document.getElementById('ops');
 
-            // Esegui una ricerca dell'oggetto prodotto in un array di oggetti prodotti
+            // Funzione per popolare i campi
+            function populateCapitoloFields() {
+                let selectedId = idCapitoloSelect.value;
+                let selectedCapitolo = capitoliData[selectedId];
 
-            let products = @json($capitolo); // Laravel Blade inietta l'array di prodotti come JSON
+                if (selectedCapitolo) {
+                    capitoloInput.value = selectedCapitolo.capitolo || '';
+                    artInput.value = selectedCapitolo.art || '';
+                    progInput.value = selectedCapitolo.prog || '';
+                    idvInput.value = selectedCapitolo.idv || '';
+                    decretoInput.value = selectedCapitolo.decreto || '';
+                    opsInput.value = selectedCapitolo.ops || '';
+                } else {
+                    // Pulisci i campi se non c'è una selezione valida o se l'opzione "Seleziona un Capitolo" è selezionata
+                    capitoloInput.value = '';
+                    artInput.value = '';
+                    progInput.value = '';
+                    idvInput.value = '';
+                    decretoInput.value = '';
+                    opsInput.value = '';
 
-let selectedProduct=products
-
-
-            console.log(selectedProduct)
-
-            // Popola i campi del form con i dati del prodotto selezionato
-            if (selectedProduct) {
-                document.querySelector("#capitolo").value = selectedProduct.capitolo;
-                document.querySelector("#art").value = selectedProduct.art;
-                document.querySelector("#prog").value = selectedProduct.prog;
-                document.querySelector("#idv").value = selectedProduct.idv;
-                document.querySelector("#decreto").value = selectedProduct.decreto;
-
+                }
             }
-        }
+
+            // Aggiungi l'event listener per il cambiamento della selezione
+            idCapitoloSelect.addEventListener('change', populateCapitoloFields);
+
+            // Se c'è un valore 'old' (es. dopo un errore di validazione), popola i campi all'avvio
+            if (idCapitoloSelect.value) {
+                populateCapitoloFields();
+            }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get references to the input fields
+            let valoreProgettoInput = document.getElementById('importo');
+            let previstoImpegnoInput = document.getElementById('previstoimpegno');
+            let impegnatoInput = document.getElementById('impegnato');
+            let contabilizzatoInput = document.getElementById('contabilizzato');
+            // Add an event listener for the 'change' event on the 'valore_progetto' field
+            valoreProgettoInput.addEventListener('change', function() {
+                // When the 'valore_progetto' field changes, update 'previsto_impegno'
+                previstoImpegnoInput.value = parseFloat(this.value);
+                impegnatoInput.value = 0.00;
+                contabilizzatoInput.value = 0.00;
+            });
+        });
+
+
     </script>
+
 
 </x-layouts.list-layouts>

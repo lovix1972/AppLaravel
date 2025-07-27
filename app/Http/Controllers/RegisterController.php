@@ -44,10 +44,10 @@ if(Auth::check()) {
             'prog' => 'required|int|min:2',
             'idv' => 'required|int|min:7',
             'decreto' => 'string|max:50',
-            'importo' => 'required|decimal:2',
-            'previstoimpegno' => 'decimal:2',
-            'impegnato' => 'decimal:2',
-            'contabilizzato' => 'decimal:2',
+            'importo' => 'required|float:2',
+            'previstoimpegno' => 'float:2',
+            'impegnato' => 'float:2',
+            'contabilizzato' => 'float:2',
             'note' => 'string|max:255',
 
         ]);

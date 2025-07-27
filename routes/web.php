@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CapitoloController;
+
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RepartoController;
 use App\Http\Controllers\SelectController;
@@ -17,7 +17,7 @@ Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [UserController::class, 'login'])->name('loginUser');
 Route::get('/login', [RepartoController::class, 'showReparti'])->name('reparti');
 
-
+Route::get('/inspds', [SelectController::class, 'showReparti'])->name('getdata');
 
 
 
@@ -47,8 +47,8 @@ Route::post('/register', [UserController::class, 'register'])->name('registerUse
         Route::get('/utenti', [UserController::class, 'userlist'])->name('userlist');
         Route::get('/utenti/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
 
-        Route::get('/inspds', [RegisterController::class, 'ShowFormInspds'])->name('ShowFormPds');
-        Route::get('/inspds', [SelectController::class, 'getSelect'])->name('getSelect');
+
+
         Route::post('/inspds', [RegisterController::class, 'store'])->name('InsertPds');
         Route::delete('/inspds/{id}', [RegisterController::class, 'destroy'])->name('DeletePds');
 
@@ -61,8 +61,9 @@ Route::post('/register', [UserController::class, 'register'])->name('registerUse
         });
         Route::get('/insdati', function () {
         return view('pages.inspds_reparto');
+        });
 
 
 
 
-});
+

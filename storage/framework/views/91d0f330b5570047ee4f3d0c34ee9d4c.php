@@ -45,10 +45,11 @@
 
             <select class="form-select" id="reparto" name ="reparto" >
                 <option ></option>
-                <?php $__currentLoopData = $reparti; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                     <option><?php echo e($r->idreparto); ?> - <?php echo e($r->reparto); ?></option>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> </select>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </select>
+
             <label for="reparto">Reparto</label>
         </div>
         <?php if($errors ->any()): ?>

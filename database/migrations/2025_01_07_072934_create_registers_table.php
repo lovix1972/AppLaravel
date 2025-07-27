@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
+            $table->integer('idreparto');
             $table->string('reparto')->nullable(false);
             $table->string('numpds')->nullable();
             $table->date('datapds');

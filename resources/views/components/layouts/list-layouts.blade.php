@@ -7,7 +7,7 @@
 
     @include('partials.head', ['pageTitle'=>'Registro PDS', 'metaTitle'=>'Registro PDS'])
     @include('partials.navbar')
-
+    @vite('resources/css/app.css')
 </header>
 
 <body>
