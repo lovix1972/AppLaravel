@@ -28,23 +28,23 @@
                 </li>
                 <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
                     <a href='/dashboard'
-                       class='navbar-link text-gray-600 hover:text-blue-500'>Dashboard</a>
+                       class='navbar-link text-yellow-600 hover:text-yellow-500'>Dashboard</a>
                 </li>
 
                     <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='/inspds'
-                                                                                class='navbar-link text-gray-600 hover:text-blue-500'>Acquisizioni</a>
+                                                                                class='navbar-link text-yellow-600 hover:text-yellow-500'>Acquisizioni</a>
                 </li>
                 <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='#'
-                                                                                class='navbar-link text-gray-600 hover:text-blue-500'>Gestione Finanziaria</a>
+                                                                                class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Finanziaria</a>
                 </li>
                 <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='javascript:void(0)'
-                                                                                class='navbar-link text-gray-600 hover:text-blue-500'>Movimenti di Cassa</a>
+                                                                                class='navbar-link text-yellow-600 hover:text-yellow-500'>Movimenti di Cassa</a>
                 </li>
                 <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='#'
-                                                                                class='navbar-link text-gray-600 hover:text-blue-500'>Gestione Note</a>
+                                                                                class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Note</a>
                 </li>
                 <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'><a href='/reglist'
-                                                                                class='navbar-link text-gray-600 hover:text-blue-500'>Registro</a>
+                                                                                class='navbar-link text-yellow-600 hover:text-yellow-500'>Registro</a>
                 </li>
 
             </ul>
@@ -77,9 +77,9 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-    var toggleOpen = document.getElementById('toggleOpen');
-    var toggleClose = document.getElementById('toggleClose');
-    var collapseMenu = document.getElementById('collapseMenu');
+    let toggleOpen = document.getElementById('toggleOpen');
+    ley toggleClose = document.getElementById('toggleClose');
+    let collapseMenu = document.getElementById('collapseMenu');
 
     function handleClick() {
         if (collapseMenu.style.display === 'block') {
@@ -91,10 +91,10 @@
 
     toggleOpen.addEventListener('click', handleClick);
     toggleClose.addEventListener('click', handleClick);
-        const navbarLinks = document.querySelectorAll('.navbar-link');
+        let navbarLinks = document.querySelectorAll('.navbar-link');
 
         function highlightActiveLink() {
-            const currentPath = window.location.pathname; // Ottiene il percorso URL attuale
+            let currentPath = window.location.pathname; // Ottiene il percorso URL attuale
             navbarLinks.forEach(link => {
                 // Rimuove la classe attiva da tutti i link
                 link.classList.remove('text-blue-600', 'font-bold', 'border-b-2', 'border-blue-600'); // Esempio di classi attive
