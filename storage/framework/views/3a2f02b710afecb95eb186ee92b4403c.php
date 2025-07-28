@@ -8,6 +8,7 @@
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
 <?php $component->withAttributes([]); ?>
+
     <?php if(session('success')): ?>
         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
             <strong class="font-bold">Successo!</strong>
@@ -26,7 +27,7 @@
         </div>
     <?php endif; ?>
 
-    <div class="bg-gray-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8"> 
+    <div class="bg-gray-100 min-h-screen py-8 px-4 sm:px-6 lg:px-8">
         <div class="container mx-auto max-w-7xl space-y-8">
             <h1 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Gestione PDS e Protocolli</h1>
 
@@ -70,13 +71,13 @@
                             <h2 class="text-xl font-bold mb-5 text-gray-800 border-b pb-3">Informazioni Reparto e Oggetto</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
                                 <div>
-                                    <label for="id_reparto" class="block text-gray-700 font-medium mb-1">Id Reparto</label>
-                                    <select id="id_reparto" name="id_reparto" required
-                                            class="form-select block w-full rounded-md border-b-gray-50 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
+                                    <label for="idreparto" class="block text-gray-700 font-medium mb-1">Id Reparto</label>
+                                    <select id="idreparto" name="idreparto" required
+                                            class="form-select block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                                         <option value="" disabled selected>Seleziona un Reparto</option>
                                         <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($d->idreparto); ?>" <?php echo e(old('id_reparto') == $d->idreparto ? 'selected' : ''); ?>>
-                                                <?php echo e($d->idreparto); ?> - <?php echo e($d->reparto); ?>
+                                            <option value="<?php echo e($d->idreparto); ?>" <?php echo e(old('idreparto') == $d->idreparto ? 'selected' : ''); ?>>
+                                                <?php echo e($d->idreparto); ?>
 
                                             </option>
                                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -105,14 +106,9 @@
                         <div>
                             <label for="idcapitolo" class="block text-gray-700 font-medium mb-1">ID Capitolo:</label>
                             <select id="idcapitolo" name="idcapitolo"
-                                    class="form-select block w-full rounded-md border-b-gray-400 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
+                                    class="form-select block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                                 <option value="" disabled selected>Seleziona un Capitolo</option>
-                                <?php $__currentLoopData = $capitoli; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $capitoloItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($capitoloItem->idcapitolo); ?>" <?php echo e(old('idcapitolo') == $capitoloItem->idcapitolo ? 'selected' : ''); ?>>
-                                        <?php echo e($capitoloItem->idcapitolo ?? 'N/A'); ?> - <?php echo e($capitoloItem->capitolo ?? 'N/A'); ?>/<?php echo e($capitoloItem->art ?? 'N/A'); ?>/<?php echo e($capitoloItem->prog ?? 'N/A'); ?> - <?php echo e($capitoloItem->idv ?? 'N/A'); ?> - <?php echo e($capitoloItem->decreto ?? 'N/A'); ?> <?php echo e($capitoloItem->idreparto ?? 'N/A'); ?>
-
-                                    </option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                
                             </select>
                         </div>
                         <div>
@@ -146,8 +142,8 @@
                                    class="form-input block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                         </div>
                         <div>
-                            <label for="Descrizione" class="block text-gray-700 font-medium mb-1">Descrizione</label>
-                            <input type="text" id="Descrizione" name="Descrizione" value="<?php echo e(old('Descrizione')); ?>"
+                            <label for="descrizione" class="block text-gray-700 font-medium mb-1">Descrizione</label>
+                            <input type="text" id="descrizione" name="descrizione" value="<?php echo e(old('descrizione')); ?>"
                                    class="form-input block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                         </div>
 
@@ -168,26 +164,52 @@
                                    class="form-input block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                         </div>
                         <div>
-                            <label for="impegnato" class="block text-gray-700 font-medium mb-1">Impegnato</label>
-                            <input type="number" step="0.01" min="0" id="impegnato" name="impegnato" value="<?php echo e(old('impegnato')); ?>"
+                            <label for="impegnato_valore" class="block text-gray-700 font-medium mb-1">Impegnato</label>
+                            <input type="number" step="0.01" min="0" id="impegnato_valore" name="impegnato_valore" value="<?php echo e(old('impegnato_valore')); ?>"
                                    class="form-input block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                         </div>
                         <div>
-                            <label for="contabilizzato" class="block text-gray-700 font-medium mb-1">Contabilizzato</label>
-                            <input type="number" step="0.01" min="0" id="contabilizzato" name="contabilizzato" value="<?php echo e(old('contabilizzato')); ?>"
+                            <label for="contabilizzato_valore" class="block text-gray-700 font-medium mb-1">Contabilizzato</label>
+                            <input type="number" step="0.01" min="0" id="contabilizzato_valore" name="contabilizzato_valore" value="<?php echo e(old('contabilizzato_valore')); ?>"
                                    class="form-input block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm">
                         </div>
+
+                        
+                        <div class="md:col-span-2 lg:col-span-3 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-4 pt-4 border-t mt-4">
+                            <div class="flex items-center">
+                                <input type="hidden" name="registrato" value="0"> 
+                                <input type="checkbox" id="registrato" name="registrato" value="1" <?php echo e(old('registrato') ? 'checked' : ''); ?>
+
+                                class="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
+                                <label for="registrato" class="ml-2 block text-gray-700 font-medium">Registrato</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="hidden" name="impegnato_flag" value="0"> 
+                                <input type="checkbox" id="impegnato_flag" name="impegnato_flag" value="1" <?php echo e(old('impegnato_flag') ? 'checked' : ''); ?>
+
+                                class="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
+                                <label for="impegnato_flag" class="ml-2 block text-gray-700 font-medium">Impegnato</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="hidden" name="validato" value="0"> 
+                                <input type="checkbox" id="validato" name="validato" value="1" <?php echo e(old('validato') ? 'checked' : ''); ?>
+
+                                class="form-checkbox h-5 w-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500">
+                                <label for="validato" class="ml-2 block text-gray-700 font-medium">Validato</label>
+                            </div>
+                        </div>
+
                         <div class="md:col-span-2 lg:col-span-3">
                             <label for="note" class="block text-gray-700 font-medium mb-1">Note</label>
-                            <textarea id="note" name="note" rows="3"
-                                      class="form-textarea block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm"><?php echo e(old('note')); ?></textarea>
+                            <textarea id="note" name="note" rows="4"
+                                      class="form-textarea block w-full rounded-md border-black shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50 text-sm" ><?php echo e(old('note')); ?></textarea>
                         </div>
 
                     </div>
                     <div class="flex justify-end mt-8">
                         <button type="submit"
                                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-md
-                               focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200 ease-in-out">
+                           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 transition duration-200 ease-in-out">
                             Salva Dati
                         </button>
                     </div>
@@ -197,62 +219,111 @@
             </form>
         </div>
     </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const idRepartoSelect = document.getElementById('id_reparto');
-                const repartoInput = document.getElementById('reparto');
-
-                // Crea un oggetto JavaScript manualmente per massima compatibilità
-                const departments = {};
-                <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                    departments[<?php echo e($d->idreparto); ?>] = {
-                    idreparto: <?php echo e($d->idreparto); ?>,
-                    reparto: "<?php echo e(addslashes($d->reparto)); ?>" // Usa addslashes per gestire apostrofi nel nome
-                };
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-                idRepartoSelect.addEventListener('change', function() {
-                    const selectedId = this.value;
-                    const departmentData = departments[selectedId];
-
-                    if (departmentData) {
-                        repartoInput.value = departmentData.reparto;
-                    } else {
-                        repartoInput.value = ''; // Pulisci il campo se non trova corrispondenza
-                    }
-                });
-
-                // Esegui l'aggiornamento iniziale se c'è un valore vecchio selezionato
-                if (idRepartoSelect.value) {
-                    const initialSelectedId = idRepartoSelect.value;
-                    const initialDepartmentData = departments[initialSelectedId];
-                    if (initialDepartmentData) {
-                        repartoInput.value = initialDepartmentData.reparto;
-                    }
-                }
-            });
-        </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script> 
-
 
     <script>
-        // Passa i dati dei capitoli dal backend al frontend come JSON
-        let capitoliData = <?php echo json_encode($capitoli->keyBy('idcapitolo'), 15, 512) ?>;
-
         document.addEventListener('DOMContentLoaded', function() {
-            let idCapitoloSelect = document.getElementById('idcapitolo');
-            let capitoloInput = document.getElementById('capitolo');
-            let artInput = document.getElementById('art');
-            let progInput = document.getElementById('prog');
-            let idvInput = document.getElementById('idv');
-            let decretoInput = document.getElementById('decreto');
-            let opsInput = document.getElementById('ops');
+            // Riferimenti agli elementi HTML
+            const idRepartoSelect = document.getElementById('idreparto');
+            const repartoInput = document.getElementById('reparto');
+            const idCapitoloSelect = document.getElementById('idcapitolo');
 
-            // Funzione per popolare i campi
-            function populateCapitoloFields() {
-                let selectedId = idCapitoloSelect.value;
-                let selectedCapitolo = capitoliData[selectedId];
+            // Campi di input da popolare dal capitolo selezionato
+            const capitoloInput = document.getElementById('capitolo');
+            const artInput = document.getElementById('art');
+            const progInput = document.getElementById('prog');
+            const idvInput = document.getElementById('idv');
+            const decretoInput = document.getElementById('decreto');
+            const opsInput = document.getElementById('ops');
+            const descrizioneInput = document.getElementById('descrizione');
+            const noteTextarea = document.getElementById('note');
 
+            // Campi importo (rinominati per evitare conflitti con i flag)
+            const importoInput = document.getElementById('importo');
+            const previstoImpegnoInput = document.getElementById('previstoimpegno');
+            const impegnatoValoreInput = document.getElementById('impegnato_valore');
+            const contabilizzatoValoreInput = document.getElementById('contabilizzato_valore');
+
+            // Nuovi campi checkbox
+            const registratoCheckbox = document.getElementById('registrato');
+            const impegnatoFlagCheckbox = document.getElementById('impegnato_flag');
+            const validatoCheckbox = document.getElementById('validato');
+
+
+            // Mappa per i Reparti
+            const departments = {};
+            <?php $__currentLoopData = $department; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                departments[<?php echo e($d->idreparto); ?>] = {
+                idreparto: <?php echo e($d->idreparto); ?>,
+                reparto: "<?php echo e(addslashes($d->reparto)); ?>"
+            };
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+            // Variabile per memorizzare temporaneamente i dati dei capitoli caricati
+            let loadedCapitoliData = {};
+
+            // --- Funzioni di Utilità ---
+
+            function updateRepartoField() {
+                const selectedId = idRepartoSelect.value;
+                const departmentData = departments[selectedId];
+                if (departmentData) {
+                    repartoInput.value = departmentData.reparto;
+                } else {
+                    repartoInput.value = '';
+                }
+            }
+
+            function loadCapitoli(idReparto) {
+                idCapitoloSelect.innerHTML = '<option value="" disabled selected>Caricamento Capitoli...</option>';
+                idCapitoloSelect.disabled = true;
+                clearCapitoloFields();
+
+                if (!idReparto) {
+                    idCapitoloSelect.innerHTML = '<option value="" disabled selected>Seleziona prima un Reparto</option>';
+                    idCapitoloSelect.disabled = false;
+                    return;
+                }
+
+                fetch(`/get-capitoli-by-reparto?idreparto=${idReparto}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        loadedCapitoliData = {};
+                        idCapitoloSelect.innerHTML = '<option value="" disabled selected>Seleziona un Capitolo</option>';
+
+                        data.forEach(capitolo => {
+                            loadedCapitoliData[capitolo.idcapitolo] = capitolo;
+
+                            const option = document.createElement('option');
+                            option.value = capitolo.idcapitolo;
+                            option.textContent = `${capitolo.idcapitolo || 'N/A'} - ${capitolo.capitolo || 'N/A'}/${capitolo.art || 'N/A'}/${capitolo.prog || 'N/A'} - ${capitolo.idv || 'N/A'} - ${capitolo.decreto || 'N/A'}`;
+
+                            if ("<?php echo e(old('idcapitolo')); ?>" === String(capitolo.idcapitolo)) {
+                                option.selected = true;
+                            }
+                            idCapitoloSelect.appendChild(option);
+                        });
+                        idCapitoloSelect.disabled = false;
+
+                        if (idCapitoloSelect.value) {
+                            populateCapitoloFields(idCapitoloSelect.value);
+                        }
+
+                    })
+                    .catch(error => {
+                        console.error('Errore durante il recupero dei capitoli:', error);
+                        idCapitoloSelect.innerHTML = '<option value="" disabled selected>Errore nel caricamento dei Capitoli</option>';
+                        idCapitoloSelect.disabled = true;
+                        clearCapitoloFields();
+                    });
+            }
+
+            function populateCapitoloFields(idCapitolo) {
+                const selectedCapitolo = loadedCapitoliData[idCapitolo];
                 if (selectedCapitolo) {
                     capitoloInput.value = selectedCapitolo.capitolo || '';
                     artInput.value = selectedCapitolo.art || '';
@@ -260,44 +331,106 @@
                     idvInput.value = selectedCapitolo.idv || '';
                     decretoInput.value = selectedCapitolo.decreto || '';
                     opsInput.value = selectedCapitolo.ops || '';
+                    descrizioneInput.value = selectedCapitolo.Descrizione || '';
                 } else {
-                    // Pulisci i campi se non c'è una selezione valida o se l'opzione "Seleziona un Capitolo" è selezionata
-                    capitoloInput.value = '';
-                    artInput.value = '';
-                    progInput.value = '';
-                    idvInput.value = '';
-                    decretoInput.value = '';
-                    opsInput.value = '';
-
+                    clearCapitoloFields();
                 }
             }
 
-            // Aggiungi l'event listener per il cambiamento della selezione
-            idCapitoloSelect.addEventListener('change', populateCapitoloFields);
+            function clearCapitoloFields() {
+                capitoloInput.value = '';
+                artInput.value = '';
+                progInput.value = '';
+                idvInput.value = '';
+                decretoInput.value = '';
+                opsInput.value = '';
+                descrizioneInput.value = '';
+            }
 
-            // Se c'è un valore 'old' (es. dopo un errore di validazione), popola i campi all'avvio
-            if (idCapitoloSelect.value) {
-                populateCapitoloFields();
+            // Modificata: Questa funzione ora gestisce solo la formattazione e la logica della spunta
+            function handleImportoBlurAndFormat() {
+                const importoValue = parseFloat(importoInput.value) || 0;
+
+                // Formatta il numero a due decimali
+                importoInput.value = importoValue.toFixed(2);
+
+                // Aggiorna previstoimpegno
+                previstoImpegnoInput.value = importoValue.toFixed(2);
+                impegnatoValoreInput.value = (0.00).toFixed(2);
+                contabilizzatoValoreInput.value = (0.00).toFixed(2);
+
+                // Gestisci la spunta del checkbox 'Registrato' solo al blur
+                if (importoValue > 1) {
+                    registratoCheckbox.checked = true;
+                } else {
+                    registratoCheckbox.checked = false;
+                }
+            }
+
+            function formatNumberToTwoDecimals(event) {
+                const value = parseFloat(event.target.value) || 0;
+                event.target.value = value.toFixed(2);
+            }
+
+            // --- Gestori Eventi ---
+
+            idRepartoSelect.addEventListener('change', function() {
+                updateRepartoField();
+                loadCapitoli(this.value);
+            });
+
+            idCapitoloSelect.addEventListener('change', function() {
+                populateCapitoloFields(this.value);
+            });
+
+            // Modifica: Ora usiamo 'blur' per handleImportoBlurAndFormat
+            importoInput.addEventListener('blur', handleImportoBlurAndFormat);
+
+            // Gli altri campi numerici continuano a usare solo la formattazione al blur
+            previstoImpegnoInput.addEventListener('blur', formatNumberToTwoDecimals);
+            impegnatoValoreInput.addEventListener('blur', formatNumberToTwoDecimals);
+            contabilizzatoValoreInput.addEventListener('blur', formatNumberToTwoDecimals);
+
+
+            // --- Inizializzazione all'avvio della pagina ---
+
+            updateRepartoField();
+
+            if (idRepartoSelect.value) {
+                loadCapitoli(idRepartoSelect.value);
+            } else {
+                idCapitoloSelect.innerHTML = '<option value="" disabled selected>Seleziona prima un Reparto</option>';
+                idCapitoloSelect.disabled = true;
+                clearCapitoloFields();
+            }
+
+            // Inizializza i campi importo al caricamento della pagina se 'importo' ha un valore
+            if (importoInput.value) {
+                const initialImportoValue = parseFloat(importoInput.value) || 0;
+                importoInput.value = initialImportoValue.toFixed(2);
+                previstoImpegnoInput.value = (parseFloat(previstoImpegnoInput.value) || 0).toFixed(2);
+                impegnatoValoreInput.value = (parseFloat(impegnatoValoreInput.value) || 0).toFixed(2);
+                contabilizzatoValoreInput.value = (parseFloat(contabilizzatoValoreInput.value) || 0).toFixed(2);
+
+                // Controllo iniziale per il checkbox 'Registrato' basato su 'importo'
+                if (initialImportoValue > 1) {
+                    registratoCheckbox.checked = true;
+                } else {
+                    registratoCheckbox.checked = false;
+                }
+            } else {
+                importoInput.value = (0.00).toFixed(2);
+                previstoImpegnoInput.value = (0.00).toFixed(2);
+                impegnatoValoreInput.value = (0.00).toFixed(2);
+                contabilizzatoValoreInput.value = (0.00).toFixed(2);
+                registratoCheckbox.checked = false; // Assicurati che sia deselezionato se importo è 0
+            }
+
+            if (idCapitoloSelect.value && loadedCapitoliData[idCapitoloSelect.value]) {
+                populateCapitoloFields(idCapitoloSelect.value);
             }
         });
-        document.addEventListener('DOMContentLoaded', function() {
-            // Get references to the input fields
-            let valoreProgettoInput = document.getElementById('importo');
-            let previstoImpegnoInput = document.getElementById('previstoimpegno');
-            let impegnatoInput = document.getElementById('impegnato');
-            let contabilizzatoInput = document.getElementById('contabilizzato');
-            // Add an event listener for the 'change' event on the 'valore_progetto' field
-            valoreProgettoInput.addEventListener('change', function() {
-                // When the 'valore_progetto' field changes, update 'previsto_impegno'
-                previstoImpegnoInput.value = parseFloat(this.value);
-                impegnatoInput.value = 0.00;
-                contabilizzatoInput.value = 0.00;
-            });
-        });
-
-
     </script>
-
 
  <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>

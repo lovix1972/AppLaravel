@@ -41,14 +41,17 @@ if(Auth::check()) {
             'idcapitolo' => 'int',
             'capitolo' => 'required|int|min:4',
             'art' => 'required|int|min:1',
-            'prog' => 'required|int|min:2',
+            'prog' => 'required|int',
             'idv' => 'required|int|min:7',
             'decreto' => 'string|max:50',
-            'importo' => 'required|float:2',
-            'previstoimpegno' => 'float:2',
-            'impegnato' => 'float:2',
-            'contabilizzato' => 'float:2',
-            'note' => 'string|max:255',
+            'importo' => 'required|numeric',
+            'previstoimpegno' => 'nullable|numeric',
+            'impegnato_valore' => 'nullable|numeric',
+            'contabilizzato_valore' => 'nullable|numeric',
+            'registrato' => 'boolean', // Laravel convertirà 0/1 in false/true
+            'impegnato_flag' => 'boolean', // Laravel convertirà 0/1 in false/true
+            'validato' => 'boolean',
+            'note' => 'nullable|string|max:255'
 
         ]);
         //dd($request);
@@ -66,9 +69,12 @@ if(Auth::check()) {
             'decreto' => $validatedData['decreto'],
             'importo' => $validatedData['importo'],
             'previstoimpegno' => $validatedData['previstoimpegno'],
-            'impegnato' => $validatedData['impegnato'],
-            'contabilizzato' => $validatedData['contabilizzato'],
-            'note' => $validatedData['note'],
+            'impegnato' => $validatedData['impegnato_valore'],
+            'contabilizzato' => $validatedData['contabilizzato_valore'],
+            'registrato' => $validatedData['registrato'],
+            'impegnato_flag' => $validatedData['impegnato_flag'],
+            'validato' => $validatedData['validato'],
+            'note' => $validatedData['note']
 
         ]);
         return redirect()->route('reglist')->with('success',"Registrazione eseguita con successo!");

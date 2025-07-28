@@ -62,7 +62,9 @@ Route::post('/register', [UserController::class, 'register'])->name('registerUse
         Route::get('/insdati', function () {
         return view('pages.inspds_reparto');
         });
+Route::get('/pds/create', [SelectController::class, 'showReparti'])->name('pds.create');
 
+Route::get('/get-capitoli-by-reparto', [SelectController::class, 'getCapitoliByReparto'])->name('get.capitoli.by.reparto');
 
 
 

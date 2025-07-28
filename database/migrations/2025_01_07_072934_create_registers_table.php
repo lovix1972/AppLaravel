@@ -24,12 +24,14 @@ return new class extends Migration
             $table->integer('prog');
             $table->integer('idv');
             $table->string('decreto');
-            $table->decimal('importo');
-            $table->decimal('previstoimpegno');
-            $table->decimal('impegnato');
-            $table->decimal('contabilizzato');
-            $table->longText('note');
-
+            $table->decimal('importo', 10,2);
+            $table->decimal('previstoimpegno',10,2   );
+            $table->decimal('impegnato',10,2);
+            $table->decimal('contabilizzato',10,2);
+            $table->longText('note')->nullable();
+            $table->boolean('registrato')->default(false);
+            $table->boolean('impegnato_flag')->default(false);
+            $table->boolean('validato')->default(false);
             $table->timestamps();
         });
     }
