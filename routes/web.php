@@ -76,7 +76,9 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/pds', [RegisterController::class, 'index'])->name('pds.index');
 Route::middleware(['auth'])->group(function () {
-    // ... other routes
+
     Route::put('/pds/{pds}', [RegisterController::class, 'update'])->name('pds.update');
-    // ...
+
+    Route::delete('/pds/{pds}', [RegisterController::class, 'destroy'])->name('pds.destroy');
+    Route::get('/pds/{pds}', [RegisterController::class, 'show'])->name('pds.show');
 });

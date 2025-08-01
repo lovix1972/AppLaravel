@@ -14,21 +14,20 @@ class Register extends Model
 
         'numpds',
         'idreparto',
-        'reparto',
-        'datapds',
-        'oggetto',
         'idcapitolo',
+        'datapds',
+        'reparto',
+        'idv',
+        'decreto',
         'capitolo',
         'art',
         'prog',
-        'idv',
-        'decreto',
+        'oggetto',
         'importo',
         'previstoimpegno',
         'impegnato',
         'contabilizzato',
-        'note',
-        'anno'
+        'anno',
 
     ];
 }

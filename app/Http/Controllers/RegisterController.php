@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Register;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -63,22 +64,23 @@ public function store(Request $request)
         'reparto' => 'required|string|max:255',
         'oggetto' => 'required|string',
         'idcapitolo' => 'required|integer|exists:capitoli,idcapitolo',
-        'capitolo' => 'required|string|max:255',
-        'art' => 'required|string|max:255',
-        'prog' => 'required|string|max:255',
-        'idv' => 'nullable|string|max:255',
+        'capitolo' => 'required|integer|min:4',
+        'art' => 'required|integer|min:2',
+        'prog' => 'required|integer|min:2',
+        'idv' => 'nullable|integer',
         'decreto' => 'nullable|string|max:255',
         'ops' => 'nullable|string|max:255',
         'descrizione' => 'nullable|string|max:255',
         'pdc' => 'nullable|string|max:255',
         'importo' => 'nullable|numeric|min:0',
         'previstoimpegno' => 'nullable|numeric|min:0',
-        'impegnato_valore' => 'nullable|numeric|min:0',
-        'contabilizzato_valore' => 'nullable|numeric|min:0',
+        'impegnato' => 'nullable|numeric|min:0',
+        'contabilizzato' => 'nullable|numeric|min:0',
         'registrato' => 'boolean',
         'impegnato_flag' => 'boolean',
         'validato' => 'boolean',
         'note' => 'nullable|string',
+        'anno' => 'nullable|integer'
     ]);
 
     // 2. Mappatura dei dati validati ai nomi delle colonne del database
@@ -102,11 +104,12 @@ public function store(Request $request)
         'importo' => $validatedData['importo'] ?? 0.00,
         'previstoimpegno' => $validatedData['previstoimpegno'] ?? 0.00,
         'impegnato' => $validatedData['impegnato'] ?? 0.00,
-        'contabilizzato' => $validatedData['contabilizzato_valore'] ?? 0.00,
+        'contabilizzato' => $validatedData['contabilizzato'] ?? 0.00,
         'registrato' => $validatedData['registrato'] ?? false,
         'impegnato_flag' => $validatedData['impegnato_flag'] ?? false,
         'validato' => $validatedData['validato'] ?? false,
         'note' => $validatedData['note'] ?? null,
+        'anno' => $validatedData['anno'] ?? null,
     ];
 
     // 3. Crea un nuovo record nel database
@@ -115,33 +118,45 @@ public function store(Request $request)
     // 4. Reindirizza l'utente con un messaggio di successo
     return redirect()->route('pds.index')->with('success', 'PDS acquisito con successo.');
 }
-    /**
-     * Aggiorna un Pds esistente.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Register  $pds
-     * @return \Illuminate\Http\RedirectResponse
-     */
+
+
+
     public function update(Request $request, Register $pds)
     {
 //@dd($request->all());
         // 1. Validazione dei dati della richiesta
         $validatedData = $request->validate([
-            'numpds' => 'nullable|string|max:255',
+
+            'numpds' => 'required|string|max:255',
             'datapds' => 'required|date',
-            'reparto' => 'nullable|string|max:255',
-            'capitolo' => 'nullable|string|max:255',
-            'art' => 'nullable|string|max:255',
-            'prog' => 'nullable|string|max:255',
-            'oggetto' => 'nullable|string',
-            'anno' => 'nullable|integer',
+            'reparto' => 'required|string|max:255',
+            'oggetto' => 'required|string',
+            'capitolo' => 'required|integer|min:4',
+            'art' => 'required|integer|min:2',
+            'prog' => 'required|integer|min:2',
+            'note' => 'nullable|string',
+            'anno' => 'nullable|integer'
         ]);
 
         // 2. Aggiornamento del modello Pds con i dati validati
         $pds->update($validatedData);
 
-        // 3. Reindirizzamento dell'utente con un messaggio di successo
+
         return redirect()->route('pds.index')->with('success', 'PDS aggiornato con successo.');
     }
+    public function destroy(Register $pds)
+    {
+
+
+            $pds->delete();
+            return redirect()->route('pds.index')->with('success', 'PDS eliminato con successo.');
+
+    }
+    public function show(Register $pds)
+    {
+
+        return view('pds.show', compact('pds'));
+    }
+
 }
 

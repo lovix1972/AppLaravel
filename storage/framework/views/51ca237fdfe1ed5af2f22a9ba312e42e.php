@@ -26,7 +26,7 @@
                         <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
                             <a href='/inspds' class='navbar-link text-yellow-600 hover:text-yellow-500'>Acquisizioni</a>
                         </li>
-                        <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
+                        <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
                             <a href='#' class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Finanziaria</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
@@ -55,7 +55,7 @@
                     </a>
 
                     <button id="toggleOpen" class='lg:hidden'>
-                        <svg class="w-7 h-7" fill="#000" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-7 h-7" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
                         </svg>
                     </button>
@@ -123,4 +123,5 @@
 
         highlightActiveLink();
     });
-</script><?php /**PATH /home/lovix/PhpstormProjects/AppLaravel/resources/views/partials/navbar.blade.php ENDPATH**/ ?>
+</script>
+<?php /**PATH /home/lovix/PhpstormProjects/AppLaravel/resources/views/partials/navbar.blade.php ENDPATH**/ ?>

@@ -27,8 +27,8 @@
 
 <body style="background-color: #a3a3a3 ">
 
-<div class=" card  d-flex mx-auto px-3 py-3 " style="font-size: small; width: 40rem; position: relative; top:2rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
-
+<div class=" card  d-flex mx-auto px-4 py-10 " style="font-size: small; width: 40rem; position: relative; top:10rem; border-radius: 15px; box-shadow: 10px 10px rgba(0, 0, 0, 0.19)">
+<h2>Login</h2>
     <form action="{{ route('loginUser') }}" method="post">
         @csrf
 
