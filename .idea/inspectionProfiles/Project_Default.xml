@@ -4,8 +4,23 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="1">
+          <list size="16">
             <item index="0" class="java.lang.String" itemvalue="setup" />
+            <item index="1" class="java.lang.String" itemvalue="x-data" />
+            <item index="2" class="java.lang.String" itemvalue="@click" />
+            <item index="3" class="java.lang.String" itemvalue="x-show" />
+            <item index="4" class="java.lang.String" itemvalue="x-text" />
+            <item index="5" class="java.lang.String" itemvalue="x-model" />
+            <item index="6" class="java.lang.String" itemvalue="x-transition:enter" />
+            <item index="7" class="java.lang.String" itemvalue="x-transition:enter-start" />
+            <item index="8" class="java.lang.String" itemvalue="x-transition:enter-end" />
+            <item index="9" class="java.lang.String" itemvalue="@click.stop" />
+            <item index="10" class="java.lang.String" itemvalue="x-if" />
+            <item index="11" class="java.lang.String" itemvalue="x-transition:leave" />
+            <item index="12" class="java.lang.String" itemvalue="x-transition:leave-start" />
+            <item index="13" class="java.lang.String" itemvalue="x-transition:leave-end" />
+            <item index="14" class="java.lang.String" itemvalue=":action" />
+            <item index="15" class="java.lang.String" itemvalue="@open-edit-modal.window" />
           </list>
         </value>
       </option>
@@ -14,7 +29,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="8">
+          <list size="9">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -23,6 +38,7 @@
             <item index="5" class="java.lang.String" itemvalue="script" />
             <item index="6" class="java.lang.String" itemvalue="thead" />
             <item index="7" class="java.lang.String" itemvalue="th" />
+            <item index="8" class="java.lang.String" itemvalue="body" />
           </list>
         </value>
       </option>

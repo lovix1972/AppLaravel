@@ -36,7 +36,7 @@ Route::post('/register', [UserController::class, 'register'])->name('registerUse
         Route::group(['middleware' => 'auth'], function () {
 
 
-        Route::get('/reglist', [RegisterController::class, 'index'])->name('reglist');
+        Route::get('/reglist', [RegisterController::class, 'index'])->name('reglist.index');
         Route::get('/reglist/{id}', [RegisterController::class, 'show']);
 
         Route::get('/modifica/{id}', [RegisterController::class, 'show'])->name('modifica.show');
@@ -68,4 +68,15 @@ Route::get('/get-capitoli-by-reparto', [SelectController::class, 'getCapitoliByR
 
 
 
+Route::middleware(['auth'])->group(function () {
+    // Rotta per le operazioni CRUD complete sul modello PDS
+    // Nomi delle rotte: pds.index, pds.create, pds.store, pds.show, pds.edit, pds.update, pds.destroy
+    Route::resource('pds', RegisterController::class);
+});
 
+Route::get('/pds', [RegisterController::class, 'index'])->name('pds.index');
+Route::middleware(['auth'])->group(function () {
+    // ... other routes
+    Route::put('/pds/{pds}', [RegisterController::class, 'update'])->name('pds.update');
+    // ...
+});

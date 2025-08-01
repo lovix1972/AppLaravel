@@ -2,17 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Register extends Model
 {
+    use HasFactory;
     protected $table = 'registers';
     protected $fillable = [
 
+        'numpds',
         'idreparto',
         'reparto',
-        'numpds',
         'datapds',
         'oggetto',
         'idcapitolo',
@@ -26,6 +28,7 @@ class Register extends Model
         'impegnato',
         'contabilizzato',
         'note',
+        'anno'
 
     ];
 }
