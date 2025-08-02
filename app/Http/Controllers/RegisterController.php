@@ -191,7 +191,25 @@ public function store(Request $request)
         return view('pages.inspds', compact( 'capitoli', 'department'));
     }
 
+    public function updateStatus(Request $request, Register $pds)
+    {
+        // 1. Valida i dati della richiesta
+        $validated = $request->validate([
+            'field' => 'required|string|in:registrato,impegnato',
+            'status' => 'required|boolean',
+        ]);
 
+        // 2. Aggiorna il campo corretto
+        // Converti il booleano in -1 o 0 come richiesto
+        $value = $validated['status'] ? -1 : 0;
+
+        $pds->update([
+            $validated['field'] => $value,
+        ]);
+
+        // 3. Restituisci una risposta di successo
+        return response()->json(['message' => 'Stato aggiornato con successo.']);
+    }
 
 }
 

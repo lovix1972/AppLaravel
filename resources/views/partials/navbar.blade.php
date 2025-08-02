@@ -1,9 +1,9 @@
 <nav id="main-navbar" class="fixed top-0 left-0 w-full z-50 bg-white shadow-md ">
 
-    <header class='flex shadow-md py-4 px-4 sm:px-10 bg-blue-600 font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
-        <div class='flex flex-wrap items-center justify-between gap-5 w-full'>
-            <a href="#" class="flex items-center space-x-2">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png" alt="logo" class='w-10' />
+    <header class='flex shadow-md py-2 px-4 sm:px-7 bg-blue-600 font-[sans-serif] min-h-[70px] tracking-wide relative z-50'>
+        <div class='flex flex-wrap items-center justify-between gap-4 w-full'>
+            <a href="#" class="flex items-center space-x-1">
+                <img src="../../img/CoA_mil_ITA_airmobile_bde_Friuli.png" alt="logo" class='w-10' >
                 <div class="text-blue-100 font-semibold max-sm:hidden">BRIGATA AEROMOBILE FRIULI</div>
             </a>
 
@@ -21,22 +21,22 @@
                             <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/2/24/CoA_mil_ITA_airmobile_bde_Friuli.png" alt="logo" class='w-36' /></a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <a href='/dashboard' class='navbar-link text-yellow-600 hover:text-yellow-500'>Dashboard</a>
+                            <a href='/dashboard' class='navbar-link text-black hover:text-yellow-500'>Dashboard</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <a href='/inspds' class='navbar-link text-yellow-600 hover:text-yellow-500'>Acquisizioni</a>
+                            <a href='/inspds' class='navbar-link text-blackhover:text-yellow-500'>Acquisizioni</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
-                            <a href='/gestione-finanziaria' class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Finanziaria</a>
+                            <a href='/gestione-finanziaria' class='navbar-link text-black text-blackhover:text-yellow-500'>Gestione Finanziaria</a>
                         </li>
-                        <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <a href='javascript:void(0)' class='navbar-link text-yellow-600 hover:text-yellow-500'>Movimenti di Cassa</a>
+                        <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
+                            <a href='javascript:void(0)' class='navbar-link text-black hover:text-yellow-500'>Movimenti di Cassa</a>
                         </li>
-                        <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <a href='#' class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Note</a>
+                        <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
+                            <a href='#' class='navbar-link text-black hover:text-yellow-500'>Gestione Note</a>
                         </li>
-                        <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <a href='/reglist' class='navbar-link text-yellow-600 hover:text-yellow-500'>Registro</a>
+                        <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
+                            <a href='/reglist' class='navbar-link text-black hover:text-yellow-500'>Registro</a>
                         </li>
                     </ul>
             </div>

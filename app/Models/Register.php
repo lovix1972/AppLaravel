@@ -28,7 +28,9 @@ class Register extends Model
         'previstoimpegno',
         'impegnato',
         'contabilizzato',
-        'anno'
+        'anno',
+        'registrato',
+        'validato'
 
     ];
 

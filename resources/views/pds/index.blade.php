@@ -67,6 +67,32 @@
         } else {
             this.editForm.reparto = '';
         }
+    },
+   toggleStatus(field, pdsId, status) {
+        let value = status ? -1 : 0;
+
+        fetch(`/pds/update-status/${pdsId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({
+                field: field,
+                status: status
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.message);
+            // Opzionale: mostra una notifica di successo
+        })
+        .catch(error => {
+            console.error('Errore:', error);
+            alert('Errore durante l\'aggiornamento dello stato.');
+            // Ripristina la checkbox in caso di errore
+            document.getElementById(`${field}-${pdsId}`).checked = !status;
+        });
     }
 }">
 
@@ -95,7 +121,7 @@
                                 </div>
                             @else
                                     <div class="mb-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-4 text-black">Filtra la ricerca</h3>
+                                        <h3 class="text-lg font-semibold  dark:text-gray-100 mb-4 text-black">Filtra la ricerca</h3>
                                         <form action="{{ route('pds.index') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-center">
 
                                             <div class="flex-1 w-full">
@@ -140,7 +166,8 @@
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">idv</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">oggetto</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Importo</th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">anno</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">registrato</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">validato</th>
                                             <th scope="col" class="relative px-6 py-3">
                                                 <span class="sr-only">Azioni</span>
                                             </th>
@@ -161,7 +188,26 @@
                                                 <td class="px-6 py-4 text-sm text-black dark:text-gray-300">{{ $item->idv }}</td>
                                                 <td class="px-6 py-4 text-sm text-black dark:text-gray-300 truncate max-w-xs">{{ $item->oggetto }}</td>
                                                 <td class="px-6 py-4 text-sm text-black dark:text-gray-300  max-w-xs text-right ">{{  number_format(($item->importo),2,',','.')}}</td>
-                                                <td class="px-6 py-4 text-sm text-black dark:text-gray-300">{{ $item->anno }}</td>
+
+                                                {{-- NUOVE COLONNE CHECKBOX --}}
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center">
+                                                    <input
+                                                            type="checkbox"
+                                                            id="registrato-{{ $item->id }}"
+                                                            @checked($item->registrato == -1)
+                                                            @change="toggleStatus('registrato', {{ $item->id }}, $el.checked)"
+                                                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                                    >
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center">
+                                                    <input
+                                                            type="checkbox"
+                                                            id="impegnato-{{ $item->id }}"
+                                                            @checked($item->impegnato == -1)
+                                                            @change="toggleStatus('impegnato', {{ $item->id }}, $el.checked)"
+                                                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                                    >
+                                                </td>
                                                 <td class="px-6 py-4 text-right text-sm font-medium space-x-2">
                                                     <button @click='openModal(@json($item))' class="text-blue-600 hover:text-blue-900 transition ease-in-out duration-150">
                                                         Modifica
@@ -179,7 +225,7 @@
                                         @endforeach
                                         {{-- Riga del totale --}}
                                         <tr class="bg-gray-100 dark:bg-gray-700 font-bold">
-                                            <td colspan="9" class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">Totale:</td>
+                                            <td colspan="10" class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">Totale:</td>
                                             <td class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">€ {{ number_format($pds->sum('importo'), 2, ',', '.') }}</td>
                                             <td colspan="2" class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100"></td>
                                         </tr>

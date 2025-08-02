@@ -60,6 +60,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/inspds', [RegisterController::class, 'store'])->name('InsertPds');
     Route::delete('/inspds/{id}', [RegisterController::class, 'destroy'])->name('DeletePds');
     Route::get('/gestione-finanziaria', [GestfinController::class, 'index'])->name('gestfin');
+    Route::post('/pds/update-status/{pds}', [RegisterController::class, 'updateStatus'])->name('pds.update-status');
 
 });
 
