@@ -1,37 +1,40 @@
 <x-layouts.list-layouts>
     <div x-data="{
-    toggleStatus(field, pdsId, status) {
-        let value = status ? -1 : 0;
 
-        fetch(`/pds/update-status/${pdsId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            },
-            body: JSON.stringify({
-                field: field,
-                status: status
-            })
-        })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Errore durante l\'aggiornamento dello stato.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log(data.message);
-            // Ricarica la pagina per visualizzare il risultato del filtro
-            window.location.reload();
-        })
-        .catch(error => {
-            console.error('Errore:', error);
-            alert('Errore durante l\'aggiornamento dello stato.');
-            // Ripristina la checkbox in caso di errore
-            document.getElementById(`${field}-${pdsId}`).checked = !status;
-        });
+
+         toggleStatus(field, pdsId, status) {
+         let value = status ? -1 : 0;
+
+         fetch(`/pds/update-status/${pdsId}`, {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    },
+    body: JSON.stringify({
+    field: field,
+    status: status
+    })
+    })
+    .then(response => {
+    if (!response.ok) {
+    throw new Error('Errore durante l\'aggiornamento dello stato.');
     }
+    return response.json();
+    })
+    .then(data => {
+    console.log(data.message);
+    // Ricarica la pagina per visualizzare il risultato del filtro
+    window.location.reload();
+    })
+    .catch(error => {
+    console.error('Errore:', error);
+    alert('Errore durante l\'aggiornamento dello stato.');
+    // Ripristina la checkbox in caso di errore
+    document.getElementById(`${field}-${pdsId}`).checked = !status;
+    });
+    }
+    }">
 }">
 
 
