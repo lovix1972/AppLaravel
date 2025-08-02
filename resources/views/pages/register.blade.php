@@ -5,7 +5,7 @@
 @include('partials.navbar')
 <body style="background-color: #a3a3a3 ">
 
-<div class="card mt-3 d-flex mx-auto px-3 py-3 w-50 " style="position:relative; top: 3rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19); border-radius: 15px">
+<div class="card mt-3 d-flex mx-auto px-3 py-6 w-50 " style="position:relative; top: 6rem ; box-shadow: 10px 10px rgba(0, 0, 0, 0.19); border-radius: 15px">
     <div class="mb-0 font-sans font-bold  pb-3 ">
         <h3>Registrazione</h3>
     </div>
@@ -56,7 +56,7 @@
 
         </div>
         <button type="submit" class ="btn btn-primary">Registrati</button>
-        <a href="/home" class="btn"> Chiudi</a>
+        <a href="/login" class="btn"> Chiudi</a>
     </form>
 
 </div>

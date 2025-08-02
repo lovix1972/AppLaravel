@@ -27,7 +27,7 @@
                             <a href='/inspds' class='navbar-link text-yellow-600 hover:text-yellow-500'>Acquisizioni</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
-                            <a href='#' class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Finanziaria</a>
+                            <a href='/gestione-finanziaria' class='navbar-link text-yellow-600 hover:text-yellow-500'>Gestione Finanziaria</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
                             <a href='javascript:void(0)' class='navbar-link text-yellow-600 hover:text-yellow-500'>Movimenti di Cassa</a>

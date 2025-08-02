@@ -39,22 +39,30 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-
-        $credential = $request->validate([
+        // 1. Valida tutti i campi, incluso 'reparto'
+        $validatedData = $request->validate([
             'email' => 'required|email',
             'password' => 'required',
             'reparto' => 'required',
         ]);
 
+        // 2. Crea un array di credenziali SOLO con 'email' e 'password'
+        $credential = [
+            'email' => $validatedData['email'],
+            'password' => $validatedData['password'],
+
+        ];
+
         if (Auth::attempt($credential)) {
+            // Il login ha successo, ora reindirizziamo
             $request->session()->regenerate();
 
-            return redirect()->intended('home')->with('success', 'Login riuscito');
+            return redirect()->intended(route('home'))->with('success', 'Login riuscito');
         }
 
+        // Il login fallisce, torna indietro con l'errore
         return back()->withErrors([
             'email' => 'Credenziali errate!',
-
         ])->onlyInput('email');
     }
 

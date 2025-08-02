@@ -1,8 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    GefinController, RegisterController, RepartoController, SelectController, UserController, ValidationController
-};
+    GestfinController,
+    RegisterController,
+    RepartoController,
+    SelectController,
+    UserController,
+    ValidationController};
 
 // 🌐 Pagina iniziale
 Route::view('/', 'pages.home')->name('home');
@@ -18,6 +22,7 @@ Route::controller(UserController::class)->group(function () {
 
 // 🧾 Reparto e selezioni (supporto alla registrazione)
 Route::controller(RepartoController::class)->group(function () {
+    Route::get('/login','showReparti')->name('showReparto');
     Route::get('/register', 'showRepartiFormRegister')->name('showRepartiForm');
     Route::post('/registrareparto', 'store')->name('StoreReparto');
 });
@@ -54,5 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/list', [RegisterController::class, 'index'])->name('list');
     Route::post('/inspds', [RegisterController::class, 'store'])->name('InsertPds');
     Route::delete('/inspds/{id}', [RegisterController::class, 'destroy'])->name('DeletePds');
+    Route::get('/gestione-finanziaria', [GestfinController::class, 'index'])->name('gestfin');
+
 });
 

@@ -15,16 +15,26 @@ class RegisterController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Recupera tutti i PDS dal modello Register.
-        // Puoi aggiungere `paginate(10)` per la paginazione, se necessario.
-        $pds = Register::all();
+        $query = Register::orderBy('datapds', 'desc');
+
+        // Applica il filtro di ricerca se sono presenti i parametri nella richiesta
+        if ($request->has('search_key') && $request->has('search_value')) {
+            $searchKey = $request->input('search_key');
+            $searchValue = $request->input('search_value');
+
+            if ($searchKey && $searchValue) {
+                // Utilizza 'like' per una ricerca parziale più flessibile
+                $query->where($searchKey, 'like', '%' . $searchValue . '%');
+            }
+        }
+
+        $pds = $query->paginate(20);
 
         $capitoli = Capitolo::all();
         $departments = Department::all();
 
-        // Passa tutte le collezioni alla vista
         return view('pds.index', compact('pds', 'capitoli', 'departments'));
 
     }
@@ -141,11 +151,13 @@ public function store(Request $request)
 
             'numpds' => 'required|string|max:255',
             'datapds' => 'required|date',
+            'idreparto'=> 'required|integer|exists:departments,idreparto',
             'reparto' => 'required|string|max:255',
-
+            'idcapitolo'=> 'required|integer|exists:capitoli,idcapitolo',
             'capitolo' => 'required|integer|min:4',
             'art' => 'required|integer|min:2',
             'prog' => 'required|integer|min:2',
+            'idv' => 'nullable|integer',
             'note' => 'nullable|string',
 
             'oggetto' => 'required|string',
@@ -169,10 +181,14 @@ public function store(Request $request)
             return redirect()->route('pds.index')->with('success', 'PDS eliminato con successo.');
 
     }
-    public function show($id)
+    public function show()
     {
-        $pds = Register::findOrFail($id);
-        return view('pds.index', compact('pds'));
+
+        $capitoli = Capitolo::all();
+        $department = Department::all();
+
+        // Passa tutte le collezioni alla vista
+        return view('pages.inspds', compact( 'capitoli', 'department'));
     }
 
 
