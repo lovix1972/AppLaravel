@@ -10,6 +10,7 @@ class Register extends Model
 {
     use HasFactory;
     protected $table = 'registers';
+    protected $primaryKey = 'id';
     protected $fillable = [
 
         'numpds',
@@ -27,7 +28,8 @@ class Register extends Model
         'previstoimpegno',
         'impegnato',
         'contabilizzato',
-        'anno',
+        'anno'
 
     ];
+
 }

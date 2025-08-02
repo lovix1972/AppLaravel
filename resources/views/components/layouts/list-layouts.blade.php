@@ -4,18 +4,20 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
+<script src="https://unpkg.com/alpinejs" defer></script>
 
 <header>
 
     @include('partials.head', ['pageTitle'=>'Registro PDS', 'metaTitle'=>'Registro PDS'])
-    @include('partials.navbar')
+@include('partials.navbar')
 
 </header>
 
 <body>
 
+
 <main class="contents">
+
        {{ $slot }}
 </main>
 

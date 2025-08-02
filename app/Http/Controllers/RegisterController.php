@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Capitolo;
+use App\Models\Department;
 use App\Models\Register;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
@@ -19,12 +21,15 @@ class RegisterController extends Controller
         // Puoi aggiungere `paginate(10)` per la paginazione, se necessario.
         $pds = Register::all();
 
-        // Passa la collezione di PDS alla vista.
-        return view('pds.index', compact('pds'));
+        $capitoli = Capitolo::all();
+        $departments = Department::all();
+
+        // Passa tutte le collezioni alla vista
+        return view('pds.index', compact('pds', 'capitoli', 'departments'));
+
     }
 
-    // Aggiungi qui gli altri metodi (store, update, destroy) per gestire le rotte.
-    // ...
+
 
 
 /**
@@ -56,7 +61,7 @@ public function store(Request $request)
 {
     // 1. Validazione dei dati della richiesta
     $validatedData = $request->validate([
-        'id_pds' => 'nullable|string|max:255',
+        'id' => 'nullable|string|max:255',
         'numpds' => 'required|string|max:255',
         'datapds' => 'required|date',
         'n_protocollo' => 'required|string|max:255',
@@ -121,42 +126,56 @@ public function store(Request $request)
 
 
 
-    public function update(Request $request, Register $pds)
+    public function update(Request $request, $id)
     {
-//@dd($request->all());
+
+
+
+        $importoPulito = str_replace(['€', '.', ' '], '', $request->input('importo'));
+        $importoPulito = str_replace(',', '.', $importoPulito);
+        $request->merge(['importo' => $importoPulito]);
+
+        $pds= Register::findOrFail($id);
         // 1. Validazione dei dati della richiesta
         $validatedData = $request->validate([
 
             'numpds' => 'required|string|max:255',
             'datapds' => 'required|date',
             'reparto' => 'required|string|max:255',
-            'oggetto' => 'required|string',
+
             'capitolo' => 'required|integer|min:4',
             'art' => 'required|integer|min:2',
             'prog' => 'required|integer|min:2',
             'note' => 'nullable|string',
+
+            'oggetto' => 'required|string',
+            'importo' => 'nullable|numeric',
             'anno' => 'nullable|integer'
         ]);
+
 
         // 2. Aggiornamento del modello Pds con i dati validati
         $pds->update($validatedData);
 
 
+
         return redirect()->route('pds.index')->with('success', 'PDS aggiornato con successo.');
     }
-    public function destroy(Register $pds)
+    public function destroy($id)
     {
 
-
+            $pds=Register::findOrFail($id);
             $pds->delete();
             return redirect()->route('pds.index')->with('success', 'PDS eliminato con successo.');
 
     }
-    public function show(Register $pds)
+    public function show($id)
     {
-
-        return view('pds.show', compact('pds'));
+        $pds = Register::findOrFail($id);
+        return view('pds.index', compact('pds'));
     }
+
+
 
 }
 

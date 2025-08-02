@@ -1,84 +1,58 @@
 <?php
-
-
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\RepartoController;
-use App\Http\Controllers\SelectController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\ValidationController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\{
+    GefinController, RegisterController, RepartoController, SelectController, UserController, ValidationController
+};
 
-Route::get('/', function () {
-    return view('pages.home');
+// 🌐 Pagina iniziale
+Route::view('/', 'pages.home')->name('home');
+
+// 🔐 Autenticazione
+Route::controller(UserController::class)->group(function () {
+    Route::get('/login', 'showLoginForm')->name('login');
+    Route::post('/login', 'login')->name('loginUser');
+    Route::get('/logout', 'logout')->name('logoutUser');
+    Route::get('/register', 'showRegistrationForm')->name('showUserForm');
+    Route::post('/register', 'register')->name('registerUser');
 });
 
-// Login
-Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [UserController::class, 'login'])->name('loginUser');
-Route::get('/login', [RepartoController::class, 'showReparti'])->name('reparti');
+// 🧾 Reparto e selezioni (supporto alla registrazione)
+Route::controller(RepartoController::class)->group(function () {
+    Route::get('/register', 'showRepartiFormRegister')->name('showRepartiForm');
+    Route::post('/registrareparto', 'store')->name('StoreReparto');
+});
 
-Route::get('/inspds', [SelectController::class, 'showReparti'])->name('getdata');
+Route::controller(SelectController::class)->group(function () {
+    Route::get('/inspds', 'showReparti')->name('getdata');
+    Route::get('/pds/create', 'showReparti')->name('pds.create');
+    Route::get('/get-capitoli-by-reparto', 'getCapitoliByReparto')->name('get.capitoli.by.reparto');
+});
 
-
-
-route::get('/logout', [UserController::class, 'logout'])->name('logoutUser');
-
+// ✅ Validazione form
 Route::post('/form', [ValidationController::class, 'validateForm'])->name('validateForm');
-Route::get('/register', [UserController::class, 'showRegistrationForm'])->name('showUserForm');
-Route::get('/register', [RepartoController::class, 'showRepartiFormRegister']);
-Route::post('/register', [UserController::class, 'register'])->name('registerUser');
 
-
-        Route::get('/home', function () {
-        return view('pages.home');
-        });
-
-        Route::group(['middleware' => 'auth'], function () {
-
-
-        Route::get('/reglist', [RegisterController::class, 'index'])->name('reglist.index');
-        Route::get('/reglist/{id}', [RegisterController::class, 'show']);
-
-        Route::get('/modifica/{id}', [RegisterController::class, 'show'])->name('modifica.show');
-        Route::put('/reglist{id}', [RegisterController::class, 'update'])->name('reglist.update');
-        Route::get('/list', [RegisterController::class, 'index'])->name('list');
-
-});
-        Route::get('/utenti', [UserController::class, 'userlist'])->name('userlist');
-        Route::get('/utenti/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
-
-
-
-        Route::post('/inspds', [RegisterController::class, 'store'])->name('InsertPds');
-        Route::delete('/inspds/{id}', [RegisterController::class, 'destroy'])->name('DeletePds');
-
-
-
-        Route::post('/registrareparto', [RepartoController::class, 'store'])->name('StoreReparto');
-
-        Route::get('/dashboard', function () {
-        return view('pages.dashboard');
-        });
-        Route::get('/insdati', function () {
-        return view('pages.inspds_reparto');
-        });
-Route::get('/pds/create', [SelectController::class, 'showReparti'])->name('pds.create');
-
-Route::get('/get-capitoli-by-reparto', [SelectController::class, 'getCapitoliByReparto'])->name('get.capitoli.by.reparto');
-
-
-
+// 📊 Pagine statiche protette
 Route::middleware(['auth'])->group(function () {
-    // Rotta per le operazioni CRUD complete sul modello PDS
-    // Nomi delle rotte: pds.index, pds.create, pds.store, pds.show, pds.edit, pds.update, pds.destroy
+    Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
+    Route::view('/insdati', 'pages.inspds_reparto')->name('insdati');
+});
+
+// 👥 Gestione utenti
+Route::controller(UserController::class)->group(function () {
+    Route::get('/utenti', 'userlist')->name('userlist');
+    Route::get('/utenti/{id}', 'deleteUser')->name('deleteUser');
+});
+
+// 📑 CRUD PDS (protetto)
+Route::middleware(['auth'])->group(function () {
     Route::resource('pds', RegisterController::class);
+    Route::get('/reglist', [RegisterController::class, 'index'])->name('reglist.index');
+
+    Route::get('/inspds', [RegisterController::class, 'show'])->name('inspds.show');
+
+    Route::put('/inspds/{id}', [RegisterController::class, 'update'])->name('pdsUpdate');
+    Route::get('/list', [RegisterController::class, 'index'])->name('list');
+    Route::post('/inspds', [RegisterController::class, 'store'])->name('InsertPds');
+    Route::delete('/inspds/{id}', [RegisterController::class, 'destroy'])->name('DeletePds');
 });
 
-Route::get('/pds', [RegisterController::class, 'index'])->name('pds.index');
-Route::middleware(['auth'])->group(function () {
-
-    Route::put('/pds/{pds}', [RegisterController::class, 'update'])->name('pds.update');
-
-    Route::delete('/pds/{pds}', [RegisterController::class, 'destroy'])->name('pds.destroy');
-    Route::get('/pds/{pds}', [RegisterController::class, 'show'])->name('pds.show');
-});
