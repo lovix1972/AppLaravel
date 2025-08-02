@@ -35,14 +35,12 @@
 }">
 
 
-
-
-    <div class="py-12">
-    <div class="max-w-9xl mx-auto sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">Riepilogo Gestione Finanziaria</h1>
+    <div class="py-0">
+    <div class="max-w-8xl mx-auto sm:px-6 lg:px-6">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-1">Riepilogo Gestione Finanziaria</h1>
 
         {{-- FORM DI FILTRO --}}
-        <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+        <div class="mb-4 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md">
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Filtra per</h3>
             <form action="{{ route('gestfin') }}" method="GET" class="flex flex-col md:flex-row gap-4 items-center">
 
@@ -122,9 +120,10 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-center text-black">
                                     <input
+                                            id="impegnato_flag-{{ $pds->id }}"
                                             type="checkbox"
-                                            @checked($pds->impegnato == -1)
-                                            @change="toggleStatus('impegnato', {{ $pds->id }}, $el.checked)"
+                                            @checked($pds->impegnato_flag == -1)
+                                            @change="toggleStatus('impegnato_flag', {{ $pds->id }}, $el.checked)"
                                             class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                                     >
                                 </td>
@@ -132,9 +131,9 @@
                             </tr>
                         @endforeach
                         <tr class="bg-gray-100 font-bold">
-                            <td colspan="7" class="px-6 py-4 text-left text-xs text-black">Totale:</td>
-                            <td class="px-6 py-4 text-xs text-right text-black">{{ number_format($pdsNonValidati->sum('importo'), 2, ',', '.') }}</td>
-                            <td colspan="2" class="px-6 py-4"></td>
+                            <td colspan="7" class="px-6 text-left text-xs text-black">Totale:</td>
+                            <td class="px-6 text-xs text-right py=2 text-black">{{ number_format($pdsNonValidati->sum('importo'), 2, ',', '.') }}</td>
+                            <td colspan="2" class="px-6 "></td>
                         </tr>
                         </tbody>
 
@@ -163,7 +162,7 @@
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Importo</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registrato</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Impegnato</th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">validato</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Validato</th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -178,28 +177,41 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black truncate max-w-xs">{{ $pds->oggetto }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-right text-black">{{ number_format($pds->importo, 2, ',', '.') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-center text-black">
-                                    <input type="checkbox" @checked($pds->registrato == -1) disabled class="h-4 w-4 text-gray-400 border-gray-300 rounded cursor-not-allowed">
+                                    <input
+
+                                            type="checkbox"
+                                            @checked($pds->registrato == -1) disabled class="h-4 w-4 text-gray-400 border-gray-300 rounded cursor-not-allowed">
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-center text-black">
                                     <input
+                                            id="impegnato_flag-{{ $pds->id }}"
                                             type="checkbox"
-                                            @checked($pds->impegnato == -1)
-                                            @change="toggleStatus('impegnato', {{ $pds->id }}, $el.checked)"
+                                            @checked($pds->impegnato_flag == -1)
+                                            @change="toggleStatus('impegnato_flag', {{ $pds->id }}, $el.checked)"
+                                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                                    >
+                                </td>
+                                <td class="px-6 py-2 whitespace-nowrap text-xs text-center text-black">
+                                    <input
+                                            id="validato-{{ $pds->id }}"
+                                            type="checkbox"
+                                            @checked($pds->validato == -1)
+                                            @change="toggleStatus('validato', {{ $pds->id }}, $el.checked)"
                                             class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                                     >
                                 </td>
                             </tr>
                         @endforeach
                         <tr class="bg-gray-100 font-bold">
-                            <td colspan="7" class="px-6 py-4 text-left text-xs text-black">Totale:</td>
-                            <td class="px-6 py-4 text-xs text-right text-black">{{ number_format($pdsValidati->sum('importo'), 2, ',', '.') }}</td>
-                            <td colspan="2" class="px-6 py-4"></td>
+                            <td colspan="7" class="px-6 py-2 text-left text-xs text-black">Totale:</td>
+                            <td class="px-6  text-xs text-right text-black">{{ number_format($pdsValidati->sum('importo'), 2, ',', '.') }}</td>
+                            <td colspan="3" class="px-6 py-2 "></td>
                         </tr>
                         </tbody>
-                        <tr class="bg-gray-100 font-bold">
-                            <td colspan="7" class="px-6 py-4 text-left text-xs text-black">Totale Importo:</td>
-                            <td class="px-6 py-4 text-xs text-right text-black">{{ number_format($pds->sum('importo'), 2, ',', '.') }}</td>
-                            <td colspan="2" class="px-6 py-4"></td>
+                        <tr class="bg-gray-200 font-bold">
+                            <td colspan="7" class="px-6 py-2 text-left text-xs text-black">Totale Importo:</td>
+                            <td class="px-6 text-xs text-right text-black">{{ number_format($pds->sum('importo'), 2, ',', '.') }}</td>
+                            <td colspan="3" class="px-6 py-2"></td>
                         </tr>
                     </table>
 
@@ -207,6 +219,7 @@
 
             @endif
         </div>
+    </div>
     </div>
 
 </div>

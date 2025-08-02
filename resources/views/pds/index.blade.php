@@ -2,73 +2,7 @@
 <x-layouts.list-layouts>
 
     <div x-data="{
-    showModal: false,
-    pdsToEdit: null,
-    editForm: {
-        idcapitolo: null,
-        idreparto: null
-    },
-
-    capitoli: @js($capitoli),
-    departments: @js($departments),
-
-    openModal(pds) {
-        this.pdsToEdit = pds;
-        let editablePds = { ...pds };
-
-        if (editablePds.datapds) {
-            try {
-                 const date = new Date(editablePds.datapds);
-                 editablePds.datapds = date.toISOString().split('T')[0];
-            } catch (e) {
-                 console.error('Errore nella formattazione della data:', e);
-                 editablePds.datapds = '';
-            }
-        } else {
-             editablePds.datapds = '';
-        }
-
-        if (editablePds.importo) {
-            editablePds.importo = new Intl.NumberFormat('it-IT', {
-                 style: 'decimal',
-                 minimumFractionDigits: 2,
-                 maximumFractionDigits: 2
-            }).format(editablePds.importo);
-        } else {
-            editablePds.importo = '0,00';
-        }
-
-        this.editForm = { ...editablePds };
-        this.showModal = true;
-    },
-    closeModal() {
-        this.showModal = false;
-    },
-
-    autofillCapitolo(event) {
-        const selectedId = event.target.value;
-        const selectedCapitolo = this.capitoli.find(c => c.idcapitolo == selectedId);
-        if (selectedCapitolo) {
-            this.editForm.capitolo = selectedCapitolo.capitolo;
-            this.editForm.art = selectedCapitolo.art;
-            this.editForm.prog = selectedCapitolo.prog;
-        } else {
-            this.editForm.capitolo = '';
-            this.editForm.art = '';
-            this.editForm.prog = '';
-        }
-    },
-
-    autofillReparto(event) {
-        const selectedId = event.target.value;
-        const selectedDepartment = this.departments.find(d => d.idreparto == selectedId);
-        if (selectedDepartment) {
-            this.editForm.reparto = selectedDepartment.reparto;
-        } else {
-            this.editForm.reparto = '';
-        }
-    },
-   toggleStatus(field, pdsId, status) {
+toggleStatus(field, pdsId, status) {
         let value = status ? -1 : 0;
 
         fetch(`/pds/update-status/${pdsId}`, {
@@ -82,10 +16,16 @@
                 status: status
             })
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Errore durante l\'aggiornamento dello stato.');
+            }
+            return response.json();
+        })
         .then(data => {
             console.log(data.message);
-            // Opzionale: mostra una notifica di successo
+            // Ricarica la pagina per visualizzare il risultato del filtro
+            window.location.reload();
         })
         .catch(error => {
             console.error('Errore:', error);
@@ -167,7 +107,7 @@
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">oggetto</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Importo</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">registrato</th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">validato</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Impegnato</th>
                                             <th scope="col" class="relative px-6 py-3">
                                                 <span class="sr-only">Azioni</span>
                                             </th>
@@ -202,9 +142,9 @@
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100 text-center">
                                                     <input
                                                             type="checkbox"
-                                                            id="impegnato-{{ $item->id }}"
-                                                            @checked($item->impegnato == -1)
-                                                            @change="toggleStatus('impegnato', {{ $item->id }}, $el.checked)"
+                                                            id="impegnato_flag-{{ $item->id }}"
+                                                            @checked($item->impegnato_flag== -1)
+                                                            @change="toggleStatus('impegnato_flag', {{ $item->id }}, $el.checked)"
                                                             class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
                                                     >
                                                 </td>
@@ -339,6 +279,10 @@
                                                     <div class="mb-4">
                                                         <label for="importo" class="block text-sm font-medium text-gray-900">Importo</label>
                                                         <input type="text" name="importo" id="importo" x-model="editForm.importo" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white text-gray-900 focus:ring-blue-500 focus:border-blue-500">
+                                                    </div>
+                                                    <div class="mb-4">
+                                                        <label for="impegnato_flag" class="block text-sm font-medium text-gray-900">Impegnato</label>
+                                                        <input type="checkbox" name="impegnato_flag" id="importo" x-model="editForm.impegnato_flag" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm bg-white text-gray-900 focus:ring-blue-500 focus:border-blue-500">
                                                     </div>
                                                 </div>
 

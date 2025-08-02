@@ -159,7 +159,9 @@ public function store(Request $request)
             'prog' => 'required|integer|min:2',
             'idv' => 'nullable|integer',
             'note' => 'nullable|string',
-
+            'registrato'=> 'boolean',
+            'impegnato_flag' => 'boolean',
+            'validato' => 'boolean',
             'oggetto' => 'required|string',
             'importo' => 'nullable|numeric',
             'anno' => 'nullable|integer'
@@ -195,7 +197,7 @@ public function store(Request $request)
     {
         // 1. Valida i dati della richiesta
         $validated = $request->validate([
-            'field' => 'required|string|in:registrato,impegnato',
+            'field' => 'required|string|in:registrato,impegnato_flag,validato',
             'status' => 'required|boolean',
         ]);
 
@@ -211,5 +213,7 @@ public function store(Request $request)
         return response()->json(['message' => 'Stato aggiornato con successo.']);
     }
 
-}
 
+
+
+}
