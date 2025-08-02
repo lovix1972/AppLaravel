@@ -213,6 +213,40 @@ public function store(Request $request)
         return response()->json(['message' => 'Stato aggiornato con successo.']);
     }
 
+    public function gestfin()
+    {
+        $baseQuery = Register::query();
+
+        // Applica i filtri dalla richiesta se esistono
+        if (request('reparto')) {
+            $baseQuery->where('reparto', request('reparto'));
+        }
+
+        if (request('capitolo_art')) {
+            list($capitolo, $art) = explode('-', request('capitolo_art'));
+            $baseQuery->where('capitolo', $capitolo)->where('art', $art);
+        }
+
+        // Filtra i record che hanno sia 'impegnato_flag' che 'registrato' a -1
+        $pdsValidati = (clone $baseQuery)
+            ->where('impegnato_flag', -1)
+            ->where('registrato', -1)
+            ->get();
+
+        // Filtra i record che NON hanno entrambe le condizioni soddisfatte
+        $pdsNonValidati = (clone $baseQuery)
+            ->where(function ($query) {
+                $query->where('impegnato_flag', 0)
+                    ->orWhere('registrato', 0);
+            })
+            ->get();
+
+        // Recupera i dati per i filtri della vista
+        $departments = Register::select('reparto')->distinct()->orderBy('reparto')->get();
+        $capitoli = Register::select('capitolo', 'art')->distinct()->orderBy('capitolo')->orderBy('art')->get();
+
+        return view('gestfin', compact('pdsNonValidati', 'pdsValidati', 'departments', 'capitoli'));
+    }
 
 
 

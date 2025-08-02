@@ -37,8 +37,9 @@ toggleStatus(field, pdsId, status) {
 }">
 
                 {{-- La tabella PDS --}}
-                <div class="w-full sm:px-6 lg:px-8">
-
+                <div class="py-0">
+                    <div class="max-w-full sm:px-6 lg:px-6">
+                    </div>
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-40 text-gray-900 dark:text-gray-100">
                             @if ($errors->any())
@@ -52,7 +53,7 @@ toggleStatus(field, pdsId, status) {
                             @endif
                             @if($pds->isEmpty())
 
-                                <div class="text-center py-2">
+                                <div class="text-center py-4">
                                     <h4 class="text-xl font-bold text-gray-700 dark:text-gray-300">Nessun PDS registrato.</h4>
                                     <a href="{{ route('inspds.show') }}"
                                        class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-150">
@@ -90,9 +91,9 @@ toggleStatus(field, pdsId, status) {
                                             </div>
                                         </form>
                                     </div>
-                                <div class="overflow-x-auto py-10">
+                                <div class="py-0">
 
-                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto">
+                                    <table class="  divide-gray-200 dark:divide-gray-700 ">
 
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                         <tr>
@@ -165,9 +166,9 @@ toggleStatus(field, pdsId, status) {
                                         @endforeach
                                         {{-- Riga del totale --}}
                                         <tr class="bg-gray-100 dark:bg-gray-700 font-bold">
-                                            <td colspan="10" class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">Totale:</td>
+                                            <td colspan="9" class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">Totale:</td>
                                             <td class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">€ {{ number_format($pds->sum('importo'), 2, ',', '.') }}</td>
-                                            <td colspan="2" class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100"></td>
+                                            <td colspan="3" class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100"></td>
                                         </tr>
                                         </tbody>
 
