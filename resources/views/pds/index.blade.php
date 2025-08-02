@@ -97,7 +97,7 @@
 }">
 
                 {{-- La tabella PDS --}}
-                <div class="w-full sm:px-6 lg:px-8">
+                <div class="max-w-full sm:px-6 lg:px-8">
 
                     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                         <div class="p-40 text-gray-900 dark:text-gray-100">
@@ -150,9 +150,9 @@
                                             </div>
                                         </form>
                                     </div>
-                                <div class="overflow-x-auto py-10">
+                                <div class="overflow-x-auto py-5">
 
-                                    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto">
+                                    <table class="max-w-full divide-y divide-gray-200 dark:divide-gray-700 table-auto">
 
                                         <thead class="bg-gray-50 dark:bg-gray-700">
                                         <tr>
@@ -167,7 +167,7 @@
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">oggetto</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Importo</th>
                                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">registrato</th>
-                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">validato</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">impegnato</th>
                                             <th scope="col" class="relative px-6 py-3">
                                                 <span class="sr-only">Azioni</span>
                                             </th>
@@ -225,9 +225,9 @@
                                         @endforeach
                                         {{-- Riga del totale --}}
                                         <tr class="bg-gray-100 dark:bg-gray-700 font-bold">
-                                            <td colspan="10" class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">Totale:</td>
+                                            <td colspan="9" class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">Totale:</td>
                                             <td class="px-6 py-4 text-right text-sm text-gray-900 dark:text-gray-100">€ {{ number_format($pds->sum('importo'), 2, ',', '.') }}</td>
-                                            <td colspan="2" class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100"></td>
+                                            <td colspan="3" class="px-6 py-4 text-sm text-gray-900 dark:text-gray-100"></td>
                                         </tr>
                                         </tbody>
 
