@@ -62,5 +62,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/gestione-finanziaria', [GestfinController::class, 'index'])->name('gestfin');
     Route::post('/pds/update-status/{pds}', [RegisterController::class, 'updateStatus'])->name('pds.update-status');
 
+
 });
 

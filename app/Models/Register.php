@@ -15,11 +15,11 @@ class Register extends Model
 
         'numpds',
         'idreparto',
-        'idcapitolo',
-        'datapds',
         'reparto',
+        'datapds',
         'idv',
         'decreto',
+        'idcapitolo',
         'capitolo',
         'art',
         'prog',
@@ -29,6 +29,7 @@ class Register extends Model
         'impegnato',
         'contabilizzato',
         'anno',
+        'impegnato_flag',
         'registrato',
         'validato'
 

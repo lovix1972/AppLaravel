@@ -24,7 +24,7 @@
                             <a href='/dashboard' class='navbar-link text-black hover:text-yellow-500'>Dashboard</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 max-lg:py-3 px-3'>
-                            <a href='/inspds' class='navbar-link text-blackhover:text-yellow-500'>Acquisizioni</a>
+                            <a href='/inspds' class='navbar-link text-black hover:text-yellow-500'>Acquisizioni</a>
                         </li>
                         <li class='max-lg:border-b border-gray-300 text-black max-lg:py-3 px-3'>
                             <a href='/gestione-finanziaria' class='navbar-link text-black text-blackhover:text-yellow-500'>Gestione Finanziaria</a>
