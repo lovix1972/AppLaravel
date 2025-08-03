@@ -4,7 +4,7 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="26">
+          <list size="29">
             <item index="0" class="java.lang.String" itemvalue="setup" />
             <item index="1" class="java.lang.String" itemvalue="x-data" />
             <item index="2" class="java.lang.String" itemvalue="@click" />
@@ -31,6 +31,9 @@
             <item index="23" class="java.lang.String" itemvalue="text-gray-500" />
             <item index="24" class="java.lang.String" itemvalue="text-center" />
             <item index="25" class="java.lang.String" itemvalue="@keydown.escape.window" />
+            <item index="26" class="java.lang.String" itemvalue="@keydown.enter" />
+            <item index="27" class="java.lang.String" itemvalue="@blur" />
+            <item index="28" class="java.lang.String" itemvalue="@click.away" />
           </list>
         </value>
       </option>
@@ -39,7 +42,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="12">
+          <list size="13">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -52,6 +55,7 @@
             <item index="9" class="java.lang.String" itemvalue="snap" />
             <item index="10" class="java.lang.String" itemvalue="title" />
             <item index="11" class="java.lang.String" itemvalue="paragraph" />
+            <item index="12" class="java.lang.String" itemvalue="td" />
           </list>
         </value>
       </option>

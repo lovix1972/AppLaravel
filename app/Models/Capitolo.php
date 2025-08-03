@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Capitolo extends Model
 {
     use HasFactory;
-
     protected $table = 'capitoli';
+    protected $primaryKey = 'id';
+
 
     protected $fillable = [
         'idcapitolo',
@@ -20,11 +21,15 @@ class Capitolo extends Model
         'prog',
         'idv',
         'decreto',
+        'preavviso',
         'anno',
     ];
 
+
+
     public function department()
     {
-        return $this->belongsTo(Department::class, 'idreparto', 'idreparto');
-    }
-}
+        // Supponendo che la chiave esterna sia 'idreparto' nella tabella 'preavvisi'
+        // e la chiave locale sia 'idreparto' nella tabella 'departments'.
+        return $this->belongsTo(Department::class, 'id', 'id');
+    }}

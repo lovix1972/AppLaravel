@@ -82,6 +82,7 @@
                                class="mt-4 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition ease-in-out duration-150">
                                 Acquisisci PDS
                             </a>
+
                         </div>
                     @else
                         <div class="mb-6 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
@@ -104,8 +105,12 @@
                                     <a href="{{ route('pds.index') }}" class="flex-1 md:flex-auto px-4 py-2 text-center bg-gray-200 text-gray-700 font-medium rounded-md hover:bg-gray-300 transition">Annulla Filtro</a>
                                 </div>
                             </form>
+                            <div class="py-0 overflow-x-auto">
+                                <a href="{{ route('reglist.print') }}" target="_blank" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                    Stampa PDF
+                                </a>
                         </div>
-                        <div class="py-0 overflow-x-auto">
+
                             <table class="w-full table-auto text-xs">
                                 <thead>
                                 <tr class="bg-gray-50 dark:bg-gray-700">

@@ -1,10 +1,14 @@
 <?php
+
+use App\Models\Capitolo;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{CapitoloController,
     DashboardController,
     GestfinController,
     GestioneRepartiController,
+    PreavvisiController,
     RegisterController,
+    ReglistController,
     RepartoController,
     ReportGUController,
     SelectController,
@@ -25,7 +29,7 @@ Route::controller(UserController::class)->group(function () {
 
 // 🧾 Reparto e selezioni (supporto alla registrazione)
 Route::controller(RepartoController::class)->group(function () {
-    Route::get('/login','showReparti')->name('showReparto');
+    Route::get('/login', 'showReparti')->name('showReparto');
     Route::get('/register', 'showRepartiFormRegister')->name('showRepartiForm');
     Route::post('/registrareparto', 'store')->name('StoreReparto');
 });
@@ -40,7 +44,7 @@ Route::controller(SelectController::class)->group(function () {
 Route::post('/form', [ValidationController::class, 'validateForm'])->name('validateForm');
 
 // 📊 Pagine statiche protette
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'pages.dashboard')->name('dashboard');
     Route::view('/insdati', 'pages.inspds_reparto')->name('insdati');
 });
@@ -52,27 +56,40 @@ Route::controller(UserController::class)->group(function () {
 });
 
 // 📑 CRUD PDS (protetto)
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
+
+    // Risorsa CRUD per i preavvisi (Capitoli)
+    Route::resource('preavvisi', CapitoloController::class);
+
+    // Gestione registrazioni PDS
     Route::resource('pds', RegisterController::class);
     Route::get('/reglist', [RegisterController::class, 'index'])->name('reglist.index');
-
     Route::get('/inspds', [RegisterController::class, 'show'])->name('inspds.show');
-
     Route::put('/inspds/{id}', [RegisterController::class, 'update'])->name('pdsUpdate');
-    Route::get('/list', [RegisterController::class, 'index'])->name('list');
     Route::post('/inspds', [RegisterController::class, 'store'])->name('InsertPds');
     Route::delete('/inspds/{id}', [RegisterController::class, 'destroy'])->name('DeletePds');
-    Route::get('/gestione-finanziaria', [GestfinController::class, 'index'])->name('gestfin');
     Route::post('/pds/update-status/{pds}', [RegisterController::class, 'updateStatus'])->name('pds.update-status');
-    Route::get('/gestione-finanziaria', [RegisterController::class, 'gestfin'])->name('gestfin');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // Gestione finanziaria e report
+    Route::get('/gestione-finanziaria', [GestfinController::class, 'index'])->name('gestfin');
+    Route::get('/gestione-finanziaria', [RegisterController::class, 'gestfin'])->name('gestfin'); // Potrebbe esserci conflitto? Verifica
     Route::get('/reportgu-reparto', [ReportGUController::class, 'reportReparto'])->name('report.reparto');
-//CRUD Gestione Reparti
+
+    // CRUD Gestione Reparti
     Route::get('/gestione-reparti', [GestioneRepartiController::class, 'index'])->name('gestione-reparti.index');
     Route::post('/gestione-reparti', [GestioneRepartiController::class, 'store'])->name('gestione-reparti.store');
     Route::put('/gestione-reparti/{department}', [GestioneRepartiController::class, 'update'])->name('gestione-reparti.update');
     Route::delete('/gestione-reparti/{department}', [GestioneRepartiController::class, 'destroy'])->name('gestione-reparti.destroy');
-    Route::resource('preavvisi', CapitoloController::class);
+
+    // Dashboard (duplicata in statiche, valutarne la rimozione)
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/reglist/print', [ReglistController::class, 'printPdf'])->name('reglist.print');
+
+    Route::resource('preavvisi', PreavvisiController::class);
+    Route::get('/preavvisi/{capitolo}', [PreavvisiController::class, 'show'])->name('preavvisi.show');
+
+
 
 
 

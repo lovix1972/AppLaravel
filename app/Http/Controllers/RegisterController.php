@@ -105,9 +105,9 @@ public function store(Request $request)
     // 2. Mappatura dei dati validati ai nomi delle colonne del database
     $pdsData = [
         'idpds' => $validatedData['idpds'] ?? null,
-        'num_pds' => $validatedData['numpds'],
+        'numpds' => $validatedData['numpds'],
         'datapds' => $validatedData['datapds'],
-        'num_protocollo' => $validatedData['n_protocollo'],
+
         'idreparto' => $validatedData['idreparto'],
         'reparto' => $validatedData['reparto'],
         'oggetto' => $validatedData['oggetto'],
@@ -163,9 +163,9 @@ public function store(Request $request)
             'prog' => 'required|integer|min:2',
             'idv' => 'nullable|integer',
             'note' => 'nullable|string',
-            'registrato'=> 'boolean',
-            'impegnato_flag' => 'boolean',
-            'validato' => 'boolean',
+            'registrato'=> 'number',
+            'impegnato_flag' => 'nmber',
+            'validato' => 'number',
             'oggetto' => 'required|string',
             'importo' => 'nullable|numeric',
             'anno' => 'nullable|integer'
