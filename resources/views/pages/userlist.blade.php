@@ -40,7 +40,8 @@
         @endforeach
             <td>Record: {{$user->count()}}</td>
     </table>
-</x-layouts.list-layouts>
+
 </div>
 @endif
 
+</x-layouts.list-layouts>
