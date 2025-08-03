@@ -1,9 +1,12 @@
 <?php
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{
+use App\Http\Controllers\{CapitoloController,
+    DashboardController,
     GestfinController,
+    GestioneRepartiController,
     RegisterController,
     RepartoController,
+    ReportGUController,
     SelectController,
     UserController,
     ValidationController};
@@ -62,6 +65,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/gestione-finanziaria', [GestfinController::class, 'index'])->name('gestfin');
     Route::post('/pds/update-status/{pds}', [RegisterController::class, 'updateStatus'])->name('pds.update-status');
     Route::get('/gestione-finanziaria', [RegisterController::class, 'gestfin'])->name('gestfin');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/reportgu-reparto', [ReportGUController::class, 'reportReparto'])->name('report.reparto');
+//CRUD Gestione Reparti
+    Route::get('/gestione-reparti', [GestioneRepartiController::class, 'index'])->name('gestione-reparti.index');
+    Route::post('/gestione-reparti', [GestioneRepartiController::class, 'store'])->name('gestione-reparti.store');
+    Route::put('/gestione-reparti/{department}', [GestioneRepartiController::class, 'update'])->name('gestione-reparti.update');
+    Route::delete('/gestione-reparti/{department}', [GestioneRepartiController::class, 'destroy'])->name('gestione-reparti.destroy');
+    Route::resource('preavvisi', CapitoloController::class);
+
 
 
 });

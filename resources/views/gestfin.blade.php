@@ -99,6 +99,7 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capitolo</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Art</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prog</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Decreto</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Oggetto</th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Importo</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registrato</th>
@@ -114,6 +115,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->capitolo }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->art }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->prog }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->decreto }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black truncate max-w-xs">{{ $pds->oggetto }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-right text-black">{{ number_format($pds->importo, 2, ',', '.') }}</td>
 
@@ -161,6 +163,7 @@
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Capitolo</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Art</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prog</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Decreto</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Oggetto</th>
                             <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Importo</th>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registrato</th>
@@ -177,6 +180,7 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->capitolo }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->art }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->prog }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-xs text-black">{{ $pds->decreto }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-black truncate max-w-xs">{{ $pds->oggetto }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-right text-black">{{ number_format($pds->importo, 2, ',', '.') }}</td>
                                 <td class="px-6 py-4 whitespace-nowrap text-xs text-center text-black">
@@ -206,15 +210,15 @@
                             </tr>
                         @endforeach
                         <tr class="bg-gray-100 font-bold">
-                            <td colspan="7" class="px-6 py-2 text-left text-xs text-black">Totale:</td>
+                            <td colspan="8" class="px-6 py-2 text-left text-xs text-black">Totale:</td>
                             <td class="px-6  text-xs text-right text-black">{{ number_format($pdsValidati->sum('importo'), 2, ',', '.') }}</td>
-                            <td colspan="3" class="px-6 py-2 "></td>
+                            <td colspan="4" class="px-6 py-2 "></td>
                         </tr>
                         </tbody>
                         <tr class="bg-gray-200 font-bold">
-                            <td colspan="7" class="px-6 py-2 text-left text-xs text-black">Totale Importo:</td>
+                            <td colspan="8" class="px-6 py-2 text-left text-xs text-black">Totale Importo:</td>
                             <td class="px-6 text-xs text-right text-black">{{ number_format($pds->sum('importo'), 2, ',', '.') }}</td>
-                            <td colspan="3" class="px-6 py-2"></td>
+                            <td colspan="4" class="px-6 py-2"></td>
                         </tr>
                     </table>
 

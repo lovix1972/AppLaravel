@@ -4,7 +4,7 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="20">
+          <list size="26">
             <item index="0" class="java.lang.String" itemvalue="setup" />
             <item index="1" class="java.lang.String" itemvalue="x-data" />
             <item index="2" class="java.lang.String" itemvalue="@click" />
@@ -25,6 +25,12 @@
             <item index="17" class="java.lang.String" itemvalue=":key" />
             <item index="18" class="java.lang.String" itemvalue="x-for" />
             <item index="19" class="java.lang.String" itemvalue="csrf-token" />
+            <item index="20" class="java.lang.String" itemvalue="x-ref" />
+            <item index="21" class="java.lang.String" itemvalue="@click.outside" />
+            <item index="22" class="java.lang.String" itemvalue="spesaChart" />
+            <item index="23" class="java.lang.String" itemvalue="text-gray-500" />
+            <item index="24" class="java.lang.String" itemvalue="text-center" />
+            <item index="25" class="java.lang.String" itemvalue="@keydown.escape.window" />
           </list>
         </value>
       </option>

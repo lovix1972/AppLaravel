@@ -16,6 +16,9 @@ class Department extends Model
         'regione',
         'citta',
     ];
-
+    public function capitoli()
+    {
+        return $this->hasMany(Capitolo::class, 'idreparto', 'idreparto');
+    }
 
 }

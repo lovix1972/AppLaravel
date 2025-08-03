@@ -28,9 +28,13 @@ class RegisterController extends Controller
                 // Utilizza 'like' per una ricerca parziale più flessibile
                 $query->where($searchKey, 'like', '%' . $searchValue . '%');
             }
+
         }
 
-        $pds = $query->paginate(20);
+        $pds = $query->orderBy('datapds', 'desc')->paginate(25);
+
+        // Se usi i filtri, assicurati che la paginazione li mantenga
+        $pds->appends(request()->except('page'));
 
         $capitoli = Capitolo::all();
         $departments = Department::all();
@@ -193,25 +197,26 @@ public function store(Request $request)
         return view('pages.inspds', compact( 'capitoli', 'department'));
     }
 
-    public function updateStatus(Request $request, Register $pds)
+    public function updateStatus(Request $request,  $id)
     {
         // 1. Valida i dati della richiesta
-        $validated = $request->validate([
-            'field' => 'required|string|in:registrato,impegnato_flag,validato',
+        $request->validate([
+            'field' => 'required|string',
             'status' => 'required|boolean',
         ]);
 
-        // 2. Aggiorna il campo corretto
-        // Converti il booleano in -1 o 0 come richiesto
-        $value = $validated['status'] ? -1 : 0;
+        // Use findOrFail() to get a single model instance
+        $pds = Register::findOrFail($id);
 
-        $pds->update([
-            $validated['field'] => $value,
-        ]);
+        $value = $request->input('status') ? -1 : 0;
 
-        // 3. Restituisci una risposta di successo
+        $pds->{$request->input('field')} = $value;
+        $pds->save();
+
         return response()->json(['message' => 'Stato aggiornato con successo.']);
+
     }
+
 
     public function gestfin()
     {
